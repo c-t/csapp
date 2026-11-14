@@ -1,0 +1,13 @@
+*.o
+*.out
+*.exe
+*.a
+*.so
+*.dylib
+*.bin
+*.obj
+test_*
+*/test_*
+*/build/*
+build/
+.vscode/
