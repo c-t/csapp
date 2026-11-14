@@ -15,9 +15,9 @@ Explore and visualize the System V AMD64 calling convention.
 - [x] Phase 6A - Pointer Arguments
 - [x] Phase 6B - Small Struct Passing
 - [x] Phase 6C - Large Struct Passing
-- [x] Phase 7A - Variadic Function Register Analysis
-- [ ] Phase 7B - Variadic Register-to-Stack Transition
-- [ ] Phase 8 - Linux vs Windows ABI
+- [x] Phase 7A - Variadic Register Analysis
+- [x] Phase 7B - Variadic Register-to-Stack Transition
+- [x] Phase 8 - Linux vs Windows ABI Comparison
 
 ---
 
@@ -151,3 +151,19 @@ The fixed parameter consumes RDI.
 Variadic arguments begin in the next available
 argument register and continue following the
 System V AMD64 ABI rules.
+
+---
+
+## Project Complete
+
+CallScope successfully explored:
+
+- Integer argument passing
+- Pointer argument passing
+- Small struct passing
+- Large struct passing
+- Stack arguments
+- Register arguments
+- Variadic functions
+- Runtime register inspection
+- Linux vs Windows ABI differences

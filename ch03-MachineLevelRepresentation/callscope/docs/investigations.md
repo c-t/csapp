@@ -407,3 +407,66 @@ argument register.
 Variadic arguments then occupy the remaining
 registers according to the standard System V
 AMD64 calling convention.
+
+# Phase 8 - ABI Comparison
+
+System V AMD64
+
+```text
+Arg1 -> RDI
+Arg2 -> RSI
+Arg3 -> RDX
+Arg4 -> RCX
+Arg5 -> R8
+Arg6 -> R9
+
+Arg7+ -> Stack
+```
+
+Microsoft x64
+
+```text
+Arg1 -> RCX
+Arg2 -> RDX
+Arg3 -> R8
+Arg4 -> R9
+
+Arg5+ -> Stack
+```
+
+Windows shadow space:
+
+```text
+32 bytes
+```
+
+Linux shadow space:
+
+```text
+None
+```
+
+Conclusion
+
+Both ABIs solve the same problem but use
+different register layouts and stack conventions.
+
+# Final Project Findings
+
+Argument Classification
+
+Integer
+    -> Register
+
+Pointer
+    -> Register
+
+Small Struct
+    -> Registers
+
+Large Struct
+    -> Stack / Memory
+
+Variadic Arguments
+    -> Registers
+    -> Stack
