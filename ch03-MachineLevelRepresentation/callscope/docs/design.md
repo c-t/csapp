@@ -2,7 +2,9 @@
 
 Goal:
 
-Understand and visualize the System V AMD64 calling convention.
+Understand and visualize the System V AMD64 ABI.
+
+---
 
 ## Roadmap
 
@@ -10,26 +12,17 @@ Understand and visualize the System V AMD64 calling convention.
 
 Validate ABI behavior using:
 
+- GDB
 - objdump
-- gdb
 - register inspection
 
 ### Phase 1 - Argument Mapping ✅
 
 Map arguments to ABI locations.
 
-```text
-Arg1 -> RDI
-Arg2 -> RSI
-Arg3 -> RDX
-Arg4 -> RCX
-Arg5 -> R8
-Arg6 -> R9
-```
-
 ### Phase 2 - Stack Argument Explorer ✅
 
-Explore arguments beyond six.
+Visualize arguments beyond six.
 
 ```text
 Arg7+
@@ -41,62 +34,47 @@ Stack
 
 Visual representation of:
 
-- Register file
+- Register arguments
 - Stack arguments
 - Register exhaustion
 
-### Phase 4 - Caller/Callee View
+### Phase 4 - Caller / Callee View ✅
 
 Visualize:
 
 ```text
 Caller
-   ↓
-Registers
-   ↓
-Call Instruction
-   ↓
+    ↓
+Register Setup
+    ↓
+CALL
+    ↓
 Callee
 ```
 
 ### Phase 5 - Register Inspector ✅
 
-Goal:
-
-Capture a runtime snapshot of argument registers.
-
-Registers:
-
-- RDI
-- RSI
-- RDX
-- RCX
-- R8
-- R9
+Capture runtime register values.
 
 Learning Objective:
 
-Understand the difference between:
-
+```text
 ABI Specification
+       vs
+Actual Register State
+```
 
-and
+### Phase 6A - Pointer Arguments ✅
 
-Runtime Register State
+Investigate address passing.
 
-Observation:
+### Phase 6B - Small Struct Passing ✅
 
-The values observed in registers later in
-execution may differ from the values originally
-used to pass function arguments.
+Investigate register-based aggregate passing.
 
-### Phase 6 - Struct & Pointer Arguments
+### Phase 6C - Large Struct Passing ✅
 
-Study:
-
-- structures
-- pointers
-- passing by reference
+Investigate memory-based aggregate passing.
 
 ### Phase 7 - Variadic Functions
 
@@ -106,14 +84,41 @@ Study:
 printf(...)
 ```
 
-and variadic ABI behavior.
+Topics:
+
+- va_list
+- va_start
+- va_arg
+- va_end
 
 ### Phase 8 - Linux vs Windows ABI
 
 Compare:
 
-System V AMD64
+System V AMD64 ABI
 
 vs
 
-Microsoft x64 ABI.
+Microsoft x64 ABI
+
+---
+
+## Argument Classification Model
+
+```text
+Integer
+    ↓
+Register
+
+Pointer
+    ↓
+Register
+
+Small Struct
+    ↓
+Registers
+
+Large Struct
+    ↓
+Memory
+```

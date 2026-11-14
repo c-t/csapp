@@ -206,3 +206,160 @@ confirmed via:
 ```gdb
 x/2wx $rsi
 ```
+
+# Phase 6A - Pointer Arguments
+
+Test:
+
+```c
+foo(&value, &point);
+```
+
+Observed:
+
+```text
+value = 0x7fffffffd64c
+point = 0x7fffffffd650
+
+RDI = 0x7fffffffd64c
+RSI = 0x7fffffffd650
+```
+
+Conclusion:
+
+Pointer arguments are passed through
+the same argument registers used for integers.
+
+The register contains the address of the object.
+
+---
+
+# Phase 6B - Small Struct Passing
+
+Struct:
+
+```c
+typedef struct
+{
+    long x;
+    long y;
+} point_t;
+```
+
+Size:
+
+```text
+16 bytes
+```
+
+Observed:
+
+```text
+point = {x = 10, y = 20}
+
+RDI = 10
+RSI = 20
+```
+
+Conclusion:
+
+The structure was decomposed into fields.
+
+Each field was passed through a register.
+
+No pointer was involved.
+
+No stack memory was required.
+
+---
+
+# Phase 6C - Large Struct Passing
+
+Struct:
+
+```c
+typedef struct
+{
+    long a;
+    long b;
+    long c;
+    long d;
+    long e;
+} big_t;
+```
+
+Size:
+
+```text
+40 bytes
+```
+
+Observed:
+
+```text
+value = {10,20,30,40,50}
+```
+
+Disassembly:
+
+```asm
+sub $0x28,%rsp
+
+mov field a
+mov field b
+mov field c
+mov field d
+mov field e
+
+call foo
+```
+
+Interpretation:
+
+The compiler allocated temporary stack space.
+
+The structure was copied into that memory.
+
+The function was then invoked.
+
+Conclusion:
+
+Large structures transition from:
+
+```text
+Register Passing
+```
+
+to:
+
+```text
+Memory-Based Passing
+```
+
+---
+
+# Summary
+
+Current System V AMD64 Findings
+
+```text
+Integer
+    -> Register
+
+Pointer
+    -> Register
+
+Small Struct
+    -> Registers
+
+Large Struct
+    -> Stack / Memory
+```
+
+Key Learning:
+
+Pass-by-value does not automatically imply
+stack-based argument passing.
+
+The ABI classifies arguments and selects the
+most efficient transport mechanism.
