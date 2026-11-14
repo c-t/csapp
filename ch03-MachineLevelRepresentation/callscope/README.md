@@ -9,7 +9,7 @@ Explore and visualize the System V AMD64 calling convention.
 - [x] Phase 2 - Stack Argument Explorer
 - [x] Phase 3 - ABI Visualizer
 - [x] Phase 4 - Caller / Callee View
-- [ ] Phase 5 - Register Inspector
+- [x] Phase 5 - Register Inspector
 - [ ] Phase 6 - Struct & Pointer Arguments
 - [ ] Phase 7 - Variadic Functions
 - [ ] Phase 8 - Linux vs Windows ABI
@@ -84,3 +84,43 @@ Callee
 Key Learning:
 
 The caller is responsible for placing arguments into ABI-defined locations before transferring control to the callee.
+
+### Phase 5 - Register Inspector
+
+Implemented:
+
+- Runtime register snapshot
+- RDI inspection
+- RSI inspection
+- RDX inspection
+- RCX inspection
+- R8 inspection
+- R9 inspection
+
+Example:
+
+Expected:
+
+RDI = 1
+RSI = 2
+RDX = 3
+RCX = 4
+R8  = 5
+R9  = 6
+
+Observed:
+
+RDI = 140723370537952
+RSI = 2
+RDX = 2
+RCX = 4
+R8  = 5
+R9  = 6
+
+Key Learning:
+
+Argument registers are only guaranteed to contain
+their argument values at function entry.
+
+As execution proceeds, the compiler may reuse
+registers for temporary values and other work.

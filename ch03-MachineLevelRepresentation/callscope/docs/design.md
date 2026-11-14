@@ -59,9 +59,36 @@ Call Instruction
 Callee
 ```
 
-### Phase 5 - Register Inspector
+### Phase 5 - Register Inspector ✅
 
-Capture actual register values at function entry.
+Goal:
+
+Capture a runtime snapshot of argument registers.
+
+Registers:
+
+- RDI
+- RSI
+- RDX
+- RCX
+- R8
+- R9
+
+Learning Objective:
+
+Understand the difference between:
+
+ABI Specification
+
+and
+
+Runtime Register State
+
+Observation:
+
+The values observed in registers later in
+execution may differ from the values originally
+used to pass function arguments.
 
 ### Phase 6 - Struct & Pointer Arguments
 

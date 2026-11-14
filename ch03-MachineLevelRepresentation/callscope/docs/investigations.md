@@ -116,3 +116,51 @@ R9
 
 before spilling additional arguments to the stack.
 ```
+# Phase 5 Investigation
+
+Objective
+
+Capture live register values during execution.
+
+Expected
+
+RDI = 1
+RSI = 2
+RDX = 3
+RCX = 4
+R8  = 5
+R9  = 6
+
+Observed
+
+RDI = 140723370537952
+RSI = 2
+RDX = 2
+RCX = 4
+R8  = 5
+R9  = 6
+
+Analysis
+
+Some registers matched the expected ABI mapping.
+
+Some registers did not.
+
+This indicates that by the time the snapshot
+was taken, the compiler had already reused
+certain registers.
+
+Conclusion
+
+The System V ABI guarantees argument placement
+at function entry.
+
+It does not guarantee that registers continue
+to hold those values throughout execution.
+
+Key Learning
+
+ABI rules describe how arguments arrive.
+
+Runtime inspection reveals how registers evolve
+after execution begins.
