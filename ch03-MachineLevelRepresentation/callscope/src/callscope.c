@@ -44,6 +44,58 @@ void callscope_dump(void)
 
 #endif
 
+static void print_abi_visualizer(long a, long b, long c, long d, long e, long f, long g, long h, long i)
+{
+    printf("\n");
+
+    printf("ABI Visualizer\n");
+    printf("==============\n\n");
+
+    printf("Function Call\n");
+    printf("--------------------------------\n\n");
+
+    printf("foo(\n");
+    printf("    %ld, %ld, %ld,\n", a, b, c);
+    printf("    %ld, %ld, %ld,\n", d, e, f);
+    printf("    %ld, %ld, %ld\n", g, h, i);
+    printf(")\n\n");
+
+    printf("Register File\n");
+    printf("--------------------------------\n\n");
+
+    printf("RDI  -> Arg1 -> %ld\n", a);
+    printf("RSI  -> Arg2 -> %ld\n", b);
+    printf("RDX  -> Arg3 -> %ld\n", c);
+    printf("RCX  -> Arg4 -> %ld\n", d);
+    printf("R8   -> Arg5 -> %ld\n", e);
+    printf("R9   -> Arg6 -> %ld\n", f);
+
+    printf("\n");
+
+    printf("Stack Layout\n");
+    printf("--------------------------------\n\n");
+
+    printf("High Address\n\n");
+
+    printf("+----------------------+\n");
+    printf("| Arg9 = %-11ld|\n", i);
+    printf("+----------------------+\n");
+
+    printf("| Arg8 = %-11ld|\n", h);
+    printf("+----------------------+\n");
+
+    printf("| Arg7 = %-11ld|\n", g);
+    printf("+----------------------+\n");
+
+    printf("\nLow Address\n\n");
+
+    printf("Summary\n");
+    printf("--------------------------------\n\n");
+
+    printf("Register Arguments : 6\n");
+    printf("Stack Arguments    : 3\n");
+}
+
 void callscope_dump(long a, long b, long c, long d, long e, long f, long g, long h, long i)
 {
 	printf("\nCallscope Report\n");
@@ -63,6 +115,8 @@ void callscope_dump(long a, long b, long c, long d, long e, long f, long g, long
 	printf("Arg7 -> STACK : %ld\n", g);
 	printf("Arg8 -> STACK : %ld\n", h);
 	printf("Arg9 -> STACK : %ld\n", i);
+	
+	print_abi_visualizer(a, b, c, d, e, f, g, h, i);
 	
 	printf("\n");
 }

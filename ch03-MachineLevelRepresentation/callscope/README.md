@@ -7,7 +7,7 @@ Explore and visualize the System V AMD64 calling convention.
 - [x] Phase 0 - ABI Investigation
 - [x] Phase 1 - Argument Mapping
 - [x] Phase 2 - Stack Argument Explorer
-- [ ] Phase 3 - ABI Visualizer
+- [x] Phase 3 - ABI Visualizer
 - [ ] Phase 4 - Caller/Callee View
 - [ ] Phase 5 - Register Inspector
 - [ ] Phase 6 - Struct & Pointer Arguments
@@ -16,11 +16,11 @@ Explore and visualize the System V AMD64 calling convention.
 
 ---
 
-## Completed Findings
+## Implemented Features
 
 ### Phase 0 - ABI Investigation
 
-Verified using GDB:
+Verified with GDB:
 
 ```text
 arg1 -> RDI
@@ -33,32 +33,9 @@ arg6 -> R9
 arg7+ -> Stack
 ```
 
-Observed:
-
-```text
-RDI = 1
-RSI = 2
-RDX = 3
-RCX = 4
-R8  = 5
-R9  = 6
-```
-
-Compiler:
-
-```bash
-gcc -O0 -g -fno-omit-frame-pointer
-```
-
-Observation:
-
-Register arguments are often spilled to stack locations at `-O0` for debugging support.
-
----
-
 ### Phase 1 - Argument Mapping
 
-Implemented ABI argument mapping:
+Mapped function arguments to their ABI locations.
 
 ```text
 Arg1 -> RDI
@@ -69,41 +46,29 @@ Arg5 -> R8
 Arg6 -> R9
 ```
 
-Goal:
+### Phase 2 - Stack Argument Explorer
 
-Understand how arguments are assigned to registers under the System V AMD64 ABI.
+Extended support to nine arguments.
+
+```text
+Arg7 -> STACK
+Arg8 -> STACK
+Arg9 -> STACK
+```
+
+### Phase 3 - ABI Visualizer
+
+Visual representation of:
+
+- Register arguments
+- Stack arguments
+- ABI layout
+- Register exhaustion
 
 ---
 
-### Phase 2 - Stack Argument Explorer
+## Next Phase
 
-Extended test cases beyond six arguments.
+Phase 4 – Caller/Callee View
 
-Example:
-
-```c
-foo(1,2,3,4,5,6,7,8,9);
-```
-
-Output:
-
-```text
-Register Arguments
-
-Arg1 -> RDI : 1
-Arg2 -> RSI : 2
-Arg3 -> RDX : 3
-Arg4 -> RCX : 4
-Arg5 -> R8  : 5
-Arg6 -> R9  : 6
-
-Stack Arguments
-
-Arg7 -> STACK : 7
-Arg8 -> STACK : 8
-Arg9 -> STACK : 9
-```
-
-Key Learning:
-
-The first six integer/pointer 
+Visualize argument movement from caller to callee.
