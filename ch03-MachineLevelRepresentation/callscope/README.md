@@ -8,12 +8,11 @@ Explore and visualize the System V AMD64 calling convention.
 - [x] Phase 1 - Argument Mapping
 - [x] Phase 2 - Stack Argument Explorer
 - [x] Phase 3 - ABI Visualizer
-- [ ] Phase 4 - Caller/Callee View
+- [x] Phase 4 - Caller / Callee View
 - [ ] Phase 5 - Register Inspector
 - [ ] Phase 6 - Struct & Pointer Arguments
 - [ ] Phase 7 - Variadic Functions
 - [ ] Phase 8 - Linux vs Windows ABI
-
 ---
 
 ## Implemented Features
@@ -65,10 +64,23 @@ Visual representation of:
 - ABI layout
 - Register exhaustion
 
----
 
-## Next Phase
+### Phase 4 - Caller / Callee View
 
-Phase 4 – Caller/Callee View
+Visualized:
 
-Visualize argument movement from caller to callee.
+```text
+Caller
+   ↓
+Register Loading
+   ↓
+Stack Preparation
+   ↓
+CALL
+   ↓
+Callee
+```
+
+Key Learning:
+
+The caller is responsible for placing arguments into ABI-defined locations before transferring control to the callee.

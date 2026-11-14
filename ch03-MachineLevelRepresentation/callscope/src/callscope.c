@@ -43,6 +43,56 @@ void callscope_dump(void)
 }
 
 #endif
+static void print_caller_callee_view(long a, long b, long c, long d, long e, long f, long g, long h, long i)
+{
+    printf("\n");
+
+    printf("Caller / Callee View\n");
+    printf("====================\n\n");
+
+    printf("Caller : main()\n");
+    printf("------------------------------\n\n");
+
+    printf("Prepare Registers\n\n");
+
+    printf("RDI <- %ld\n", a);
+    printf("RSI <- %ld\n", b);
+    printf("RDX <- %ld\n", c);
+    printf("RCX <- %ld\n", d);
+    printf("R8  <- %ld\n", e);
+    printf("R9  <- %ld\n", f);
+
+    printf("\n");
+
+    printf("Prepare Stack\n\n");
+
+    printf("STACK <- %ld\n", g);
+    printf("STACK <- %ld\n", h);
+    printf("STACK <- %ld\n", i);
+
+    printf("\n");
+
+    printf("                CALL foo()\n");
+    printf("                     |\n");
+    printf("                     V\n\n");
+
+    printf("Callee : foo()\n");
+    printf("------------------------------\n\n");
+
+    printf("Received Arguments\n\n");
+
+    printf("Arg1 = %ld\n", a);
+    printf("Arg2 = %ld\n", b);
+    printf("Arg3 = %ld\n", c);
+    printf("Arg4 = %ld\n", d);
+    printf("Arg5 = %ld\n", e);
+    printf("Arg6 = %ld\n", f);
+    printf("Arg7 = %ld\n", g);
+    printf("Arg8 = %ld\n", h);
+    printf("Arg9 = %ld\n", i);
+
+    printf("\n");
+}
 
 static void print_abi_visualizer(long a, long b, long c, long d, long e, long f, long g, long h, long i)
 {
@@ -117,6 +167,7 @@ void callscope_dump(long a, long b, long c, long d, long e, long f, long g, long
 	printf("Arg9 -> STACK : %ld\n", i);
 	
 	print_abi_visualizer(a, b, c, d, e, f, g, h, i);
+	print_caller_callee_view(a, b, c, d, e, f, g, h, i);
 	
 	printf("\n");
 }
