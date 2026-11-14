@@ -61,12 +61,14 @@ static symbol_info_t resolve_symbol(void *address)
 
 static void resolve_source_location(void *address, char *buffer, size_t buffer_size)
 {
-	char command[256];
+	char command[512];
 	char function[128];
 	char location[256];
 	FILE *fp;
-	uintptr_t file_address = 0;
 	Dl_info info;
+	const char *image_path = "/proc/self/exe";
+	uintptr_t candidates[4] = {0, 0, 0, 0};
+	size_t candidate_count = 0;
 
 	if(buffer == NULL || buffer_size == 0)
 		return;
@@ -78,48 +80,56 @@ static void resolve_source_location(void *address, char *buffer, size_t buffer_s
 		return;
 	}
 
-	if(dladdr(address, &info) != 0 && info.dli_fbase != NULL)
-		file_address = (uintptr_t)address - (uintptr_t)info.dli_fbase;
-	else
-		file_address = (uintptr_t)address;
-
-	snprintf(command, sizeof(command), "addr2line -f -C -e /proc/self/exe %p 2>/dev/null", (void *)file_address);
-	fp = popen(command, "r");
-	if(fp == NULL)
+	if(dladdr(address, &info) != 0)
 	{
-		snprintf(buffer, buffer_size, "<unavailable>");
-		return;
+		if(info.dli_fname != NULL && info.dli_fname[0] != '\0')
+			image_path = info.dli_fname;
+		if(info.dli_fbase != NULL)
+			candidates[candidate_count++] = (uintptr_t)address - (uintptr_t)info.dli_fbase;
+		if(info.dli_saddr != NULL)
+			candidates[candidate_count++] = (uintptr_t)address - (uintptr_t)info.dli_saddr;
 	}
 
-	if(fgets(function, sizeof(function), fp) == NULL)
+	candidates[candidate_count++] = (uintptr_t)address;
+	if(candidate_count > 4)
+		candidate_count = 4;
+
+	for(size_t i = 0; i < candidate_count; i++)
 	{
+		snprintf(command, sizeof(command), "addr2line -f -C -e %s %p 2>/dev/null", image_path, (void *)candidates[i]);
+		fp = popen(command, "r");
+		if(fp == NULL)
+			continue;
+
+		if(fgets(function, sizeof(function), fp) == NULL)
+		{
+			pclose(fp);
+			continue;
+		}
+
+		if(fgets(location, sizeof(location), fp) == NULL)
+		{
+			pclose(fp);
+			continue;
+		}
+
 		pclose(fp);
-		snprintf(buffer, buffer_size, "<unavailable>");
-		return;
-	}
 
-	if(fgets(location, sizeof(location), fp) == NULL)
-	{
-		pclose(fp);
-		snprintf(buffer, buffer_size, "<unavailable>");
-		return;
-	}
+		function[strcspn(function, "\r\n")] = '\0';
+		location[strcspn(location, "\r\n")] = '\0';
 
-	pclose(fp);
-
-	function[strcspn(function, "\r\n")] = '\0';
-	location[strcspn(location, "\r\n")] = '\0';
-
-	if(strcmp(location, "??:0") == 0 || strcmp(location, "??") == 0)
-	{
-		snprintf(buffer, buffer_size, "<unknown>");
-		return;
-	}
-
-	if(strcmp(function, "??") == 0 || strcmp(function, "") == 0)
-		snprintf(buffer, buffer_size, "%s", location);
-	else
+		if(strcmp(location, "??:0") == 0 || strcmp(location, "??") == 0)
+			continue;
+		if(strcmp(function, "??") == 0 || strcmp(function, "") == 0)
+		{
+			snprintf(buffer, buffer_size, "%s", location);
+			return;
+		}
 		snprintf(buffer, buffer_size, "%s (%s)", location, function);
+		return;
+	}
+
+	snprintf(buffer, buffer_size, "<unknown>");
 }
 
 static void capture_frame_info(stack_frame_info_t *frame)
