@@ -124,3 +124,32 @@ their argument values at function entry.
 
 As execution proceeds, the compiler may reuse
 registers for temporary values and other work.
+
+### Phase 6A - Pointer Arguments
+
+Investigation:
+
+```c
+foo(&value, &point);
+```
+
+Observed:
+
+```text
+RDI = &value
+RSI = &point
+```
+
+Key Learning:
+
+Pointers are passed in the same argument registers
+used for integers.
+
+The value stored in the register is the address of
+the object.
+
+Example:
+
+Arg1 -> RDI -> &value
+Arg2 -> RSI -> &point
+```

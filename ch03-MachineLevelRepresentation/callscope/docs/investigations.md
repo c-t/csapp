@@ -164,3 +164,45 @@ ABI rules describe how arguments arrive.
 
 Runtime inspection reveals how registers evolve
 after execution begins.
+
+# Phase 6A - Pointer Arguments
+
+Test:
+
+```c
+foo(&value, &point);
+```
+
+Observed:
+
+```text
+RDI = 0x7fffffffd64c
+RSI = 0x7fffffffd650
+```
+
+Function Parameters:
+
+```text
+value = 0x7fffffffd64c
+point = 0x7fffffffd650
+```
+
+Conclusion:
+
+Pointer arguments are passed through the same
+argument registers used for integer values.
+
+The register contains the address of the object.
+
+Memory Verification:
+
+```text
+point.x = 10
+point.y = 20
+```
+
+confirmed via:
+
+```gdb
+x/2wx $rsi
+```
