@@ -363,3 +363,47 @@ stack-based argument passing.
 
 The ABI classifies arguments and selects the
 most efficient transport mechanism.
+
+---
+
+# Phase 7A - Variadic Function Register Analysis
+
+Test
+
+```c
+sum(5, 10, 20, 30, 40, 50);
+```
+
+Observed
+
+```text
+RDI = 5
+RSI = 10
+RDX = 20
+RCX = 30
+R8  = 40
+R9  = 50
+```
+
+Interpretation
+
+Fixed Argument
+
+count -> RDI
+
+Variadic Arguments
+
+10 -> RSI
+20 -> RDX
+30 -> RCX
+40 -> R8
+50 -> R9
+
+Conclusion
+
+The fixed parameter consumes the first ABI
+argument register.
+
+Variadic arguments then occupy the remaining
+registers according to the standard System V
+AMD64 calling convention.

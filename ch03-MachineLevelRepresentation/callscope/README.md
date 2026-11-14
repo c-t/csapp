@@ -15,7 +15,8 @@ Explore and visualize the System V AMD64 calling convention.
 - [x] Phase 6A - Pointer Arguments
 - [x] Phase 6B - Small Struct Passing
 - [x] Phase 6C - Large Struct Passing
-- [ ] Phase 7 - Variadic Functions
+- [x] Phase 7A - Variadic Function Register Analysis
+- [ ] Phase 7B - Variadic Register-to-Stack Transition
 - [ ] Phase 8 - Linux vs Windows ABI
 
 ---
@@ -123,14 +124,30 @@ Large Struct
 
 ---
 
-## Next Phase
+### Phase 7A - Variadic Function Register Analysis
 
-Phase 7 - Variadic Functions
-
-Investigate:
+Test:
 
 ```c
-printf(...)
+sum(5, 10, 20, 30, 40, 50);
 ```
 
-and runtime handling of variable argument lists.
+Observed:
+
+```text
+RDI = 5
+
+RSI = 10
+RDX = 20
+RCX = 30
+R8  = 40
+R9  = 50
+```
+
+Key Learning:
+
+The fixed parameter consumes RDI.
+
+Variadic arguments begin in the next available
+argument register and continue following the
+System V AMD64 ABI rules.

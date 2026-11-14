@@ -122,3 +122,32 @@ Large Struct
     ↓
 Memory
 ```
+### Phase 7A - Variadic Register Layout ✅
+
+Function:
+
+```c
+void sum(int count, ...)
+```
+
+Learning Objective:
+
+Understand how variable-length argument lists
+interact with the ABI.
+
+Observed Layout:
+
+```text
+count -> RDI
+
+arg1 -> RSI
+arg2 -> RDX
+arg3 -> RCX
+arg4 -> R8
+arg5 -> R9
+```
+
+Next:
+
+Investigate ABI behavior when variadic arguments
+exceed available registers.
