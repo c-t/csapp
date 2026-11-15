@@ -22,5 +22,7 @@ int main(int argc, char *argv[])
 
 	print_sections(argv[1], &header);
 
+	print_hex_dump(argv[1], &header, ".text");
+
 	return EXIT_SUCCESS;
 }

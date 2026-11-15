@@ -1,3 +1,15 @@
+## Roadmap
+
+Phase 0 - ELF Investigation     ✅
+Phase 1 - ELF Header Viewer     ✅
+Phase 2 - Section Viewer        ✅
+Phase 3 - Hex Dump             ✅
+Phase 4 - Symbol Table Reader
+Phase 5 - Function Discovery
+Phase 6 - Mini Disassembler
+Phase 7 - Section Statistics
+Phase 8 - MiniObjDump v1.0
+
 # MiniObjDump Design
 
 ## Goal
@@ -46,9 +58,22 @@ Resolve section names through:
 .shstrtab
 ```
 
-### Phase 3 - Hex Dump
+### Phase 3 - Hex Dump ✅
 
-Read section contents.
+Goal
+
+Read actual section contents from the ELF file.
+
+Current Implementation
+
+- Locate `.text`
+- Read section bytes
+- Display hexadecimal output
+
+Learning Objective
+
+Understand how executable machine code is stored
+inside ELF binaries before disassembly.
 
 ### Phase 4 - Symbol Table Reader
 

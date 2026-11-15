@@ -13,7 +13,8 @@ CFLAGS = \
 SRC = \
       src/main.c\
       src/elf_reader.c\
-      src/section_viewer.c
+      src/section_viewer.c \
+      src/hex_dump.c
 
 TARGET = miniobjdump
 

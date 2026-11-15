@@ -194,3 +194,65 @@ readelf -S hello
 Result:
 
 All section names were successfully resolved.
+
+# Phase 3 - Hex Dump
+
+Goal
+
+Read and display raw bytes stored in the `.text`
+section.
+
+Implementation
+
+1. Locate `.text` using the Section Header Table.
+2. Read section contents using:
+   - `sh_offset`
+   - `sh_size`
+3. Display bytes in hexadecimal form.
+
+Observed
+
+```text
+00001060: f3 0f 1e fa 31 ed 49 89
+00001068: d1 5e 48 89 e2 48 83 e4
+```
+
+Verification
+
+Compared against:
+
+```bash
+objdump -d hello
+```
+
+Observed:
+
+```asm
+1060: f3 0f 1e fa
+1064: 31 ed
+1066: 49 89 d1
+1069: 5e
+106a: 48 89 e2
+```
+
+The bytes matched exactly.
+
+Key Learning
+
+Executable instructions are stored as raw bytes
+inside the `.text` section.
+
+Disassemblers read these bytes and translate them
+into human-readable assembly instructions.
+
+ELF Relationship
+
+```text
+ELF Header
+    ↓
+Section Header Table
+    ↓
+.text
+    ↓
+Raw Machine Code Bytes
+```
