@@ -165,9 +165,30 @@ Learning Objective
 Understand how disassemblers connect ELF
 metadata to executable code.
 
-### Phase 7 - Section Statistics
+### Phase 7 - Section Statistics ✅
 
-Display section sizes and metadata.
+Goal
+
+Analyze ELF section sizes.
+
+Implementation
+
+Display:
+
+- Section name
+- Section size
+- Total section count
+
+Learning Objective
+
+Understand how executable size is distributed
+between:
+
+- Code
+- Data
+- Symbols
+- Relocations
+- Debug information
 
 ### Phase 8 - MiniObjDump v1.0
 

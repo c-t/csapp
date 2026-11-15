@@ -445,3 +445,53 @@ Machine Code Bytes
 
 Function discovery is performed before
 instruction decoding begins.
+
+# Phase 7 - Section Statistics
+
+Goal
+
+Analyze ELF section utilization.
+
+Observed
+
+```text
+.text           311 bytes
+.rodata           8 bytes
+.data            16 bytes
+.bss              8 bytes
+.symtab         888 bytes
+.strtab         481 bytes
+```
+
+Key Observation
+
+The symbol table and debugging information are
+larger than the machine code for this program.
+
+Implication
+
+Small programs often contain significantly more
+metadata than executable instructions.
+
+Useful Sections
+
+```text
+.text      Machine code
+.rodata    Constants
+.data      Initialized globals
+.bss       Uninitialized globals
+.symtab    Symbol table
+.strtab    Symbol names
+```
+
+Verification
+
+Compared section sizes against:
+
+```bash
+readelf -S hello
+```
+
+Result
+
+Section sizes matched the ELF metadata.

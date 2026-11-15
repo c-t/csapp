@@ -13,7 +13,7 @@ A simplified implementation of objdump for learning ELF internals.
 - [x] Phase 4 - Symbol Table Reader
 - [x] Phase 5 - Function Discovery
 - [x] Phase 6 - Mini Disassembler
-- [ ] Phase 7 - Section Statistics
+- [x] Phase 7 - Section Statistics
 - [ ] Phase 8 - MiniObjDump v1.0
 ---
 
@@ -183,3 +183,26 @@ Key Learning
 
 Function metadata allows raw machine-code bytes
 to be associated with specific functions.
+
+### Phase 7 - Section Statistics ✅
+
+Displays size information for all ELF sections.
+
+Example:
+
+```text
+.text      311 bytes
+.rodata      8 bytes
+.data       16 bytes
+.bss         8 bytes
+.symtab    888 bytes
+.strtab    481 bytes
+```
+
+Key Learning
+
+ELF binaries contain more than executable code.
+
+Metadata, debugging information, relocation data,
+and symbol tables can exceed the size of the
+actual machine code.

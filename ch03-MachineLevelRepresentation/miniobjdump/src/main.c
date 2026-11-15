@@ -24,6 +24,7 @@ int main(int argc, char *argv[])
 	print_symbols(argv[1], &header);
 	print_functions(argv[1], &header);
 	print_disassembly(argv[1], &header);
+	print_section_statistics(argv[1], &header);
 
 	return EXIT_SUCCESS;
 }

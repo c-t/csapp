@@ -17,7 +17,8 @@ SRC = \
       src/hex_dump.c\
       src/symbol_viewer.c\
       src/function_viewer.c\
-      src/disassembler.c
+      src/disassembler.c\
+      src/section_stats.c
 
 TARGET = miniobjdump
 
