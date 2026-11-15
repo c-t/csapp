@@ -127,9 +127,43 @@ Learning Objective
 Understand how disassemblers locate function
 entry points before instruction decoding begins.
 
-### Phase 6 - Mini Disassembler
+### Phase 6 - Mini Disassembler ✅
 
-Display machine code bytes.
+Goal
+
+Associate functions with their machine code.
+
+Implementation
+
+Use:
+
+```text
+STT_FUNC
+```
+
+symbols from the ELF symbol table.
+
+Map:
+
+```text
+Function Address
+        ↓
+.text Offset
+        ↓
+Function Bytes
+```
+
+Display:
+
+- Function Name
+- Address
+- Size
+- Machine Code Bytes
+
+Learning Objective
+
+Understand how disassemblers connect ELF
+metadata to executable code.
 
 ### Phase 7 - Section Statistics
 

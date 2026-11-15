@@ -390,3 +390,58 @@ STT_FUNC
         ↓
 Function Discovery
 ```
+
+# Phase 6 - Mini Disassembler
+
+Goal
+
+Display machine-code bytes grouped by function.
+
+Implementation
+
+1. Locate `.text`.
+2. Locate function symbols.
+3. Convert function virtual addresses to
+   file offsets.
+4. Read function bytes.
+5. Display bytes using a function-centric view.
+
+Observed
+
+```text
+Function: add
+Address : 0x1149
+Size    : 24
+```
+
+```text
+00001149: f3 0f 1e fa 55 48 89 e5
+00001151: 89 7d fc 89 75 f8 8b 55
+00001159: fc 8b 45 f8 01 d0 5d c3
+```
+
+Verification
+
+Compared against:
+
+```bash
+objdump -d hello
+```
+
+Result
+
+The bytes matched the machine code emitted by
+objdump for the same function.
+
+Key Learning
+
+A disassembler requires:
+
+```text
+Function Metadata
++
+Machine Code Bytes
+```
+
+Function discovery is performed before
+instruction decoding begins.

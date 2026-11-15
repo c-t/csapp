@@ -12,7 +12,7 @@ A simplified implementation of objdump for learning ELF internals.
 - [x] Phase 3 - Hex Dump
 - [x] Phase 4 - Symbol Table Reader
 - [x] Phase 5 - Function Discovery
-- [ ] Phase 6 - Mini Disassembler
+- [x] Phase 6 - Mini Disassembler
 - [ ] Phase 7 - Section Statistics
 - [ ] Phase 8 - MiniObjDump v1.0
 ---
@@ -152,3 +152,34 @@ Disassemblers do not discover functions by scanning
 instructions alone.
 
 ELF symbol tables already provide function metadata.
+
+### Phase 6 - Mini Disassembler ✅
+
+Implementation
+
+Combines:
+
+```text
+.symtab
++
+.text
+```
+
+to display function-specific machine code.
+
+Example:
+
+```text
+Function: add
+Address : 0x1149
+Size    : 24
+
+00001149: f3 0f 1e fa 55 48 89 e5
+00001151: 89 7d fc 89 75 f8 8b 55
+00001159: fc 8b 45 f8 01 d0 5d c3
+```
+
+Key Learning
+
+Function metadata allows raw machine-code bytes
+to be associated with specific functions.
