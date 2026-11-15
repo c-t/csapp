@@ -102,7 +102,7 @@ Tools such as:
 
 are different views over the same ELF structure.
 
-Phase 1 Results
+# Phase 1 Results
 
 Input:
 ./miniobjdump hello
@@ -123,3 +123,74 @@ readelf -h hello
 
 Result:
 All parsed fields matched the ELF header reported by readelf.
+
+# Phase 2 - Section Viewer
+
+Goal
+
+Read the ELF Section Header Table and resolve
+human-readable section names.
+
+Implementation
+
+Parsed:
+
+```c
+Elf64_Shdr
+```
+
+Used:
+
+```text
+e_shstrndx
+```
+
+to locate:
+
+```text
+.shstrtab
+```
+
+Section Name Resolution
+
+```text
+Section Header
+        ↓
+Name Offset
+        ↓
+.shstrtab
+        ↓
+Actual Section Name
+```
+
+Observed Sections
+
+```text
+.text
+.rodata
+.data
+.bss
+.symtab
+.strtab
+.shstrtab
+```
+
+Key Learning
+
+Section names are not stored directly in
+section headers.
+
+Each section header contains an offset into
+the section string table.
+
+Verification
+
+Compared output against:
+
+```bash
+readelf -S hello
+```
+
+Result:
+
+All section names were successfully resolved.

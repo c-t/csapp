@@ -20,5 +20,7 @@ int main(int argc, char *argv[])
 
 	print_elf_header(&header);
 
+	print_sections(argv[1], &header);
+
 	return EXIT_SUCCESS;
 }

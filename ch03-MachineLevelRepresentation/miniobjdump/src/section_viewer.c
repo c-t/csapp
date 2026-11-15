@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include <elf.h>
+#include <stdlib.h>
 
 #include "miniobjdump.h"
 
@@ -56,4 +58,47 @@ void print_elf_header(const Elf64_Ehdr *header)
 	printf("Program headers	: %u\n", header->e_phnum);
 	printf("Sections headers: %u\n", header->e_shnum);
 	printf("\n");
+}
+
+void print_sections(const char* filename, const Elf64_Ehdr *header)
+{
+	FILE *file = fopen(filename, "rb");
+
+	if(file == NULL)
+	{
+		perror("fopen");
+		return;
+	}
+
+	Elf64_Shdr *sections = malloc(header->e_shentsize * header->e_shnum);
+
+	if(sections == NULL)
+	{
+		fclose(file);
+		return;
+	}
+
+	fseek(file, header->e_shoff, SEEK_SET);
+	fread(sections, header->e_shentsize, header->e_shnum, file);
+
+	Elf64_Shdr shstr = sections[header->e_shstrndx];
+	char *strings = malloc(shstr.sh_size);
+	
+	fseek(file, shstr.sh_offset, SEEK_SET);
+	fread(strings, shstr.sh_size, 1, file);
+
+	printf("\nSections\n");
+	printf("-----------------------------\n\n");
+
+	for(int i = 0; i < header->e_shnum; i++)
+	{
+		printf("[%02d] %s\n", i, strings + sections[i].sh_name);
+	}
+
+	printf("\n");
+
+	free(strings);
+	free(sections);
+
+	fclose(file);
 }
