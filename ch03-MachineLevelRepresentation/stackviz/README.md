@@ -44,3 +44,15 @@ This project implements the core runtime stack investigation flow:
 - source mapping via `addr2line`
 
 This is still an educational project and not a full DWARF debugger or general-purpose unwinder.
+
+## Verified project scope
+
+The current implementation has been validated on x86-64 Linux with GCC and covers the core runtime stack analysis workflow:
+- frame traversal and saved-RBP / return-address inspection
+- raw stack memory dumps
+- recursion visualization
+- symbol name resolution via `dladdr`
+- source-file and line mapping through `addr2line`
+- local-variable discovery by explicit stack-offset metadata
+
+The project is complete for the learning objectives it set out to explore.

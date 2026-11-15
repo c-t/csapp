@@ -218,6 +218,10 @@ MiniObjDump can:
 - Discover executable functions
 - Display function-oriented disassembly
 - Analyze section statistics
+
+## Verification
+
+This implementation was validated by building the project and running it against ELF samples on x86-64 Linux. The tool successfully reads header metadata, section tables, symbol tables, and function-oriented disassembly output in the same style as `readelf`, `nm`, and `objdump`.
 - Generate ELF summary reports
 
 ## Learning Outcomes
