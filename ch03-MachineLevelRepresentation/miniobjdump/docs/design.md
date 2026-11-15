@@ -4,7 +4,7 @@ Phase 0 - ELF Investigation     ✅
 Phase 1 - ELF Header Viewer     ✅
 Phase 2 - Section Viewer        ✅
 Phase 3 - Hex Dump             ✅
-Phase 4 - Symbol Table Reader
+Phase 4 - Symbol Table Reader  ✅
 Phase 5 - Function Discovery
 Phase 6 - Mini Disassembler
 Phase 7 - Section Statistics
@@ -75,14 +75,32 @@ Learning Objective
 Understand how executable machine code is stored
 inside ELF binaries before disassembly.
 
-### Phase 4 - Symbol Table Reader
+### Phase 4 - Symbol Table Reader ✅
 
-Parse:
+Goal
+
+Read ELF symbols from:
 
 ```text
 .symtab
+```
+
+and resolve symbol names using:
+
+```text
 .strtab
 ```
+
+Learning Objective
+
+Understand how utilities such as:
+
+```bash
+nm
+objdump
+```
+
+discover function and symbol names.
 
 ### Phase 5 - Function Discovery
 

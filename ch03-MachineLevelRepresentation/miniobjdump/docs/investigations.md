@@ -256,3 +256,72 @@ Section Header Table
     ↓
 Raw Machine Code Bytes
 ```
+
+# Phase 4 - Symbol Table Reader
+
+Goal
+
+Read symbol information directly from the ELF file.
+
+Implementation
+
+Located:
+
+```text
+.symtab
+```
+
+Read:
+
+```c
+Elf64_Sym
+```
+
+Resolved names via:
+
+```text
+.strtab
+```
+
+Observed
+
+```text
+0000000000001149 add
+0000000000001161 main
+0000000000001060 _start
+```
+
+Verification
+
+Compared against:
+
+```bash
+nm hello
+```
+
+Result
+
+The symbol names and addresses matched
+the ELF symbol table.
+
+Key Learning
+
+Symbol names are not stored directly inside
+symbol entries.
+
+Each symbol contains an offset into the
+ELF string table.
+
+ELF Relationship
+
+```text
+.symtab
+      ↓
+Elf64_Sym
+      ↓
+st_name
+      ↓
+.strtab
+      ↓
+Symbol Name
+```

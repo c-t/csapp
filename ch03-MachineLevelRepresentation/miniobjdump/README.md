@@ -10,7 +10,7 @@ A simplified implementation of objdump for learning ELF internals.
 - [x] Phase 1 - ELF Header Viewer
 - [x] Phase 2 - Section Viewer
 - [x] Phase 3 - Hex Dump
-- [ ] Phase 4 - Symbol Table Reader
+- [x] Phase 4 - Symbol Table Reader
 - [ ] Phase 5 - Function Discovery
 - [ ] Phase 6 - Mini Disassembler
 - [ ] Phase 7 - Section Statistics
@@ -85,15 +85,38 @@ objdump -d hello
 The dumped bytes matched the machine code bytes
 displayed by objdump.
 
-## Next Phase
+### Phase 4 - Symbol Table Reader ✅
 
-### Phase 4 - Symbol Table Reader
-
-Parse:
+Reads:
 
 ```text
 .symtab
 .strtab
 ```
 
-and display ELF symbols.
+Implementation:
+
+```c
+Elf64_Sym
+```
+
+Displays:
+
+```text
+_start
+main
+add
+printf
+```
+
+Verification:
+
+Compared against:
+
+```bash
+nm hello
+```
+
+The discovered symbol names and addresses matched
+the ELF symbol table.
+
