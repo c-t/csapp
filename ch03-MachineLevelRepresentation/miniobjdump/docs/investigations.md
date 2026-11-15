@@ -101,3 +101,25 @@ Tools such as:
 - objdump
 
 are different views over the same ELF structure.
+
+Phase 1 Results
+
+Input:
+./miniobjdump hello
+
+Output:
+Format          : ELF64
+Endianness      : Little Endian
+Type            : DYN
+Machine         : x86-64
+Entry Point     : 0x1060
+
+Program headers : 14
+Section headers : 37
+
+Verification:
+Compared against:
+readelf -h hello
+
+Result:
+All parsed fields matched the ELF header reported by readelf.

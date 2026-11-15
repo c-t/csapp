@@ -10,12 +10,17 @@ CFLAGS = \
 	 -fno-omit-frame-pointer\
 	 -Iinclude
 
-TARGET = hello
+SRC = \
+      src/main.c\
+      src/elf_reader.c\
+      src/section_viewer.c
+
+TARGET = miniobjdump
 
 all: $(TARGET)
 
-$(TARGET): tests/hello.c
-	$(CC) $(CFLAGS) $< -o $@
+$(TARGET): $(SRC)
+	$(CC) $(CFLAGS) $(SRC) -o $(TARGET)
 
 clean:
 	rm -f $(TARGET)
