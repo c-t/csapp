@@ -65,6 +65,11 @@ void print_functions(const char* filename, const Elf64_Ehdr *header)
 			continue;
 		}
 
+		if(symbols[i].st_shndx == SHN_UNDEF)
+		{
+			continue;
+		}
+
 		const char *name = strings + symbols[i].st_name;
 
 		if(strlen(name) == 0)

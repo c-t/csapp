@@ -18,7 +18,8 @@ SRC = \
       src/symbol_viewer.c\
       src/function_viewer.c\
       src/disassembler.c\
-      src/section_stats.c
+      src/section_stats.c\
+      src/summary.c
 
 TARGET = miniobjdump
 

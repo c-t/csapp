@@ -18,6 +18,9 @@ int main(int argc, char *argv[])
 		return EXIT_FAILURE;
 	}
 
+	printf("\nMiniObjDump v1.0\n");
+	printf("ELF Analysis Tool\n");
+	printf("-----------------------------------\n");
 	print_elf_header(&header);
 	print_sections(argv[1], &header);
 	print_hex_dump(argv[1], &header, ".text");
@@ -25,6 +28,7 @@ int main(int argc, char *argv[])
 	print_functions(argv[1], &header);
 	print_disassembly(argv[1], &header);
 	print_section_statistics(argv[1], &header);
+	print_summary(argv[1], &header);
 
 	return EXIT_SUCCESS;
 }

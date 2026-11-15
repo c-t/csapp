@@ -192,4 +192,32 @@ between:
 
 ### Phase 8 - MiniObjDump v1.0
 
-Integrate all features.
+## Final Architecture
+
+ELF Header
+    ↓
+Section Header Table
+    ↓
+Sections
+
+.text
+.rodata
+.data
+.bss
+
+    ↓
+
+.symtab
+.strtab
+
+    ↓
+
+Functions
+
+    ↓
+
+Machine Code
+
+    ↓
+
+Function-Aware Disassembly

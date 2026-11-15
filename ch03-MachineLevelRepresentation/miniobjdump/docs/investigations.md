@@ -495,3 +495,54 @@ readelf -S hello
 Result
 
 Section sizes matched the ELF metadata.
+
+# Final Project Findings
+
+## ELF Relationships
+
+```text
+ELF Header
+    ↓
+Section Header Table
+    ↓
+Section Metadata
+    ↓
+Section Contents
+
+.symtab
+    ↓
+Elf64_Sym
+    ↓
+.strtab
+    ↓
+Symbol Names
+
+STT_FUNC
+    ↓
+Function Discovery
+
+.text
+    ↓
+Machine Code
+    ↓
+Disassembly
+```
+
+## Key Discoveries
+
+1. ELF metadata drives binary analysis tools.
+2. Section names are resolved through `.shstrtab`.
+3. Symbol names are resolved through `.strtab`.
+4. Functions are identified using `STT_FUNC`.
+5. Machine instructions are stored in `.text`.
+6. Disassemblers combine symbols and machine code.
+
+## Reimplemented Concepts
+
+MiniObjDump reproduces core concepts behind:
+
+- readelf
+- nm
+- objdump
+
+using direct ELF parsing.

@@ -14,7 +14,7 @@ A simplified implementation of objdump for learning ELF internals.
 - [x] Phase 5 - Function Discovery
 - [x] Phase 6 - Mini Disassembler
 - [x] Phase 7 - Section Statistics
-- [ ] Phase 8 - MiniObjDump v1.0
+- [x] Phase 8 - MiniObjDump v1.0
 ---
 
 ## Implemented Features
@@ -206,3 +206,29 @@ ELF binaries contain more than executable code.
 Metadata, debugging information, relocation data,
 and symbol tables can exceed the size of the
 actual machine code.
+
+## Features
+
+MiniObjDump can:
+
+- Parse ELF headers
+- Display ELF sections
+- Dump `.text` bytes
+- Read ELF symbol tables
+- Discover executable functions
+- Display function-oriented disassembly
+- Analyze section statistics
+- Generate ELF summary reports
+
+## Learning Outcomes
+
+This project demonstrates:
+
+- ELF file structure
+- ELF headers
+- Section tables
+- String tables
+- Symbol tables
+- Function metadata
+- Machine code storage
+- Executable organization
