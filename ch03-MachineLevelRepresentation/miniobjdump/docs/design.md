@@ -102,17 +102,30 @@ objdump
 
 discover function and symbol names.
 
-### Phase 5 - Function Discovery
+### Phase 5 - Function Discovery ✅
 
-Identify:
+Goal
 
-```text
-main
-add
-printf
+Identify executable functions from ELF metadata.
+
+Implementation
+
+Parse:
+
+```c
+Elf64_Sym
 ```
 
-from ELF symbols.
+Filter:
+
+```c
+ELF64_ST_TYPE(st_info) == STT_FUNC
+```
+
+Learning Objective
+
+Understand how disassemblers locate function
+entry points before instruction decoding begins.
 
 ### Phase 6 - Mini Disassembler
 

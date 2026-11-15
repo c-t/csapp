@@ -22,6 +22,7 @@ int main(int argc, char *argv[])
 	print_sections(argv[1], &header);
 	print_hex_dump(argv[1], &header, ".text");
 	print_symbols(argv[1], &header);
+	print_functions(argv[1], &header);
 
 	return EXIT_SUCCESS;
 }

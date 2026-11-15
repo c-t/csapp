@@ -325,3 +325,68 @@ st_name
       ↓
 Symbol Name
 ```
+
+# Phase 5 - Function Discovery
+
+Goal
+
+Identify function symbols from the ELF symbol table.
+
+Implementation
+
+Read:
+
+```text
+.symtab
+```
+
+Filter:
+
+```text
+STT_FUNC
+```
+
+Observed
+
+```text
+_start
+add
+main
+_init
+_fini
+```
+
+Verification
+
+Compared against:
+
+```bash
+nm hello
+```
+
+Function symbols matched the ELF symbol table.
+
+Key Learning
+
+Function symbols are stored explicitly inside
+the ELF symbol table.
+
+Tools such as:
+
+- nm
+- objdump
+- gdb
+
+use this metadata to discover function boundaries.
+
+ELF Relationship
+
+```text
+.symtab
+        ↓
+Elf64_Sym
+        ↓
+STT_FUNC
+        ↓
+Function Discovery
+```

@@ -11,11 +11,10 @@ A simplified implementation of objdump for learning ELF internals.
 - [x] Phase 2 - Section Viewer
 - [x] Phase 3 - Hex Dump
 - [x] Phase 4 - Symbol Table Reader
-- [ ] Phase 5 - Function Discovery
+- [x] Phase 5 - Function Discovery
 - [ ] Phase 6 - Mini Disassembler
 - [ ] Phase 7 - Section Statistics
 - [ ] Phase 8 - MiniObjDump v1.0
-
 ---
 
 ## Implemented Features
@@ -120,3 +119,36 @@ nm hello
 The discovered symbol names and addresses matched
 the ELF symbol table.
 
+### Phase 5 - Function Discovery ✅
+
+Reads:
+
+```text
+.symtab
+.strtab
+```
+
+Filters:
+
+```text
+STT_FUNC
+```
+
+to discover executable functions.
+
+Example:
+
+```text
+_start
+add
+main
+_init
+_fini
+```
+
+Key Learning:
+
+Disassemblers do not discover functions by scanning
+instructions alone.
+
+ELF symbol tables already provide function metadata.

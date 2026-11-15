@@ -8,5 +8,6 @@ void print_elf_header(const Elf64_Ehdr *header);
 void print_sections(const char *filename, const Elf64_Ehdr *header);
 void print_hex_dump(const char *filename, const Elf64_Ehdr *header, const char *section_name);
 void print_symbols(const char *filename, const Elf64_Ehdr *header);
+void print_functions(const char *filename, const Elf64_Ehdr *header);
 
 #endif

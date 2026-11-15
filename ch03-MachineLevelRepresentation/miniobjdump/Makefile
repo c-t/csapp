@@ -15,7 +15,8 @@ SRC = \
       src/elf_reader.c\
       src/section_viewer.c \
       src/hex_dump.c\
-      src/symbol_viewer.c
+      src/symbol_viewer.c\
+      src/function_viewer.c
 
 TARGET = miniobjdump
 
