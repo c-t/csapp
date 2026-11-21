@@ -16,7 +16,7 @@ SRC = \
       src/classifier.c\
       src/page_sizes.c
 
-TARGET = addrtx
+TARGET = build/addrtx
 
 $(TARGET): $(SRC)
 	$(CC) $(CFLAGS) $(SRC) -o $(TARGET)
