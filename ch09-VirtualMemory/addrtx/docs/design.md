@@ -190,3 +190,24 @@ Learning Objective
 
 Connect virtual addresses to actual process
 memory mappings maintained by Linux.
+
+### Phase 7 - Translation Statistics ✅
+
+Goal
+
+Summarize address-translation characteristics.
+
+Implementation
+
+Compute:
+
+- Total Addresses
+- Unique VPNs
+- Shared Pages
+- Page Utilization
+
+Learning Objective
+
+Understand translation behavior from a
+page-oriented perspective rather than an
+address-oriented perspective.

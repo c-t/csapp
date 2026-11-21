@@ -17,7 +17,7 @@ The goal is to understand how virtual addresses are organized, translated, and u
 - [x] Phase 4 - Page Size Explorer
 - [x] Phase 5 - Multi-Address Analysis
 - [x] Phase 6 - Process Memory Regions
-- [ ] Phase 7 - Translation Statistics
+- [x] Phase 7 - Translation Statistics
 - [ ] Phase 8 - AddrTx v1.0
 ---
 
@@ -318,11 +318,29 @@ address space of the process that owns them.
 
 ### Phase 7 - Translation Statistics
 
-Analyze:
+Generates summary statistics from a collection
+of virtual addresses.
 
-- Address distribution
-- Page utilization
-- Region utilization
+Reports:
+
+- Total Addresses
+- Unique VPNs
+- Shared Pages
+- Page Utilization
+
+Example:
+
+```text
+Total Addresses : 4
+Unique VPNs     : 3
+Shared Pages    : 1
+```
+
+Key Learning:
+
+The number of page translations depends on the
+number of unique VPNs rather than the number of
+addresses.
 
 ---
 

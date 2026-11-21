@@ -489,3 +489,52 @@ The same virtual address value may:
 - Refer to no memory at all
 
 depending on the process context.
+
+# Phase 7 - Translation Statistics
+
+## Dataset
+
+```text
+0x61d31f84a010
+0x61d34150f010
+0x7fff4ca70d90
+0x7fff4ca70d8c
+```
+
+## VPN Analysis
+
+```text
+0x61d31f84a
+0x61d34150f
+0x7fff4ca70
+0x7fff4ca70
+```
+
+## Results
+
+```text
+Total Addresses : 4
+Unique VPNs     : 3
+Shared Pages    : 1
+```
+
+## Findings
+
+Two addresses shared a VPN:
+
+```text
+0x7fff4ca70d90
+0x7fff4ca70d8c
+```
+
+Result:
+
+```text
+Same Virtual Page
+```
+
+## Key Learning
+
+Translation requirements are determined by the
+number of unique pages, not the number of
+addresses.

@@ -155,3 +155,24 @@ Linux exposes process memory layout through:
 
 which describes the current process address
 space.
+
+## Phase 7 Insight
+
+Four addresses did not require four page
+translations.
+
+Observed:
+
+```text
+Addresses   : 4
+Unique VPNs : 3
+```
+
+Two addresses shared the same virtual page and
+therefore the same translation.
+
+This is the same principle exploited by:
+
+- TLBs
+- Page Tables
+- Huge Pages

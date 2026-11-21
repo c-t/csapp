@@ -31,7 +31,11 @@ int main(int argc, char* argv[])
 	print_page_size_analysis(info.virtual_address);
 	print_region(info.virtual_address);
 	print_self_regions();
-	analyze_addresses(addresses, sizeof(addresses)/sizeof(addresses[0]));
-	
+
+	size_t count = sizeof(addresses)/sizeof(addresses[0]);
+
+	analyze_addresses(addresses, count);
+	print_translation_statistics(addresses, count);
+
 	return 0;
 }
