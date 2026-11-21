@@ -11,7 +11,7 @@ The goal is to understand how virtual addresses are organized, translated, and u
 ## Project Status
 
 - [x] Phase 0 - Virtual Address Investigation
-- [ ] Phase 1 - VPN + Offset Split
+- [x] Phase 1 - VPN + Offset Split
 - [ ] Phase 2 - Binary Visualization
 - [ ] Phase 3 - Address Classification
 - [ ] Phase 4 - Page Size Explorer
@@ -153,23 +153,42 @@ Understanding this distinction is fundamental to:
 
 ---
 
+## Phase 1 - VPN + Offset Split
+
+AddrTx now decomposes virtual addresses into:
+
+```text
+Virtual Page Number (VPN)
++
+Page Offset
+```
+
+Formula:
+
+```text
+VPN    = Address >> 12
+
+Offset = Address & 0xFFF
+```
+
+Example:
+
+```text
+Address : 0x7ffee7a5426c
+
+VPN     : 0x7ffee7a54
+
+Offset  : 0x26c
+```
+
+Key Learning:
+
+A virtual address identifies:
+
+- A page (VPN)
+- A location within that page (Offset)
+
 ## Roadmap
-
-### Phase 1 - VPN + Offset Split
-
-Input:
-
-```text
-0x7ffc144c434c
-```
-
-Output:
-
-```text
-VPN
-Offset
-Page Number
-```
 
 ---
 

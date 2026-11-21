@@ -6,6 +6,7 @@
 *.dylib
 *.bin
 *.obj
+addrtx
 test_*
 !**/tests/*.c
 !**/tests/*.h

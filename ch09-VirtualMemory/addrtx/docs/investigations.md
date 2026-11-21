@@ -95,3 +95,68 @@ Low Addresses
 
 A pointer and the object it references may reside
 in completely different regions of virtual memory.
+
+# Phase 1 - VPN + Offset Split
+
+## Observed Translations
+
+Global Variable
+
+```text
+Address : 0x583fe86bf010
+VPN     : 0x583fe86bf
+Offset  : 0x10
+```
+
+Heap Object
+
+```text
+Address : 0x584002347010
+VPN     : 0x584002347
+Offset  : 0x10
+```
+
+Heap Pointer
+
+```text
+Address : 0x7ffee7a54270
+VPN     : 0x7ffee7a54
+Offset  : 0x270
+```
+
+Stack Variable
+
+```text
+Address : 0x7ffee7a5426c
+VPN     : 0x7ffee7a54
+Offset  : 0x26c
+```
+
+## Findings
+
+Heap pointer and stack variable share the same:
+
+```text
+VPN
+```
+
+meaning they reside within the same memory page.
+
+Heap object resides in a completely different
+virtual page.
+
+## Key Learning
+
+A virtual address consists of:
+
+```text
+Virtual Page Number (VPN)
++
+Page Offset
+```
+
+The VPN identifies the page.
+
+The offset identifies the position within
+that page.
+
