@@ -13,7 +13,8 @@ SRC = \
       src/addrtx.c\
       src/translator.c\
       src/formatter.c\
-      src/classifier.c
+      src/classifier.c\
+      src/page_sizes.c
 
 TARGET = addrtx
 

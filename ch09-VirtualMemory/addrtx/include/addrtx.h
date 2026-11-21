@@ -20,6 +20,14 @@ typedef enum
 	REGION_HEAP_DATA
 } region_type_t;
 
+typedef struct
+{
+	uint64_t page_size;
+	uint64_t vpn;
+	uint64_t offset;
+	int offset_bits;
+} page_translation_t;
+
 void translate_address(uint64_t address, address_info_t *info);
 void print_translation(const address_info_t *info);
 void print_binary_visualization(const address_info_t *info);
@@ -27,5 +35,6 @@ void print_binary_split(const address_info_t *info);
 region_type_t classify_address(uint64_t address);
 const char* region_name(region_type_t region);
 void print_classification(uint64_t address);
+void print_page_size_analysis(uint64_t address);
 
 #endif

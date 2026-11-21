@@ -20,6 +20,6 @@ int main(int argc, char* argv[])
 	print_binary_visualization(&info);
 	print_binary_split(&info);
 	print_classification(info.virtual_address);
-
+	print_page_size_analysis(info.virtual_address);
 	return 0;
 }

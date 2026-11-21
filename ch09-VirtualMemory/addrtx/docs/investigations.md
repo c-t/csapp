@@ -292,3 +292,61 @@ Data
 ```
 
 These regions form the process address space.
+
+# Phase 4 - Page Size Explorer
+
+## Address
+
+```text
+0x61d34150f010
+```
+
+### 4 KB Pages
+
+```text
+Offset Bits : 12
+
+VPN         : 0x61d34150f
+Offset      : 0x10
+```
+
+### 2 MB Pages
+
+```text
+Offset Bits : 21
+
+VPN         : 0x30e9a0a
+Offset      : 0x10f010
+```
+
+### 1 GB Pages
+
+```text
+Offset Bits : 30
+
+VPN         : 0x1874d
+Offset      : 0x150f010
+```
+
+## Findings
+
+Increasing page size increases the number of
+offset bits.
+
+As a result:
+
+```text
+VPN Space Decreases
+Offset Space Increases
+```
+
+Large pages cover larger memory regions and
+require fewer page translations.
+
+## Key Learning
+
+Huge pages reduce:
+
+- Page table size
+- TLB pressure
+- Translation overhead

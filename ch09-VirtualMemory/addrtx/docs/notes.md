@@ -56,3 +56,27 @@ stack VPN    = 0x7ffc007b9
 Even though these are different variables,
 they share the same page and therefore
 the same page translation.
+
+## Phase 4 Insight
+
+A virtual address is interpreted differently
+depending on page size.
+
+Example:
+
+```text
+4 KB Page
+    ↓
+VPN + 12-bit Offset
+
+2 MB Page
+    ↓
+VPN + 21-bit Offset
+
+1 GB Page
+    ↓
+VPN + 30-bit Offset
+```
+
+Larger pages result in fewer virtual pages
+covering the same memory range.

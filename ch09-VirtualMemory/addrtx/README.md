@@ -14,7 +14,7 @@ The goal is to understand how virtual addresses are organized, translated, and u
 - [x] Phase 1 - VPN + Offset Split
 - [x] Phase 2 - Binary Visualization
 - [x] Phase 3 - Address Classification
-- [ ] Phase 4 - Page Size Explorer
+- [x] Phase 4 - Page Size Explorer
 - [ ] Phase 5 - Multi-Address Analysis
 - [ ] Phase 6 - Process Memory Regions
 - [ ] Phase 7 - Translation Statistics
@@ -234,19 +234,24 @@ Virtual addresses belong to specific regions
 inside a process address space.
 
 ---
-
 ### Phase 4 - Page Size Explorer
 
-Compare:
+Analyzes address translation for:
 
-```text
-4 KB
-2 MB
-1 GB
-```
+- 4 KB pages
+- 2 MB pages
+- 1 GB pages
 
-page translations.
+Key Learning
 
+Larger pages increase the number of offset bits
+and reduce the number of VPN bits.
+
+Benefits include:
+
+- Fewer page table entries
+- Better TLB efficiency
+- Lower translation overhead
 ---
 
 ### Phase 5 - Multi-Address Analysis
