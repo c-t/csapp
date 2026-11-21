@@ -12,7 +12,7 @@ The goal is to understand how virtual addresses are organized, translated, and u
 
 - [x] Phase 0 - Virtual Address Investigation
 - [x] Phase 1 - VPN + Offset Split
-- [ ] Phase 2 - Binary Visualization
+- [x] Phase 2 - Binary Visualization
 - [ ] Phase 3 - Address Classification
 - [ ] Phase 4 - Page Size Explorer
 - [ ] Phase 5 - Multi-Address Analysis
@@ -188,22 +188,24 @@ A virtual address identifies:
 - A page (VPN)
 - A location within that page (Offset)
 
-## Roadmap
-
----
-
 ### Phase 2 - Binary Visualization
 
-Display:
+Displays address layout as:
 
 ```text
-Address Bit Layout
+| VPN | OFFSET |
 ```
 
-and visualize:
+Example:
 
 ```text
-VPN | Offset
+011000000000111000001100100001100001|000000010000
+```
+
+Key Learning:
+
+- Last 12 bits = page offset
+- Remaining bits = virtual page number
 ```
 
 ---

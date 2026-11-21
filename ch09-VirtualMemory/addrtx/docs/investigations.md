@@ -160,3 +160,66 @@ The VPN identifies the page.
 The offset identifies the position within
 that page.
 
+# Phase 2 - Binary Visualization
+
+## Example
+
+Input
+
+```text
+0x600e0c861010
+```
+
+Output
+
+```text
+VPN     : 0x600e0c861
+Offset  : 0x10
+```
+
+Binary Layout
+
+```text
+VPN (52 bits)
+
+0000000000000000011000000000111000001100100001100001
+
+Offset (12 bits)
+
+000000010000
+```
+
+Visual Split
+
+```text
+|<-------VPN------>|<-OFFSET->|
+
+011000000000111000001100100001100001|000000010000
+```
+
+## Findings
+
+The final 12 bits represent the page offset.
+
+```text
+000000010000
+```
+
+equals:
+
+```text
+0x10
+```
+
+The remaining bits form the VPN.
+
+## Key Learning
+
+Virtual memory translation operates on:
+
+```text
+VPN
+```
+
+The offset passes through unchanged during
+translation.

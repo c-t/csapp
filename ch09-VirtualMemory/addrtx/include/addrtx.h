@@ -15,5 +15,7 @@ typedef struct
 
 void translate_address(uint64_t address, address_info_t *info);
 void print_translation(const address_info_t *info);
+void print_binary_visualization(const address_info_t *info);
+void print_binary_split(const address_info_t *info);
 
 #endif

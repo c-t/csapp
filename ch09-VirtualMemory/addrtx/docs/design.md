@@ -16,9 +16,9 @@ Learn:
 
 ## Roadmap
 
-Phase 0 - Virtual Address Investigation
-Phase 1 - VPN + Offset Split
-Phase 2 - Binary Visualization
+Phase 0 - Virtual Address Investigation ✅
+Phase 1 - VPN + Offset Split ✅
+Phase 2 - Binary Visualization ✅
 Phase 3 - Address Classification
 Phase 4 - Page Size Explorer
 Phase 5 - Multi-Address Analysis
@@ -34,3 +34,50 @@ Investigated:
 - Stack variables Learning 
 
 Objective: Understand the relationship between a virtual address and the process memory layout.
+
+### Phase 1 - VPN + Offset Split ✅
+
+Goal
+
+Split a virtual address into:
+
+```text
+VPN
+Offset
+```
+
+Implementation
+
+```c
+vpn = address >> 12;
+
+offset = address & 0xFFF;
+```
+
+Learning Objective
+
+Understand the fundamental structure of
+virtual memory addresses before introducing
+page tables and TLBs.
+
+### Phase 2 - Binary Visualization ✅
+
+Goal
+
+Visualize the bit layout of a virtual address.
+
+Implementation
+
+Display:
+
+```text
+| VPN | OFFSET |
+```
+
+Learning Objective
+
+Understand that hardware views a virtual
+address as two fields:
+
+- Virtual Page Number
+- Page Offset

@@ -17,6 +17,8 @@ int main(int argc, char* argv[])
 	uint64_t address = strtoull(argv[1], NULL, 0);
 	translate_address(address, &info);
 	print_translation(&info);
+	print_binary_visualization(&info);
+	print_binary_split(&info);
 
 	return 0;
 }
