@@ -15,7 +15,7 @@ The goal is to understand how virtual addresses are organized, translated, and u
 - [x] Phase 2 - Binary Visualization
 - [x] Phase 3 - Address Classification
 - [x] Phase 4 - Page Size Explorer
-- [ ] Phase 5 - Multi-Address Analysis
+- [x] Phase 5 - Multi-Address Analysis
 - [ ] Phase 6 - Process Memory Regions
 - [ ] Phase 7 - Translation Statistics
 - [ ] Phase 8 - AddrTx v1.0
@@ -256,8 +256,33 @@ Benefits include:
 
 ### Phase 5 - Multi-Address Analysis
 
-Translate multiple virtual addresses and group
-them by page.
+Compares multiple virtual addresses and
+determines whether they share a page.
+
+Example:
+
+```text
+0x7fff4ca70d90
+0x7fff4ca70d8c
+```
+
+Both produce:
+
+```text
+VPN = 0x7fff4ca70
+```
+
+Result:
+
+```text
+Same Virtual Page
+```
+
+Key Learning:
+
+Addresses with identical VPN values reside in
+the same page and share the same page
+translation.
 
 ---
 

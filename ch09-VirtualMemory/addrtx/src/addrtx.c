@@ -4,6 +4,14 @@
 
 #include "addrtx.h"
 
+uint64_t addresses[] = 
+{
+	0x61d31f84a010ULL,
+	0x61d34150f010ULL,
+	0x7fff4ca70d90ULL,
+	0x7fff4ca70d8cULL
+};
+
 int main(int argc, char* argv[])
 {
 	address_info_t info;
@@ -21,5 +29,8 @@ int main(int argc, char* argv[])
 	print_binary_split(&info);
 	print_classification(info.virtual_address);
 	print_page_size_analysis(info.virtual_address);
+
+	analyze_addresses(addresses, sizeof(addresses)/sizeof(addresses[0]));
+	
 	return 0;
 }

@@ -109,3 +109,54 @@ process memory map inspection using:
 ```text
 /proc/self/maps
 ```
+
+### Phase 4 - Page Size Explorer ✅
+
+Goal
+
+Understand how page size affects address
+translation.
+
+Implementation
+
+Analyze:
+
+```text
+4 KB
+2 MB
+1 GB
+```
+
+pages.
+
+Learning Objective
+
+Observe how VPN and Offset boundaries shift
+when page size changes.
+
+This provides motivation for huge-page support
+in modern operating systems.
+
+### Phase 5 - Multi-Address Analysis ✅
+
+Goal
+
+Compare multiple addresses and identify
+page relationships.
+
+Implementation
+
+1. Compute VPN for each address.
+2. Group addresses by VPN.
+3. Report shared pages.
+
+Learning Objective
+
+Understand that multiple addresses may
+belong to the same virtual page.
+
+This prepares the foundation for:
+
+- TLB Simulation
+- Page Table Simulation
+- Demand Paging

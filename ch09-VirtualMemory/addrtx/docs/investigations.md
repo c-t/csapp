@@ -350,3 +350,61 @@ Huge pages reduce:
 - Page table size
 - TLB pressure
 - Translation overhead
+
+# Phase 5 - Multi-Address Analysis
+
+## Input Addresses
+
+```text
+0x61d31f84a010
+0x61d34150f010
+0x7fff4ca70d90
+0x7fff4ca70d8c
+```
+
+## VPN Analysis
+
+```text
+0x61d31f84a010 -> 0x61d31f84a
+0x61d34150f010 -> 0x61d34150f
+0x7fff4ca70d90 -> 0x7fff4ca70
+0x7fff4ca70d8c -> 0x7fff4ca70
+```
+
+## Shared Page Analysis
+
+```text
+VPN = 0x7fff4ca70
+```
+
+Addresses:
+
+```text
+0x7fff4ca70d90
+0x7fff4ca70d8c
+```
+
+share the same page.
+
+## Findings
+
+Different virtual addresses may correspond
+to the same VPN.
+
+Only the offset differs.
+
+## Key Learning
+
+Virtual memory translation operates on:
+
+```text
+VPN
+```
+
+not on the complete virtual address.
+
+Addresses sharing a VPN share:
+
+- Virtual Page
+- Page Table Entry
+- TLB Translation

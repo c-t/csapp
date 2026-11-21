@@ -80,3 +80,24 @@ VPN + 30-bit Offset
 
 Larger pages result in fewer virtual pages
 covering the same memory range.
+
+## Phase 5 Insight
+
+Two addresses can appear unrelated:
+
+```text
+0x7fff4ca70d90
+0x7fff4ca70d8c
+```
+
+Yet belong to the same page:
+
+```text
+VPN = 0x7fff4ca70
+```
+
+This means page translation depends on the
+VPN and not the offset.
+
+The offset merely identifies a location
+within the page.

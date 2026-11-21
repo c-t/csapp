@@ -14,7 +14,8 @@ SRC = \
       src/translator.c\
       src/formatter.c\
       src/classifier.c\
-      src/page_sizes.c
+      src/page_sizes.c\
+      src/multi_address.c
 
 TARGET = build/addrtx
 
