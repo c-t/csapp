@@ -160,3 +160,33 @@ This prepares the foundation for:
 - TLB Simulation
 - Page Table Simulation
 - Demand Paging
+
+### Phase 6 - Process Memory Regions ✅
+
+Goal
+
+Move beyond heuristics and inspect actual Linux
+process memory mappings.
+
+Implementation
+
+Parse:
+
+```text
+/proc/self/maps
+```
+
+and locate the region containing a virtual
+address.
+
+Displays:
+
+- Region Start
+- Region End
+- Permissions
+- Mapping Name
+
+Learning Objective
+
+Connect virtual addresses to actual process
+memory mappings maintained by Linux.

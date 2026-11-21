@@ -101,3 +101,57 @@ VPN and not the offset.
 
 The offset merely identifies a location
 within the page.
+
+## Phase 6 Insight
+
+A virtual address consists of more than:
+
+```text
+VPN + Offset
+```
+
+It also exists within:
+
+```text
+A Process Address Space
+```
+
+Example:
+
+```text
+0x5d9499148010
+```
+
+obtained from:
+
+```text
+test_basic
+```
+
+could not be resolved inside:
+
+```text
+AddrTx
+```
+
+because the address belonged to a different
+process.
+
+Important:
+
+```text
+Same Address Value
+        ≠
+Same Memory
+```
+
+across different processes.
+
+Linux exposes process memory layout through:
+
+```text
+/ proc / self / maps
+```
+
+which describes the current process address
+space.

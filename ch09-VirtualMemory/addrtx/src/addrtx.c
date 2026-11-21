@@ -29,7 +29,8 @@ int main(int argc, char* argv[])
 	print_binary_split(&info);
 	print_classification(info.virtual_address);
 	print_page_size_analysis(info.virtual_address);
-
+	print_region(info.virtual_address);
+	print_self_regions();
 	analyze_addresses(addresses, sizeof(addresses)/sizeof(addresses[0]));
 	
 	return 0;

@@ -35,6 +35,15 @@ typedef struct
 	uint64_t vpn;
 } address_entry_t;
 
+typedef struct
+{
+	uint64_t start;
+	uint64_t end;
+
+	char permissions[8];
+	char pathname[256];
+} memory_region_t;
+
 void translate_address(uint64_t address, address_info_t *info);
 void print_translation(const address_info_t *info);
 void print_binary_visualization(const address_info_t *info);
@@ -44,5 +53,8 @@ const char* region_name(region_type_t region);
 void print_classification(uint64_t address);
 void print_page_size_analysis(uint64_t address);
 void analyze_addresses(uint64_t *addresses, size_t count);
+int find_region(uint64_t address, memory_region_t *region);
+void print_region(uint64_t address);
+void print_self_regions();
 
 #endif

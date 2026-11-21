@@ -408,3 +408,84 @@ Addresses sharing a VPN share:
 - Virtual Page
 - Page Table Entry
 - TLB Translation
+
+# Phase 6 - Process Memory Regions
+
+## Objective
+
+Investigate actual Linux virtual memory regions
+using:
+
+```text
+/proc/self/maps
+```
+
+## Initial Experiment
+
+Address obtained from:
+
+```text
+test_basic
+```
+
+Example:
+
+```text
+0x5d9499148010
+```
+
+AddrTx Result:
+
+```text
+Region not found.
+```
+
+## Observation
+
+The address belonged to a different process and
+could not be located inside AddrTx's address
+space.
+
+## Finding
+
+Virtual addresses are process-specific.
+
+An address is valid only within the process
+that owns the corresponding virtual address
+space.
+
+## AddrTx Self Inspection
+
+Global Variable
+
+```text
+Mapping :
+/home/.../build/addrtx
+```
+
+Heap Object
+
+```text
+Mapping :
+[heap]
+```
+
+Stack Variable
+
+```text
+Mapping :
+[stack]
+```
+
+## Key Learning
+
+Two processes may contain similar virtual
+addresses while referring to completely
+different memory.
+
+The same virtual address value may:
+
+- Refer to different memory
+- Refer to no memory at all
+
+depending on the process context.

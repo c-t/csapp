@@ -16,10 +16,9 @@ The goal is to understand how virtual addresses are organized, translated, and u
 - [x] Phase 3 - Address Classification
 - [x] Phase 4 - Page Size Explorer
 - [x] Phase 5 - Multi-Address Analysis
-- [ ] Phase 6 - Process Memory Regions
+- [x] Phase 6 - Process Memory Regions
 - [ ] Phase 7 - Translation Statistics
 - [ ] Phase 8 - AddrTx v1.0
-
 ---
 
 ## Project Goals
@@ -288,13 +287,32 @@ translation.
 
 ### Phase 6 - Process Memory Regions
 
-Investigate:
+AddrTx can now inspect Linux process memory maps
+using:
 
 ```text
 /proc/self/maps
 ```
 
-and visualize the process address space.
+Features:
+
+- Locate the memory region containing an address
+- Display region boundaries
+- Display permissions
+- Display mapping names
+
+Examples:
+
+```text
+[heap]
+[stack]
+/home/.../build/addrtx
+```
+
+Key Learning:
+
+Virtual addresses are meaningful only within the
+address space of the process that owns them.
 
 ---
 

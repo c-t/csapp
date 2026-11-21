@@ -15,7 +15,8 @@ SRC = \
       src/formatter.c\
       src/classifier.c\
       src/page_sizes.c\
-      src/multi_address.c
+      src/multi_address.c\
+      src/maps.c
 
 TARGET = build/addrtx
 
