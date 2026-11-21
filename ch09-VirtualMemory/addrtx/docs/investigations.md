@@ -223,3 +223,72 @@ VPN
 
 The offset passes through unchanged during
 translation.
+
+# Phase 3 - Address Classification
+
+## Observed Addresses
+
+Global
+
+```text
+0x6089e489f010
+```
+
+Heap Object
+
+```text
+0x608a1cd1a010
+```
+
+Heap Pointer
+
+```text
+0x7ffc007b9640
+```
+
+Stack Variable
+
+```text
+0x7ffc007b963c
+```
+
+## Classification Results
+
+```text
+0x6089e489f010  -> HEAP_DATA
+0x608a1cd1a010  -> HEAP_DATA
+
+0x7ffc007b9640  -> STACK
+0x7ffc007b963c  -> STACK
+```
+
+## Findings
+
+Heap pointer and stack variable share:
+
+```text
+VPN = 0x7ffc007b9
+```
+
+and therefore reside in the same virtual page.
+
+Heap object resides in a different virtual page
+and is classified as HEAP_DATA.
+
+## Key Learning
+
+An address is not only:
+
+```text
+VPN + Offset
+```
+
+It also belongs to a virtual memory region:
+
+```text
+Stack
+Heap
+Data
+```
+
+These regions form the process address space.

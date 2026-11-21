@@ -13,7 +13,7 @@ The goal is to understand how virtual addresses are organized, translated, and u
 - [x] Phase 0 - Virtual Address Investigation
 - [x] Phase 1 - VPN + Offset Split
 - [x] Phase 2 - Binary Visualization
-- [ ] Phase 3 - Address Classification
+- [x] Phase 3 - Address Classification
 - [ ] Phase 4 - Page Size Explorer
 - [ ] Phase 5 - Multi-Address Analysis
 - [ ] Phase 6 - Process Memory Regions
@@ -208,18 +208,30 @@ Key Learning:
 - Remaining bits = virtual page number
 ```
 
----
-
 ### Phase 3 - Address Classification
 
-Classify addresses as:
+Classifies virtual addresses into memory regions.
+
+Current classifications:
 
 ```text
-Stack
-Heap
-Global
-Unknown
+STACK
+HEAP_DATA
+UNKNOWN
 ```
+
+Example:
+
+```text
+Address : 0x7ffc007b963c
+
+Region  : STACK
+```
+
+Key Learning:
+
+Virtual addresses belong to specific regions
+inside a process address space.
 
 ---
 

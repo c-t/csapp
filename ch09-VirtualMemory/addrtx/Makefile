@@ -12,7 +12,8 @@ CFLAGS = \
 SRC = \
       src/addrtx.c\
       src/translator.c\
-      src/formatter.c
+      src/formatter.c\
+      src/classifier.c
 
 TARGET = addrtx
 

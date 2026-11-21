@@ -37,3 +37,22 @@ Byte Offset
 =
 0x600e0c861010
 ```
+
+## Phase 3 Insight
+
+The same VPN implies:
+
+```text
+Same Virtual Page
+```
+
+Example:
+
+```text
+heap ptr VPN = 0x7ffc007b9
+stack VPN    = 0x7ffc007b9
+```
+
+Even though these are different variables,
+they share the same page and therefore
+the same page translation.

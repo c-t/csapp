@@ -50,3 +50,13 @@ void print_binary_split(const address_info_t *info)
 
 	printf("\n\n");
 }
+
+void print_classification(uint64_t address)
+{
+	region_type_t region = classify_address(address);
+	printf("\nAddress Classification\n");
+	printf("===================================\n\n");
+	printf("Address	: 0x%lx\n", address);
+	printf("Region	: %s\n", region_name(region));
+	printf("\n");
+}

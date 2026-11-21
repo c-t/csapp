@@ -81,3 +81,31 @@ address as two fields:
 
 - Virtual Page Number
 - Page Offset
+
+### Phase 3 - Address Classification ✅
+
+Goal
+
+Associate a virtual address with a memory region.
+
+Current Regions
+
+```text
+STACK
+HEAP_DATA
+UNKNOWN
+```
+
+Implementation
+
+Uses a simple heuristic classifier based on
+observed Linux virtual address ranges.
+
+Future Work
+
+Phase 6 will replace heuristics with actual
+process memory map inspection using:
+
+```text
+/proc/self/maps
+```
