@@ -1,143 +1,73 @@
 # Notes
 
-## Phase 2 Insight
+## VPN + Offset
 
-Addresses should no longer be viewed as a
-single hexadecimal value.
-
-Instead:
+A virtual address consists of:
 
 ```text
-Address
-    =
-VPN + Offset
+Virtual Page Number
+        +
+Page Offset
 ```
 
-Example:
+---
+
+## Page Translation
+
+Translation operates on:
 
 ```text
-0x600e0c861010
-
-VPN    = 0x600e0c861
-Offset = 0x10
+VPN
 ```
 
-Equivalent View:
+The offset passes through unchanged.
+
+---
+
+## Shared Pages
+
+Addresses with the same VPN reside in:
 
 ```text
-Page Base
-    +
-Byte Offset
+The Same Virtual Page
 ```
+
+and therefore share:
 
 ```text
-0x600e0c861000
-+
-0x10
-=
-0x600e0c861010
+Page Translation
+Page Table Entry
+TLB Entry
 ```
 
-## Phase 3 Insight
+---
 
-The same VPN implies:
+## Huge Pages
+
+Increasing page size:
 
 ```text
-Same Virtual Page
+4 KB
+→
+2 MB
+→
+1 GB
 ```
 
-Example:
+results in:
 
 ```text
-heap ptr VPN = 0x7ffc007b9
-stack VPN    = 0x7ffc007b9
+More Offset Bits
+Fewer VPN Bits
+Fewer Pages
 ```
 
-Even though these are different variables,
-they share the same page and therefore
-the same page translation.
+---
 
-## Phase 4 Insight
+## Process Isolation
 
-A virtual address is interpreted differently
-depending on page size.
-
-Example:
-
-```text
-4 KB Page
-    ↓
-VPN + 12-bit Offset
-
-2 MB Page
-    ↓
-VPN + 21-bit Offset
-
-1 GB Page
-    ↓
-VPN + 30-bit Offset
-```
-
-Larger pages result in fewer virtual pages
-covering the same memory range.
-
-## Phase 5 Insight
-
-Two addresses can appear unrelated:
-
-```text
-0x7fff4ca70d90
-0x7fff4ca70d8c
-```
-
-Yet belong to the same page:
-
-```text
-VPN = 0x7fff4ca70
-```
-
-This means page translation depends on the
-VPN and not the offset.
-
-The offset merely identifies a location
-within the page.
-
-## Phase 6 Insight
-
-A virtual address consists of more than:
-
-```text
-VPN + Offset
-```
-
-It also exists within:
-
-```text
-A Process Address Space
-```
-
-Example:
-
-```text
-0x5d9499148010
-```
-
-obtained from:
-
-```text
-test_basic
-```
-
-could not be resolved inside:
-
-```text
-AddrTx
-```
-
-because the address belonged to a different
-process.
-
-Important:
+A virtual address is meaningful only within the
+process that owns the address space.
 
 ```text
 Same Address Value
@@ -145,34 +75,42 @@ Same Address Value
 Same Memory
 ```
 
-across different processes.
+across processes.
 
-Linux exposes process memory layout through:
+---
+
+## Linux Memory Layout
+
+Linux exposes process mappings through:
 
 ```text
 / proc / self / maps
 ```
 
-which describes the current process address
-space.
+including:
 
-## Phase 7 Insight
+- Executable
+- Heap
+- Stack
+- Anonymous Regions
 
-Four addresses did not require four page
-translations.
+---
 
-Observed:
+## AddrTx v1.0 Summary
+
+AddrTx provides a practical introduction to:
+
+- Virtual Addresses
+- Paging
+- Virtual Page Numbers
+- Linux Memory Layout
+- Page Sharing
+- Translation Analysis
+
+and serves as a foundation for:
 
 ```text
-Addresses   : 4
-Unique VPNs : 3
+Multi-Level Page Table Simulator
+TLB Simulator
+Demand Paging Simulator
 ```
-
-Two addresses shared the same virtual page and
-therefore the same translation.
-
-This is the same principle exploited by:
-
-- TLBs
-- Page Tables
-- Huge Pages

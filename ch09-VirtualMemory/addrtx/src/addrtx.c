@@ -36,6 +36,9 @@ int main(int argc, char* argv[])
 
 	analyze_addresses(addresses, count);
 	print_translation_statistics(addresses, count);
+	
+	run_runtime_analysis();
+	print_summary_report(info.virtual_address);
 
 	return 0;
 }

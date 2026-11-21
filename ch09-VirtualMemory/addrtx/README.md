@@ -2,216 +2,63 @@
 
 Virtual Address Translation Explorer
 
-AddrTx is a Chapter 9 (Virtual Memory) learning project inspired by the investigation-first approach used in StackViz, CallScope, and MiniObjDump.
+AddrTx is a learning project inspired by Chapter 9 of
+Computer Systems: A Programmer's Perspective (CS:APP).
 
-The goal is to understand how virtual addresses are organized, translated, and ultimately mapped by the operating system and hardware.
+The project explores how virtual addresses are represented,
+translated, classified, and mapped within a Linux process.
 
 ---
 
-## Project Status
+## Overview
 
-- [x] Phase 0 - Virtual Address Investigation
-- [x] Phase 1 - VPN + Offset Split
-- [x] Phase 2 - Binary Visualization
-- [x] Phase 3 - Address Classification
-- [x] Phase 4 - Page Size Explorer
-- [x] Phase 5 - Multi-Address Analysis
-- [x] Phase 6 - Process Memory Regions
-- [x] Phase 7 - Translation Statistics
-- [ ] Phase 8 - AddrTx v1.0
----
+AddrTx demonstrates:
 
-## Project Goals
+```text
+Virtual Address
+      ↓
+VPN + Offset
+      ↓
+Page
+      ↓
+Memory Region
+      ↓
+Translation Statistics
+```
 
-Learn and visualize:
+and provides hands-on exposure to:
 
-- Virtual Addresses
-- Virtual Page Numbers (VPN)
+- Virtual Address Translation
+- Virtual Page Numbers (VPNs)
 - Page Offsets
-- Pages and Page Sizes
-- Virtual Memory Layout
-- Address Translation Fundamentals
+- Page Sizes
+- Linux Process Memory Layout
+- Shared Pages
+- Translation Statistics
 
 ---
 
-## Phase 0 Findings
+## Features
 
-### Test Programs
+### Address Translation
 
-Investigated addresses from:
-
-- Global variables
-- Heap allocations
-- Stack variables
-
-### Observed Addresses
+Decompose a virtual address into:
 
 ```text
-global      : 0x5dcf3a1ce010
-heap object : 0x5dcf46d92010
-heap ptr    : 0x7ffc144c4350
-stack       : 0x7ffc144c434c
+VPN + Offset
 ```
 
-### Key Observations
+### Binary Visualization
 
-#### Heap Object vs Heap Pointer
-
-The allocated object resides in heap memory:
-
-```text
-0x5dcf46d92010
-```
-
-The pointer variable itself resides on the stack:
-
-```text
-0x7ffc144c4350
-```
-
-This demonstrates that:
-
-```text
-Pointer Variable
-        ≠
-Referenced Object
-```
-
-The pointer may live on the stack while the
-object it references resides in the heap.
-
----
-
-#### Stack Frame Layout
-
-Observed:
-
-```text
-heap ptr : 0x7ffc144c4350
-stack    : 0x7ffc144c434c
-```
-
-These addresses are adjacent because both
-objects are stored inside the same stack frame.
-
----
-
-#### Process Memory Layout
-
-Observed address ranges suggest:
-
-```text
-High Addresses
-+----------------------+
-| Stack                |
-+----------------------+
-
-| Shared Libraries     |
-
-+----------------------+
-| Heap                 |
-+----------------------+
-
-| Globals / Data       |
-+----------------------+
-
-| Text Segment         |
-+----------------------+
-Low Addresses
-```
-
----
-
-## Key Learning
-
-A virtual address is associated with a specific
-region of a process address space.
-
-Objects that are logically connected may reside
-in completely different virtual memory regions.
-
-Example:
-
-```text
-heap_ptr
-    ↓
-Stack
-
-heap_object
-    ↓
-Heap
-```
-
-Understanding this distinction is fundamental to:
-
-- Virtual Memory
-- Paging
-- Demand Paging
-- Copy-On-Write
-- Dynamic Memory Allocation
-
----
-
-## Phase 1 - VPN + Offset Split
-
-AddrTx now decomposes virtual addresses into:
-
-```text
-Virtual Page Number (VPN)
-+
-Page Offset
-```
-
-Formula:
-
-```text
-VPN    = Address >> 12
-
-Offset = Address & 0xFFF
-```
-
-Example:
-
-```text
-Address : 0x7ffee7a5426c
-
-VPN     : 0x7ffee7a54
-
-Offset  : 0x26c
-```
-
-Key Learning:
-
-A virtual address identifies:
-
-- A page (VPN)
-- A location within that page (Offset)
-
-### Phase 2 - Binary Visualization
-
-Displays address layout as:
+Visualize address structure:
 
 ```text
 | VPN | OFFSET |
 ```
 
-Example:
+### Address Classification
 
-```text
-011000000000111000001100100001100001|000000010000
-```
-
-Key Learning:
-
-- Last 12 bits = page offset
-- Remaining bits = virtual page number
-```
-
-### Phase 3 - Address Classification
-
-Classifies virtual addresses into memory regions.
-
-Current classifications:
+Classify addresses into:
 
 ```text
 STACK
@@ -219,158 +66,102 @@ HEAP_DATA
 UNKNOWN
 ```
 
-Example:
+### Page Size Explorer
+
+Compare translation using:
 
 ```text
-Address : 0x7ffc007b963c
-
-Region  : STACK
+4 KB pages
+2 MB pages
+1 GB pages
 ```
 
-Key Learning:
+### Multi-Address Analysis
 
-Virtual addresses belong to specific regions
-inside a process address space.
+Determine:
 
----
-### Phase 4 - Page Size Explorer
+- Shared VPNs
+- Shared Pages
+- Translation Relationships
 
-Analyzes address translation for:
+### Process Memory Regions
 
-- 4 KB pages
-- 2 MB pages
-- 1 GB pages
-
-Key Learning
-
-Larger pages increase the number of offset bits
-and reduce the number of VPN bits.
-
-Benefits include:
-
-- Fewer page table entries
-- Better TLB efficiency
-- Lower translation overhead
----
-
-### Phase 5 - Multi-Address Analysis
-
-Compares multiple virtual addresses and
-determines whether they share a page.
-
-Example:
-
-```text
-0x7fff4ca70d90
-0x7fff4ca70d8c
-```
-
-Both produce:
-
-```text
-VPN = 0x7fff4ca70
-```
-
-Result:
-
-```text
-Same Virtual Page
-```
-
-Key Learning:
-
-Addresses with identical VPN values reside in
-the same page and share the same page
-translation.
-
----
-
-### Phase 6 - Process Memory Regions
-
-AddrTx can now inspect Linux process memory maps
-using:
+Inspect:
 
 ```text
 /proc/self/maps
 ```
 
-Features:
+to identify:
 
-- Locate the memory region containing an address
-- Display region boundaries
-- Display permissions
-- Display mapping names
+- Executable mappings
+- Heap mappings
+- Stack mappings
 
-Examples:
+### Translation Statistics
 
-```text
-[heap]
-[stack]
-/home/.../build/addrtx
-```
-
-Key Learning:
-
-Virtual addresses are meaningful only within the
-address space of the process that owns them.
-
----
-
-### Phase 7 - Translation Statistics
-
-Generates summary statistics from a collection
-of virtual addresses.
-
-Reports:
+Generate:
 
 - Total Addresses
 - Unique VPNs
 - Shared Pages
 - Page Utilization
 
-Example:
+### Runtime Dataset Analysis
+
+Analyze addresses from:
 
 ```text
-Total Addresses : 4
-Unique VPNs     : 3
-Shared Pages    : 1
+Global Variables
+Heap Objects
+Stack Variables
 ```
 
-Key Learning:
-
-The number of page translations depends on the
-number of unique VPNs rather than the number of
-addresses.
+belonging to the running process.
 
 ---
 
-### Phase 8 - AddrTx v1.0
+## Project Structure
 
-Integrated virtual-address analysis tool.
+```text
+addrtx/
+├── Makefile
+├── README.md
+├── build
+├── docs
+│   ├── design.md
+│   ├── investigations.md
+│   └── notes.md
+├── include
+│   └── addrtx.h
+├── samples
+│   └── sample_output.txt
+├── src
+├── test
+└── tests
+```
 
 ---
 
-## Learning Outcome
+## Learning Outcomes
 
-AddrTx aims to make an address such as:
+After completing AddrTx, you should understand:
+
+- Virtual Address Structure
+- VPN and Offset Extraction
+- Binary Address Layout
+- Page Sizes and Huge Pages
+- Shared Virtual Pages
+- Linux Memory Mappings
+- Process-Specific Address Spaces
+- Translation Statistics
+
+---
+
+## Status
 
 ```text
-0x7ffc144c434c
+AddrTx v1.0
 ```
 
-feel as meaningful as:
-
-```text
-RDI = Argument 1
-```
-
-became during the CallScope project.
-
-The project serves as the foundation for future
-Chapter 9 projects:
-
-- Multi-Level Page Table Simulator
-- TLB Simulator
-- Demand Paging Simulator
-- Copy-On-Write Simulator
-- Virtual Memory Manager
+Completed as part of the CS:APP Virtual Memory project series.

@@ -64,5 +64,7 @@ int find_region(uint64_t address, memory_region_t *region);
 void print_region(uint64_t address);
 void print_self_regions();
 void print_translation_statistics(uint64_t *addresses, size_t count);
+void run_runtime_analysis(void);
+void print_summary_report(uint64_t address);
 
 #endif

@@ -1,213 +1,147 @@
 # AddrTx Design
 
-## Goal
+## Objective
 
-Understand virtual address translation.
-
-Learn:
-
-- Virtual Addresses
-- Page Numbers
-- Page Offsets
-- Address Translation
-- Paging Fundamentals
+Build a virtual memory exploration tool that progressively
+reveals how virtual addresses are interpreted by hardware
+and operating systems.
 
 ---
 
-## Roadmap
+## Architecture
 
-Phase 0 - Virtual Address Investigation ✅
-Phase 1 - VPN + Offset Split ✅
-Phase 2 - Binary Visualization ✅
-Phase 3 - Address Classification
-Phase 4 - Page Size Explorer
-Phase 5 - Multi-Address Analysis
-Phase 6 - Process Memory Regions
-Phase 7 - Translation Statistics
-Phase 8 - AddrTx v1.0
+```text
+Virtual Address
+        |
+        v
 
-### Phase 0 - Virtual Address Investigation ✅ 
++----------------+
+| VPN + Offset   |
++----------------+
+        |
+        v
 
-Investigated: 
-- Global variables 
-- Heap allocations 
-- Stack variables Learning 
++----------------+
+| Binary Layout  |
++----------------+
+        |
+        v
 
-Objective: Understand the relationship between a virtual address and the process memory layout.
++----------------+
+| Classification |
++----------------+
+        |
+        v
 
-### Phase 1 - VPN + Offset Split ✅
++----------------+
+| Page Analysis  |
++----------------+
+        |
+        v
 
-Goal
++----------------+
+| Region Lookup  |
++----------------+
+        |
+        v
 
-Split a virtual address into:
++----------------+
+| Statistics     |
++----------------+
+```
+
+---
+
+## Components
+
+### translator.c
+
+Extracts:
 
 ```text
 VPN
 Offset
 ```
 
-Implementation
+from virtual addresses.
 
-```c
-vpn = address >> 12;
+---
 
-offset = address & 0xFFF;
-```
+### formatter.c
 
-Learning Objective
+Provides formatted output and binary visualizations.
 
-Understand the fundamental structure of
-virtual memory addresses before introducing
-page tables and TLBs.
+---
 
-### Phase 2 - Binary Visualization ✅
+### classifier.c
 
-Goal
+Performs heuristic virtual memory classification.
 
-Visualize the bit layout of a virtual address.
+---
 
-Implementation
+### page_sizes.c
 
-Display:
+Analyzes address translation across:
 
 ```text
-| VPN | OFFSET |
+4 KB pages
+2 MB pages
+1 GB pages
 ```
 
-Learning Objective
+---
 
-Understand that hardware views a virtual
-address as two fields:
+### maps.c
 
-- Virtual Page Number
-- Page Offset
-
-### Phase 3 - Address Classification ✅
-
-Goal
-
-Associate a virtual address with a memory region.
-
-Current Regions
-
-```text
-STACK
-HEAP_DATA
-UNKNOWN
-```
-
-Implementation
-
-Uses a simple heuristic classifier based on
-observed Linux virtual address ranges.
-
-Future Work
-
-Phase 6 will replace heuristics with actual
-process memory map inspection using:
+Parses:
 
 ```text
 /proc/self/maps
 ```
 
-### Phase 4 - Page Size Explorer ✅
+and resolves addresses to actual Linux memory regions.
 
-Goal
+---
 
-Understand how page size affects address
-translation.
+### multi_address.c
 
-Implementation
-
-Analyze:
+Compares addresses and identifies:
 
 ```text
-4 KB
-2 MB
-1 GB
+Shared VPNs
+Shared Pages
 ```
 
-pages.
+---
 
-Learning Objective
+### stats.c
 
-Observe how VPN and Offset boundaries shift
-when page size changes.
+Calculates:
 
-This provides motivation for huge-page support
-in modern operating systems.
+- Translation counts
+- Unique pages
+- Shared page metrics
 
-### Phase 5 - Multi-Address Analysis ✅
+---
 
-Goal
+### runtime.c
 
-Compare multiple addresses and identify
-page relationships.
-
-Implementation
-
-1. Compute VPN for each address.
-2. Group addresses by VPN.
-3. Report shared pages.
-
-Learning Objective
-
-Understand that multiple addresses may
-belong to the same virtual page.
-
-This prepares the foundation for:
-
-- TLB Simulation
-- Page Table Simulation
-- Demand Paging
-
-### Phase 6 - Process Memory Regions ✅
-
-Goal
-
-Move beyond heuristics and inspect actual Linux
-process memory mappings.
-
-Implementation
-
-Parse:
+Constructs a runtime dataset using:
 
 ```text
-/proc/self/maps
+Global Variables
+Heap Objects
+Stack Variables
 ```
 
-and locate the region containing a virtual
-address.
+from the executing process.
 
-Displays:
+---
 
-- Region Start
-- Region End
-- Permissions
-- Mapping Name
+## Design Principles
 
-Learning Objective
-
-Connect virtual addresses to actual process
-memory mappings maintained by Linux.
-
-### Phase 7 - Translation Statistics ✅
-
-Goal
-
-Summarize address-translation characteristics.
-
-Implementation
-
-Compute:
-
-- Total Addresses
-- Unique VPNs
-- Shared Pages
-- Page Utilization
-
-Learning Objective
-
-Understand translation behavior from a
-page-oriented perspective rather than an
-address-oriented perspective.
+- Investigation-first learning
+- Small focused phases
+- Observable system behavior
+- Linux-first implementation
+- Minimal dependencies
