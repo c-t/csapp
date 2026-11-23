@@ -46,7 +46,7 @@ Physical Frame
 - [x] Phase 3 - Page Table Structures
 - [x] Phase 4 - Page Walk Simulation
 - [x] Phase 5 - Physical Address Generation
-- [ ] Phase 6 - Multi-Address Translation
+- [x] Phase 6 - Multi-Address Translation
 - [ ] Phase 7 - Translation Statistics
 - [ ] Phase 8 - PTSim v1.0
 
@@ -225,3 +225,24 @@ Key Learning:
 
 The page walk translates a virtual page into a
 physical frame while preserving the page offset.
+
+## Phase 6 - Multi-Address Translation
+
+Translate and compare multiple virtual
+addresses.
+
+Example:
+
+```text
+Virtual Address      Frame      Physical Address
+------------------------------------------------
+0x7ffff84e371c       0x10e3     0x10e371c
+0x7ffff84e3720       0x10e3     0x10e3720
+0x7ffff84e4000       0x10e4     0x10e4000
+0x58dc74280010       0x1080     0x1080010
+```
+
+Key Learning:
+
+Multiple virtual addresses may translate to the
+same physical frame and differ only by offset.

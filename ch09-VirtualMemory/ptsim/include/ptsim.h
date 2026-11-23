@@ -4,6 +4,7 @@
 #include <stdint.h>
 
 #define PT_ENTRIES 512
+#define MAX_ADDRESSES 16
 
 typedef struct
 {
@@ -40,6 +41,14 @@ typedef struct
     uint64_t physical_address;
 } translation_result_t;
 
+typedef struct
+{
+    uint64_t virtual_address;
+    uint64_t physical_address;
+    uint64_t frame;
+    uint16_t offset;
+} translation_entry_t;
+
 void extract_indices(uint64_t address, page_indices_t *indices);
 void print_indices(const page_indices_t *indices);
 void print_visualization(const page_indices_t *indices);
@@ -53,5 +62,6 @@ void print_page_walk(const page_walk_t *walk, const page_indices_t *idx);
 void generate_physical_address(uint64_t frame, uint16_t offset, translation_result_t *result);
 void print_physical_address(const translation_result_t *result, uint16_t offset);
 uint64_t get_frame(const page_walk_t *walk, const page_indices_t *idx);
+void run_multi_translation(void);
 
 #endif

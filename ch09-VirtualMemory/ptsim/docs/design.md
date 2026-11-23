@@ -209,3 +209,29 @@ Learning Objective
 Understand that page translation modifies the
 page portion of an address while preserving the
 offset portion.
+
+## Phase 6 - Multi-Address Translation ✅
+
+Goal
+
+Translate multiple virtual addresses and compare
+their resulting physical translations.
+
+Implementation
+
+```text
+VA
+ ↓
+Page Walk
+ ↓
+Frame
+ ↓
+Physical Address
+```
+
+for several addresses.
+
+Learning Objective
+
+Understand how different virtual addresses may
+share frames or differ only by their offsets.

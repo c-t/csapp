@@ -413,3 +413,61 @@ while preserving:
 ```text
 Offset
 ```
+
+# Phase 6 - Multi-Address Translation
+
+## Dataset
+
+```text
+0x7ffff84e371c
+0x7ffff84e3720
+0x7ffff84e4000
+0x58dc74280010
+```
+
+## Results
+
+```text
+0x7ffff84e371c -> Frame 0x10e3 -> 0x10e371c
+
+0x7ffff84e3720 -> Frame 0x10e3 -> 0x10e3720
+
+0x7ffff84e4000 -> Frame 0x10e4 -> 0x10e4000
+
+0x58dc74280010 -> Frame 0x1080 -> 0x1080010
+```
+
+## Observations
+
+Addresses:
+
+```text
+0x7ffff84e371c
+0x7ffff84e3720
+```
+
+shared:
+
+```text
+Frame = 0x10e3
+```
+
+while differing only in their offsets.
+
+## Findings
+
+Multiple virtual addresses may map to the same
+physical frame.
+
+Physical location is determined by:
+
+```text
+Frame + Offset
+```
+
+rather than the virtual address alone.
+
+## Key Learning
+
+Physical memory translations can be shared even
+when virtual addresses differ.

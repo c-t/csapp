@@ -11,7 +11,7 @@ void initialize_page_walk(page_walk_t *walk, const page_indices_t *idx)
     populate_entry(&walk->pml4, idx->pml4, 0x1000);
     populate_entry(&walk->pdpt, idx->pdpt, 0x2000);
     populate_entry(&walk->pd, idx->pd, 0x3000);
-    populate_entry(&walk->pt, idx->pt, 0x12345);
+    populate_entry(&walk->pt, idx->pt, 0x1000 + idx->pt);
 }
 
 int perform_page_walk(const page_walk_t *walk, const page_indices_t *idx, uint64_t *frame)
@@ -52,8 +52,8 @@ void print_page_walk(const page_walk_t *walk, const page_indices_t *idx)
     printf("Lookup PD[%u] ... OK\n", idx->pd);
     printf( "Lookup PT[%u] ... OK\n", idx->pt);
 
-    if (perform_page_walk(walk, idx,&frame))
-    {
+    if (perform_page_walk(walk, idx, &frame))
+    { 
         printf("\nFrame Found : 0x%lx\n", frame);
     }
     else

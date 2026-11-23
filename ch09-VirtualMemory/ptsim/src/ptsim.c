@@ -22,7 +22,7 @@ int main(int argc, char *argv[])
 	
 	page_table_t pt;
 	initialize_page_table(&pt);
-	populate_entry(&pt, indices.pt, 0x12345);	
+	populate_entry(&pt, indices.pt, 0x10000 + indices.pt);	
 	print_page_table_entry(&pt, indices.pt);
 	
 	page_walk_t walk;
@@ -33,6 +33,8 @@ int main(int argc, char *argv[])
 	uint64_t frame = get_frame(&walk, &indices);
 	generate_physical_address(frame, indices.offset, &result);
 	print_physical_address(&result, indices.offset);
+
+	run_multi_translation();
 
     return EXIT_SUCCESS;
 }
