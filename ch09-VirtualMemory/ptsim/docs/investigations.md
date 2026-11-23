@@ -100,3 +100,71 @@ VPN + Offset
 
 PTSim begins examining the internal structure
 of the VPN itself.
+
+# Phase 1 - Index Extraction
+
+## Global Address
+
+```text
+Address : 0x58dc74280010
+
+PML4    : 177
+PDPT    : 369
+PD      : 417
+PT      : 128
+
+Offset  : 0x10
+```
+
+---
+
+## Stack Address
+
+```text
+Address : 0x7ffff84e371c
+
+PML4    : 255
+PDPT    : 511
+PD      : 450
+PT      : 227
+
+Offset  : 0x71c
+```
+
+---
+
+## Findings
+
+The VPN can be decomposed into:
+
+```text
+PML4
+PDPT
+PD
+PT
+```
+
+Each field uses:
+
+```text
+9 bits
+```
+
+allowing:
+
+```text
+512 entries
+```
+
+per page-table level.
+
+---
+
+## Key Learning
+
+A page walk is driven entirely by indices
+extracted from the virtual address.
+
+The offset is not involved in the lookup and
+is carried unchanged to the final physical
+address.

@@ -41,7 +41,7 @@ Physical Frame
 ## Project Status
 
 - [x] Phase 0 - 48-bit Address Investigation
-- [ ] Phase 1 - Index Extraction
+- [x] Phase 1 - Index Extraction
 - [ ] Phase 2 - Address Visualization
 - [ ] Phase 3 - Page Table Structures
 - [ ] Phase 4 - Page Walk Simulation
@@ -81,3 +81,27 @@ stack  : 0x7fff9b48d904
 ```text
 PTSim Phase 0 Complete
 ```
+
+## Phase 1 - Index Extraction
+
+Extract page-table indices from a virtual address.
+
+Example:
+
+```text
+Virtual Address : 0x7ffff84e371c
+
+PML4 Index      : 255
+PDPT Index      : 511
+PD Index        : 450
+PT Index        : 227
+
+Offset          : 0x71c
+```
+
+Key Learning:
+
+The VPN is not a single value.
+
+It consists of four 9-bit indices used during
+the page walk.

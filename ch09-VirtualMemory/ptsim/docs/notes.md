@@ -69,3 +69,36 @@ PT
 ```
 
 during a simulated page walk.
+
+## Phase 1 Insight
+
+The VPN is not stored as a single page-table
+index.
+
+Instead:
+
+```text
+VPN
+ ↓
+
+PML4
+PDPT
+PD
+PT
+```
+
+Each level consumes:
+
+```text
+9 bits
+```
+
+of the virtual address.
+
+The final:
+
+```text
+12 bits
+```
+
+remain the page offset.

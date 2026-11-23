@@ -80,3 +80,31 @@ Phase 6 - Multi-Address Translation
 Phase 7 - Translation Statistics
 
 Phase 8 - PTSim v1.0
+
+## Phase 1 - Index Extraction ✅
+
+Goal
+
+Extract the fields used during a four-level
+page walk.
+
+Address Layout
+
+```text
+| PML4 | PDPT | PD | PT | OFFSET |
+```
+
+Implementation
+
+```c
+pml4  = (address >> 39) & 0x1FF;
+pdpt  = (address >> 30) & 0x1FF;
+pd    = (address >> 21) & 0x1FF;
+pt    = (address >> 12) & 0x1FF;
+offset = address & 0xFFF;
+```
+
+Learning Objective
+
+Understand how a virtual address is decomposed
+into page-table indices before translation.
