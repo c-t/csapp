@@ -263,3 +263,50 @@ Understand memory-translation behavior from a
 frame-oriented perspective rather than an
 address-oriented perspective.
 
+## Final Architecture
+
+```text
+Virtual Address
+        |
+        v
+
++----------------+
+| Index Extract  |
++----------------+
+        |
+        v
+
++----------------+
+| Visualization  |
++----------------+
+        |
+        v
+
++----------------+
+| Page Tables    |
++----------------+
+        |
+        v
+
++----------------+
+| Page Walk      |
++----------------+
+        |
+        v
+
++----------------+
+| Frame          |
++----------------+
+        |
+        v
+
++----------------+
+| Physical Addr  |
++----------------+
+        |
+        v
+
++----------------+
+| Statistics     |
++----------------+
+```

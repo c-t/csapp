@@ -17,7 +17,8 @@ SRC = \
 	src/pagewalk.c \
 	src/physical.c \
 	src/multitranslate.c \
-	src/stats.c
+	src/stats.c \
+	src/summary.c
 
 TARGET = build/ptsim
 

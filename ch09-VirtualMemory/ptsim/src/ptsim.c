@@ -36,6 +36,7 @@ int main(int argc, char *argv[])
 
 	run_multi_translation();
 	print_translation_statistics();
+	print_summary(&indices, result.frame, result.physical_address);
 
     return EXIT_SUCCESS;
 }

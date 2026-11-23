@@ -73,5 +73,6 @@ void print_physical_address(const translation_result_t *result, uint16_t offset)
 uint64_t get_frame(const page_walk_t *walk, const page_indices_t *idx);
 void run_multi_translation(void);
 void print_translation_statistics(void);
+void print_summary(const page_indices_t *idx, uint64_t frame, uint64_t physical_address);
 
 #endif

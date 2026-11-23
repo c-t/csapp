@@ -526,3 +526,50 @@ analyzing frame usage rather than individual
 addresses.
 
 Shared frames indicate translation reuse.
+
+# Final Findings
+
+## Virtual Address Layout
+
+```text
+| PML4 | PDPT | PD | PT | OFFSET |
+```
+
+## Page Walk
+
+Translation proceeds through:
+
+```text
+PML4
+ ↓
+PDPT
+ ↓
+PD
+ ↓
+PT
+ ↓
+Frame
+```
+
+## Physical Address Generation
+
+```text
+Physical Address
+=
+(Frame << 12)
++
+Offset
+```
+
+## Shared Frames
+
+Multiple virtual addresses may map to the same
+physical frame.
+
+## Translation Statistics
+
+Frame reuse can be measured through:
+
+- Unique Frames
+- Shared Frames
+- Utilization

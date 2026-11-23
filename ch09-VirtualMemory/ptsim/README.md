@@ -48,7 +48,7 @@ Physical Frame
 - [x] Phase 5 - Physical Address Generation
 - [x] Phase 6 - Multi-Address Translation
 - [x] Phase 7 - Translation Statistics
-- [ ] Phase 8 - PTSim v1.0
+- [x] Phase 8 - PTSim v1.0
 
 ---
 
