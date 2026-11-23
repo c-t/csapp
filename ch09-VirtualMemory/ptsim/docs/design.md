@@ -157,3 +157,32 @@ Learning Objective
 
 Understand how page-table indices select entries
 within the page-table hierarchy.
+
+## Phase 4 - Page Walk Simulation ✅
+
+Goal
+
+Simulate the sequence of lookups performed
+during address translation.
+
+Implementation
+
+```text
+PML4
+ ↓
+PDPT
+ ↓
+PD
+ ↓
+PT
+ ↓
+Frame
+```
+
+Each level verifies the presence of an entry
+before proceeding to the next level.
+
+Learning Objective
+
+Understand how hardware performs a page walk
+when a translation is not available in the TLB.

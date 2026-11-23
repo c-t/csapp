@@ -44,7 +44,7 @@ Physical Frame
 - [x] Phase 1 - Index Extraction
 - [x] Phase 2 - Address Visualization
 - [x] Phase 3 - Page Table Structures
-- [ ] Phase 4 - Page Walk Simulation
+- [x] Phase 4 - Page Walk Simulation
 - [ ] Phase 5 - Physical Address Generation
 - [ ] Phase 6 - Multi-Address Translation
 - [ ] Phase 7 - Translation Statistics
@@ -157,3 +157,39 @@ Key Learning:
 Page-table indices are used to select entries
 within page-table structures during address
 translation.
+
+## Phase 4 - Page Walk Simulation
+
+Simulates traversal through a multi-level page
+table hierarchy.
+
+Example:
+
+```text
+PML4[255]
+  ↓
+PDPT[511]
+  ↓
+PD[450]
+  ↓
+PT[227]
+  ↓
+Frame 0x12345
+```
+
+Page Walk:
+
+```text
+Lookup PML4[255] ... OK
+Lookup PDPT[511] ... OK
+Lookup PD[450] ... OK
+Lookup PT[227] ... OK
+
+Frame Found : 0x12345
+```
+
+Key Learning:
+
+Address translation is a sequence of page-table
+lookups driven by indices embedded within the
+virtual address.

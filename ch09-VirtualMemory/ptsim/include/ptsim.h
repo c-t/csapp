@@ -26,6 +26,14 @@ typedef struct
     pt_entry_t entries[PT_ENTRIES];
 } page_table_t;
 
+typedef struct
+{
+    page_table_t pml4;
+    page_table_t pdpt;
+    page_table_t pd;
+    page_table_t pt;
+} page_walk_t;
+
 void extract_indices(uint64_t address, page_indices_t *indices);
 void print_indices(const page_indices_t *indices);
 void print_visualization(const page_indices_t *indices);
@@ -33,5 +41,8 @@ void initialize_page_table(page_table_t *table);
 void populate_entry(page_table_t *table, uint16_t index, uint64_t frame);
 void print_page_table_entry(const page_table_t *table, uint16_t index);
 void print_page_table_structure(const page_indices_t *idx);
+void initialize_page_walk(page_walk_t *walk, const page_indices_t *idx);
+int perform_page_walk(const page_walk_t *walk, const page_indices_t *idx, uint64_t *frame);
+void print_page_walk(const page_walk_t *walk, const page_indices_t *idx);
 
 #endif

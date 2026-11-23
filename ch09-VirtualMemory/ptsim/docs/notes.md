@@ -143,3 +143,26 @@ Page-table entries ultimately provide a frame
 number that participates in the final address
 translation.
 
+## Phase 4 Insight
+
+The page walk uses the virtual address as a
+sequence of indices.
+
+```text
+PML4
+ ↓
+PDPT
+ ↓
+PD
+ ↓
+PT
+ ↓
+Frame
+```
+
+Each level selects an entry from a 512-entry
+table.
+
+A successful walk produces a frame number that
+can later be combined with the page offset to
+form a physical address.

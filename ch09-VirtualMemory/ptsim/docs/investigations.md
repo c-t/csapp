@@ -286,3 +286,58 @@ structures.
 Address translation consists of navigating a
 hierarchy of page-table entries using indices
 embedded within the virtual address.
+
+# Phase 4 - Page Walk Simulation
+
+## Example Address
+
+```text
+0x7ffff84e371c
+```
+
+Indices:
+
+```text
+PML4 = 255
+PDPT = 511
+PD   = 450
+PT   = 227
+```
+
+Simulated Walk:
+
+```text
+PML4[255]
+  ↓
+PDPT[511]
+  ↓
+PD[450]
+  ↓
+PT[227]
+  ↓
+Frame 0x12345
+```
+
+Execution Trace:
+
+```text
+Lookup PML4[255] ... OK
+Lookup PDPT[511] ... OK
+Lookup PD[450] ... OK
+Lookup PT[227] ... OK
+
+Frame Found : 0x12345
+```
+
+## Findings
+
+Each page-table level uses an index extracted
+from the virtual address.
+
+Successful traversal produces a frame number.
+
+## Key Learning
+
+A page walk is a hierarchical lookup process
+that converts a virtual page reference into a
+physical frame reference.

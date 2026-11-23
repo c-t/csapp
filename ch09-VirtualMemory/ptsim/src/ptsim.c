@@ -24,6 +24,10 @@ int main(int argc, char *argv[])
 	initialize_page_table(&pt);
 	populate_entry(&pt, indices.pt, 0x12345);	
 	print_page_table_entry(&pt, indices.pt);
+	
+	page_walk_t walk;
+	initialize_page_walk(&walk, &indices);
+	print_page_walk(&walk, &indices);
 
     return EXIT_SUCCESS;
 }
