@@ -43,7 +43,7 @@ Physical Frame
 - [x] Phase 0 - 48-bit Address Investigation
 - [x] Phase 1 - Index Extraction
 - [x] Phase 2 - Address Visualization
-- [ ] Phase 3 - Page Table Structures
+- [x] Phase 3 - Page Table Structures
 - [ ] Phase 4 - Page Walk Simulation
 - [ ] Phase 5 - Physical Address Generation
 - [ ] Phase 6 - Multi-Address Translation
@@ -125,3 +125,35 @@ Key Learning:
 The page-table indices exist as bit fields
 within the virtual address and are consumed
 during a page walk.
+
+## Phase 3 - Page Table Structures
+
+Construct simulated page-table structures and
+populate entries using extracted indices.
+
+Example:
+
+```text
+PML4[255]
+  ↓
+PDPT[511]
+  ↓
+PD[450]
+  ↓
+PT[227]
+  ↓
+FRAME
+```
+
+Page Table Entry:
+
+```text
+Present : yes
+Frame   : 0x12345
+```
+
+Key Learning:
+
+Page-table indices are used to select entries
+within page-table structures during address
+translation.

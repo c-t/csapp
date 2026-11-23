@@ -15,10 +15,15 @@ int main(int argc, char *argv[])
     uint64_t address = strtoull(argv[1], NULL, 0);
 
     page_indices_t indices;
-
     extract_indices(address, &indices);
     print_indices(&indices);
 	print_visualization(&indices);
+	print_page_table_structure(&indices);
+	
+	page_table_t pt;
+	initialize_page_table(&pt);
+	populate_entry(&pt, indices.pt, 0x12345);	
+	print_page_table_entry(&pt, indices.pt);
 
     return EXIT_SUCCESS;
 }

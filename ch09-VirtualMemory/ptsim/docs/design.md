@@ -127,3 +127,33 @@ Learning Objective
 Demonstrate that page-table indices are stored
 directly within the virtual address and are
 consumed by the MMU during translation.
+
+## Phase 3 - Page Table Structures ✅
+
+Goal
+
+Introduce simulated page-table structures and
+populate entries using page-table indices.
+
+Implementation
+
+Create:
+
+```text
+PML4
+PDPT
+PD
+PT
+```
+
+structures containing:
+
+```text
+Present Bit
+Frame Number
+```
+
+Learning Objective
+
+Understand how page-table indices select entries
+within the page-table hierarchy.

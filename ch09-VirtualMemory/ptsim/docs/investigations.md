@@ -231,3 +231,58 @@ the virtual address.
 
 A page walk simply interprets these fields in
 sequence.
+
+# Phase 3 - Page Table Structures
+
+## Example Address
+
+```text
+0x7ffff84e371c
+```
+
+Extracted:
+
+```text
+PML4 = 255
+PDPT = 511
+PD   = 450
+PT   = 227
+```
+
+## Simulated Hierarchy
+
+```text
+PML4[255]
+  ↓
+PDPT[511]
+  ↓
+PD[450]
+  ↓
+PT[227]
+  ↓
+FRAME
+```
+
+## Page Table Entry
+
+```text
+Index   : 227
+
+Present : yes
+
+Frame   : 0x12345
+```
+
+## Findings
+
+Page-table indices are not merely fields within
+an address.
+
+They are used to select entries from page-table
+structures.
+
+## Key Learning
+
+Address translation consists of navigating a
+hierarchy of page-table entries using indices
+embedded within the virtual address.

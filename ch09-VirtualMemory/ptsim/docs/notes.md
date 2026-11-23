@@ -118,3 +118,28 @@ navigate the page-table hierarchy.
 The offset is not used during table lookup and
 is carried unchanged to the final physical
 address.
+
+## Phase 3 Insight
+
+The page-table indices extracted from a virtual
+address directly correspond to positions within
+page-table structures.
+
+Example:
+
+```text
+PT Index = 227
+```
+
+means:
+
+```text
+PT[227]
+```
+
+during a page walk.
+
+Page-table entries ultimately provide a frame
+number that participates in the final address
+translation.
+

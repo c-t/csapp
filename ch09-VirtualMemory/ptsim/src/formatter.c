@@ -63,3 +63,18 @@ void print_visualization(const page_indices_t *idx)
     print_bits(idx->offset, 12);
     printf("\n\n");
 }
+
+void print_page_table_structure(const page_indices_t *idx)
+{
+    printf("\nPage Table Structure\n");
+    printf("====================================\n\n");
+    printf("PML4[%u]\n", idx->pml4);
+    printf("  ↓\n");
+    printf("PDPT[%u]\n", idx->pdpt);
+    printf("  ↓\n");
+    printf("PD[%u]\n", idx->pd);
+    printf("  ↓\n");
+    printf("PT[%u]\n", idx->pt);
+    printf("  ↓\n");
+    printf("FRAME\n\n");
+}

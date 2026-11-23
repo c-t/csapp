@@ -12,7 +12,8 @@ CFLAGS = \
 SRC = \
 	src/ptsim.c \
 	src/translator.c \
-	src/formatter.c
+	src/formatter.c \
+	src/pagetable.c
 
 TARGET = build/ptsim
 
