@@ -235,3 +235,31 @@ Learning Objective
 
 Understand how different virtual addresses may
 share frames or differ only by their offsets.
+
+## Phase 7 - Translation Statistics ✅
+
+Goal
+
+Summarize behavior across multiple address
+translations.
+
+Metrics
+
+```text
+Total Translations
+Unique Frames
+Shared Frames
+Frame Utilization
+```
+
+Implementation
+
+Collect frame information from multiple address
+translations and compute aggregate statistics.
+
+Learning Objective
+
+Understand memory-translation behavior from a
+frame-oriented perspective rather than an
+address-oriented perspective.
+

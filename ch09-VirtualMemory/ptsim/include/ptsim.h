@@ -1,6 +1,7 @@
 #ifndef PTSIM_H
 #define PTSIM_H
 
+#include <stddef.h>
 #include <stdint.h>
 
 #define PT_ENTRIES 512
@@ -49,6 +50,14 @@ typedef struct
     uint16_t offset;
 } translation_entry_t;
 
+typedef struct
+{
+    size_t total_translations;
+    size_t unique_frames;
+    size_t shared_frames;
+    double utilization;
+} translation_stats_t;
+
 void extract_indices(uint64_t address, page_indices_t *indices);
 void print_indices(const page_indices_t *indices);
 void print_visualization(const page_indices_t *indices);
@@ -63,5 +72,6 @@ void generate_physical_address(uint64_t frame, uint16_t offset, translation_resu
 void print_physical_address(const translation_result_t *result, uint16_t offset);
 uint64_t get_frame(const page_walk_t *walk, const page_indices_t *idx);
 void run_multi_translation(void);
+void print_translation_statistics(void);
 
 #endif

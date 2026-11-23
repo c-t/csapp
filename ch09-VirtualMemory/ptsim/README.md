@@ -47,7 +47,7 @@ Physical Frame
 - [x] Phase 4 - Page Walk Simulation
 - [x] Phase 5 - Physical Address Generation
 - [x] Phase 6 - Multi-Address Translation
-- [ ] Phase 7 - Translation Statistics
+- [x] Phase 7 - Translation Statistics
 - [ ] Phase 8 - PTSim v1.0
 
 ---
@@ -246,3 +246,26 @@ Key Learning:
 
 Multiple virtual addresses may translate to the
 same physical frame and differ only by offset.
+
+## Phase 7 - Translation Statistics
+
+Generate statistics describing address translation
+behavior.
+
+Example:
+
+```text
+Total Translations : 4
+
+Unique Frames      : 3
+
+Shared Frames      : 1
+
+Frame Utilization  : 75.00%
+```
+
+Key Learning:
+
+Translation cost is determined by the number of
+unique physical frames rather than the number of
+virtual addresses.

@@ -471,3 +471,58 @@ rather than the virtual address alone.
 
 Physical memory translations can be shared even
 when virtual addresses differ.
+
+# Phase 7 - Translation Statistics
+
+## Translation Dataset
+
+```text
+0x7ffff84e371c
+0x7ffff84e3720
+0x7ffff84e4000
+0x58dc74280010
+```
+
+## Frame Mappings
+
+```text
+0x7ffff84e371c -> Frame 0x10e3
+
+0x7ffff84e3720 -> Frame 0x10e3
+
+0x7ffff84e4000 -> Frame 0x10e4
+
+0x58dc74280010 -> Frame 0x1080
+```
+
+## Results
+
+```text
+Total Translations : 4
+
+Unique Frames      : 3
+
+Shared Frames      : 1
+
+Frame Utilization  : 75.00%
+```
+
+## Findings
+
+Two virtual addresses translated to the same
+physical frame:
+
+```text
+Frame = 0x10e3
+```
+
+The remaining addresses translated to distinct
+frames.
+
+## Key Learning
+
+Translation behavior is better understood by
+analyzing frame usage rather than individual
+addresses.
+
+Shared frames indicate translation reuse.

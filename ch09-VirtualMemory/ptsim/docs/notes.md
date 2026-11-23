@@ -219,3 +219,28 @@ different offsets.
 This mirrors how real systems allow many
 locations within the same page frame to be
 referenced.
+
+## Phase 7 Insight
+
+Multiple virtual addresses do not necessarily
+require unique physical frames.
+
+Observed:
+
+```text
+Translations : 4
+
+Frames       : 3
+```
+
+Result:
+
+```text
+Shared Frame Reuse
+```
+
+This mirrors real systems where memory
+translations often exhibit locality and reuse.
+
+Frame utilization provides a simple measure of
+translation efficiency.

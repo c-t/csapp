@@ -35,6 +35,7 @@ int main(int argc, char *argv[])
 	print_physical_address(&result, indices.offset);
 
 	run_multi_translation();
+	print_translation_statistics();
 
     return EXIT_SUCCESS;
 }
