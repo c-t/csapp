@@ -78,3 +78,15 @@ void print_page_table_structure(const page_indices_t *idx)
     printf("  ↓\n");
     printf("FRAME\n\n");
 }
+
+void print_physical_address(const translation_result_t *result, uint16_t offset)
+{
+    printf("\nPhysical Address Generation\n");
+    printf("====================================\n\n");
+    printf("Frame            : 0x%lx\n", result->frame);
+    printf("Offset           : 0x%x\n", offset);
+	printf("\n");
+    printf("Frame Base       : 0x%lx\n", result->frame << 12);
+    printf("Physical Address : 0x%lx\n", result->physical_address);
+    printf("\n");
+}

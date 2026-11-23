@@ -341,3 +341,75 @@ Successful traversal produces a frame number.
 A page walk is a hierarchical lookup process
 that converts a virtual page reference into a
 physical frame reference.
+
+# Phase 5 - Physical Address Generation
+
+## Example
+
+Virtual Address
+
+```text
+0x7ffff84e371c
+```
+
+Page Walk Result
+
+```text
+Frame = 0x12345
+```
+
+Offset
+
+```text
+0x71c
+```
+
+Generated Physical Address
+
+```text
+Frame Base
+
+0x12345 << 12
+
+=
+0x12345000
+```
+
+```text
+Physical Address
+
+0x12345000
++
+0x71c
+
+=
+0x1234571c
+```
+
+## Findings
+
+The offset remains unchanged throughout the
+translation process.
+
+Only the page portion of the address is
+translated.
+
+## Key Learning
+
+Page walks convert:
+
+```text
+Virtual Page
+```
+
+into:
+
+```text
+Physical Frame
+```
+
+while preserving:
+
+```text
+Offset
+```

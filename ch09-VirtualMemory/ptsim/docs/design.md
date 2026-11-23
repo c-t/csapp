@@ -186,3 +186,26 @@ Learning Objective
 
 Understand how hardware performs a page walk
 when a translation is not available in the TLB.
+
+## Phase 5 - Physical Address Generation ✅
+
+Goal
+
+Generate a physical address from the frame
+returned by a page walk.
+
+Formula
+
+```text
+Physical Address
+=
+(Frame << 12)
++
+Offset
+```
+
+Learning Objective
+
+Understand that page translation modifies the
+page portion of an address while preserving the
+offset portion.

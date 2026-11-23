@@ -34,6 +34,12 @@ typedef struct
     page_table_t pt;
 } page_walk_t;
 
+typedef struct
+{
+    uint64_t frame;
+    uint64_t physical_address;
+} translation_result_t;
+
 void extract_indices(uint64_t address, page_indices_t *indices);
 void print_indices(const page_indices_t *indices);
 void print_visualization(const page_indices_t *indices);
@@ -44,5 +50,8 @@ void print_page_table_structure(const page_indices_t *idx);
 void initialize_page_walk(page_walk_t *walk, const page_indices_t *idx);
 int perform_page_walk(const page_walk_t *walk, const page_indices_t *idx, uint64_t *frame);
 void print_page_walk(const page_walk_t *walk, const page_indices_t *idx);
+void generate_physical_address(uint64_t frame, uint16_t offset, translation_result_t *result);
+void print_physical_address(const translation_result_t *result, uint16_t offset);
+uint64_t get_frame(const page_walk_t *walk, const page_indices_t *idx);
 
 #endif

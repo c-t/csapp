@@ -63,3 +63,8 @@ void print_page_walk(const page_walk_t *walk, const page_indices_t *idx)
 
     printf("\n");
 }
+
+uint64_t get_frame(const page_walk_t *walk, const page_indices_t *idx)
+{
+    return walk->pt.entries[idx->pt].frame;
+}

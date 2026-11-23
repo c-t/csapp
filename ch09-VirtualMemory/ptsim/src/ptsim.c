@@ -27,7 +27,12 @@ int main(int argc, char *argv[])
 	
 	page_walk_t walk;
 	initialize_page_walk(&walk, &indices);
-	print_page_walk(&walk, &indices);
+	print_page_walk(&walk, &indices);	
+
+	translation_result_t result;
+	uint64_t frame = get_frame(&walk, &indices);
+	generate_physical_address(frame, indices.offset, &result);
+	print_physical_address(&result, indices.offset);
 
     return EXIT_SUCCESS;
 }

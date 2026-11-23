@@ -166,3 +166,28 @@ table.
 A successful walk produces a frame number that
 can later be combined with the page offset to
 form a physical address.
+
+## Phase 5 Insight
+
+Virtual-to-physical translation does not modify
+the page offset.
+
+Example:
+
+```text
+Virtual Address
+
+0x7ffff84e371c
+          71c
+```
+
+```text
+Physical Address
+
+0x1234571c
+      71c
+```
+
+The offset survives translation unchanged.
+
+Only the page mapping changes.

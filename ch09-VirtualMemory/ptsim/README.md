@@ -45,7 +45,7 @@ Physical Frame
 - [x] Phase 2 - Address Visualization
 - [x] Phase 3 - Page Table Structures
 - [x] Phase 4 - Page Walk Simulation
-- [ ] Phase 5 - Physical Address Generation
+- [x] Phase 5 - Physical Address Generation
 - [ ] Phase 6 - Multi-Address Translation
 - [ ] Phase 7 - Translation Statistics
 - [ ] Phase 8 - PTSim v1.0
@@ -193,3 +193,35 @@ Key Learning:
 Address translation is a sequence of page-table
 lookups driven by indices embedded within the
 virtual address.
+
+## Phase 5 - Physical Address Generation
+
+Generate a physical address after a successful
+page walk.
+
+Formula:
+
+```text
+Physical Address
+=
+(Frame << 12)
++
+Offset
+```
+
+Example:
+
+```text
+Frame            : 0x12345
+
+Offset           : 0x71c
+
+Frame Base       : 0x12345000
+
+Physical Address : 0x1234571c
+```
+
+Key Learning:
+
+The page walk translates a virtual page into a
+physical frame while preserving the page offset.
