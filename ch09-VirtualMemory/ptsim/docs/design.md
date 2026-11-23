@@ -108,3 +108,22 @@ Learning Objective
 
 Understand how a virtual address is decomposed
 into page-table indices before translation.
+
+## Phase 2 - Address Visualization ✅
+
+Goal
+
+Visualize the internal structure of a virtual
+address.
+
+Format:
+
+```text
+| PML4 | PDPT | PD | PT | OFFSET |
+```
+
+Learning Objective
+
+Demonstrate that page-table indices are stored
+directly within the virtual address and are
+consumed by the MMU during translation.

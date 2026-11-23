@@ -168,3 +168,66 @@ extracted from the virtual address.
 The offset is not involved in the lookup and
 is carried unchanged to the final physical
 address.
+
+# Phase 2 - Address Visualization
+
+## Example Address
+
+```text
+0x7ffff84e371c
+```
+
+Extracted Fields:
+
+```text
+PML4   = 255
+PDPT   = 511
+PD     = 450
+PT     = 227
+Offset = 0x71c
+```
+
+Binary Visualization:
+
+```text
+011111111|111111111|111000010|011100011|011100011100
+```
+
+Field Breakdown:
+
+```text
+PML4   : 011111111
+
+PDPT   : 111111111
+
+PD     : 111000010
+
+PT     : 011100011
+
+OFFSET : 011100011100
+```
+
+## Findings
+
+Each page-table level consumes:
+
+```text
+9 bits
+```
+
+The page offset consumes:
+
+```text
+12 bits
+```
+
+Together they form the complete 48-bit virtual
+address used during translation.
+
+## Key Learning
+
+Page-table indices are encoded directly within
+the virtual address.
+
+A page walk simply interprets these fields in
+sequence.

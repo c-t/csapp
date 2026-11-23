@@ -42,7 +42,7 @@ Physical Frame
 
 - [x] Phase 0 - 48-bit Address Investigation
 - [x] Phase 1 - Index Extraction
-- [ ] Phase 2 - Address Visualization
+- [x] Phase 2 - Address Visualization
 - [ ] Phase 3 - Page Table Structures
 - [ ] Phase 4 - Page Walk Simulation
 - [ ] Phase 5 - Physical Address Generation
@@ -105,3 +105,23 @@ The VPN is not a single value.
 
 It consists of four 9-bit indices used during
 the page walk.
+
+## Phase 2 - Address Visualization
+
+Visualize a 48-bit virtual address as:
+
+```text
+| PML4 | PDPT | PD | PT | OFFSET |
+```
+
+Example:
+
+```text
+011111111|111111111|111000010|011100011|011100011100
+```
+
+Key Learning:
+
+The page-table indices exist as bit fields
+within the virtual address and are consumed
+during a page walk.

@@ -102,3 +102,19 @@ The final:
 ```
 
 remain the page offset.
+
+## Phase 2 Insight
+
+A virtual address can be viewed as a collection
+of fields rather than a single number.
+
+```text
+| PML4 | PDPT | PD | PT | OFFSET |
+```
+
+The MMU extracts these fields and uses them to
+navigate the page-table hierarchy.
+
+The offset is not used during table lookup and
+is carried unchanged to the final physical
+address.

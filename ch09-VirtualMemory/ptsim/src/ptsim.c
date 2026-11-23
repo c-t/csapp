@@ -17,7 +17,8 @@ int main(int argc, char *argv[])
     page_indices_t indices;
 
     extract_indices(address, &indices);
-    print_indices( &indices);
+    print_indices(&indices);
+	print_visualization(&indices);
 
     return EXIT_SUCCESS;
 }

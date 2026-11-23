@@ -14,7 +14,7 @@ typedef struct
 } page_indices_t;
 
 void extract_indices(uint64_t address, page_indices_t *indices);
-
 void print_indices(const page_indices_t *indices);
+void print_visualization(const page_indices_t *indices);
 
 #endif
