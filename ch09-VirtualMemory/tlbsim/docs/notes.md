@@ -85,3 +85,30 @@ repeating a page walk.
 
 The Valid Bit determines whether an entry
 contains a usable translation.
+
+## Phase 2 Insight
+
+The TLB functions as a translation cache.
+
+```text
+VPN
+ ↓
+TLB Lookup
+```
+
+Result:
+
+```text
+HIT
+```
+
+or
+
+```text
+MISS
+```
+
+A hit avoids a page walk entirely.
+
+A miss requires address translation to be
+performed and subsequently cached.

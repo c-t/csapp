@@ -38,3 +38,41 @@ void print_tlb(const tlb_t *tlb)
 
     printf("\n");
 }
+
+int tlb_lookup(const tlb_t *tlb, uint64_t vpn, uint64_t *frame)
+{
+    for (int i = 0; i < TLB_ENTRIES; i++)
+    {
+        if (!tlb->entries[i].valid)
+        {
+            continue;
+        }
+
+        if (tlb->entries[i].vpn == vpn)
+        {
+            *frame = tlb->entries[i].frame;
+            return 1;
+        }
+    }
+
+    return 0;
+}
+
+void print_lookup_result(uint64_t vpn, int hit, uint64_t frame)
+{
+    printf("\nTLB Lookup\n");
+    printf("====================================\n\n");
+    printf("VPN : 0x%lx\n\n", vpn);
+
+    if (hit)
+    {
+        printf("Result : HIT\n");
+        printf("Frame  : 0x%lx\n", frame);
+    }
+    else
+    {
+        printf("Result : MISS\n");
+    }
+
+    printf("\n");
+}

@@ -114,3 +114,48 @@ A TLB entry stores:
 
 The TLB is a cache of translation results rather
 than a cache of memory contents.
+
+# Phase 2 - TLB Lookup
+
+## Cached Translation
+
+```text
+VPN   = 0x7ffff84e3
+
+Frame = 0x10e3
+```
+
+Lookup Result:
+
+```text
+HIT
+```
+
+---
+
+## Absent Translation
+
+```text
+VPN = 0x12345678
+```
+
+Lookup Result:
+
+```text
+MISS
+```
+
+---
+
+## Findings
+
+A valid VPN lookup returns a previously cached
+frame.
+
+If the VPN is not present, the lookup fails and a
+page walk becomes necessary.
+
+## Key Learning
+
+TLB lookups are the first stage of modern virtual
+memory translation.

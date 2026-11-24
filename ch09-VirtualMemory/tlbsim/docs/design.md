@@ -93,3 +93,34 @@ Learning Objective
 Understand the information stored by a TLB and
 how it represents cached page-walk results.
 
+## Phase 2 - TLB Lookup ✅
+
+Goal
+
+Search the TLB for a VPN and determine whether a
+cached translation exists.
+
+Implementation
+
+```text
+VPN
+ ↓
+Search TLB
+```
+
+Results
+
+```text
+HIT
+```
+
+or
+
+```text
+MISS
+```
+
+Learning Objective
+
+Understand how processors determine whether a
+page walk is required.

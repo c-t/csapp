@@ -46,7 +46,7 @@ Frame
 
 - [x] Phase 0 - TLB Investigation
 - [x] Phase 1 - TLB Entry Structures
-- [ ] Phase 2 - TLB Lookup
+- [x] Phase 2 - TLB Lookup
 - [ ] Phase 3 - TLB Fill
 - [ ] Phase 4 - Repeated Accesses
 - [ ] Phase 5 - Replacement Policies
@@ -73,3 +73,34 @@ Key Learning:
 
 A TLB stores previously computed page-walk
 results and acts as a small translation cache.
+
+## Phase 2 - TLB Lookup
+
+Implemented VPN lookup within the TLB.
+
+Examples:
+
+### Hit
+
+```text
+VPN : 0x7ffff84e3
+
+Result : HIT
+
+Frame  : 0x10e3
+```
+
+### Miss
+
+```text
+VPN : 0x12345678
+
+Result : MISS
+```
+
+Key Learning:
+
+A TLB stores cached translation results and can
+avoid a page walk when a translation is already
+present.
+
