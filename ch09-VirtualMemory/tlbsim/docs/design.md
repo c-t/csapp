@@ -61,3 +61,35 @@ Phase 6 - Translation Statistics
 Phase 7 - Locality Experiments
 
 Phase 8 - TLBSim v1.0
+
+## Phase 1 - TLB Entry Structures ✅
+
+Goal
+
+Create a fixed-size TLB capable of storing cached
+translations.
+
+Structure
+
+```text
+VPN
+Frame
+Valid Bit
+```
+
+Implementation
+
+```c
+typedef struct
+{
+    uint64_t vpn;
+    uint64_t frame;
+    int valid;
+} tlb_entry_t;
+```
+
+Learning Objective
+
+Understand the information stored by a TLB and
+how it represents cached page-walk results.
+

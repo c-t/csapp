@@ -69,3 +69,19 @@ VPN
 TLB
 ↓
 Frame
+
+## Phase 1 Insight
+
+A TLB entry represents a completed translation.
+
+```text
+VPN
+ ↓
+Frame
+```
+
+The entry allows future accesses to avoid
+repeating a page walk.
+
+The Valid Bit determines whether an entry
+contains a usable translation.

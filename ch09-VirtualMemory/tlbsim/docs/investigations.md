@@ -69,3 +69,48 @@ Insert Into TLB
 
 The TLB exists to avoid repeated page walks for
 recently translated virtual pages.
+
+# Phase 1 - TLB Entry Structures
+
+## Example Entries
+
+```text
+Entry 0
+
+VPN   = 0x7ffff84e3
+
+Frame = 0x10e3
+```
+
+```text
+Entry 1
+
+VPN   = 0x58dc74280
+
+Frame = 0x1080
+```
+
+## Observations
+
+Only a small number of entries are populated.
+
+Remaining entries remain invalid:
+
+```text
+Valid = no
+```
+
+which reflects an initially empty cache.
+
+## Findings
+
+A TLB entry stores:
+
+- VPN
+- Physical Frame
+- Valid Bit
+
+## Key Learning
+
+The TLB is a cache of translation results rather
+than a cache of memory contents.
