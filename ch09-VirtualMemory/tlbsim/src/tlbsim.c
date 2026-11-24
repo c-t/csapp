@@ -14,8 +14,21 @@ int main(void)
     uint64_t frame;
     int hit = tlb_lookup(&tlb, 0x7ffff84e3, &frame);
     print_lookup_result(0x7ffff84e3, hit, frame);
-    hit = tlb_lookup(&tlb, 0x12345678, &frame);
-    print_lookup_result(0x12345678, hit, frame);
+	
+	uint64_t miss_vpn = 0x12345678;
+	hit = tlb_lookup(&tlb, miss_vpn, &frame);
+	print_lookup_result(miss_vpn, hit, frame);
+	
+	if (!hit)
+	{
+		frame = simulate_page_walk(miss_vpn);
+		print_fill_result(miss_vpn, frame);
+		insert_translation(&tlb, miss_vpn, frame);
+	}
+
+	hit = tlb_lookup(&tlb, miss_vpn, &frame);
+	print_lookup_result(miss_vpn, hit, frame);
+	print_tlb(&tlb);
 
     return 0;
 }

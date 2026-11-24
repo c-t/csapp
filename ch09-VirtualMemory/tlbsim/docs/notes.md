@@ -112,3 +112,26 @@ A hit avoids a page walk entirely.
 
 A miss requires address translation to be
 performed and subsequently cached.
+
+## Phase 3 Insight
+
+TLBs learn from misses.
+
+First access:
+
+```text
+MISS
+ ↓
+Page Walk
+ ↓
+Fill TLB
+```
+
+Later access:
+
+```text
+HIT
+```
+
+A single page walk can eliminate many future
+translations for the same page.

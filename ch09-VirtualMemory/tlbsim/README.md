@@ -47,7 +47,7 @@ Frame
 - [x] Phase 0 - TLB Investigation
 - [x] Phase 1 - TLB Entry Structures
 - [x] Phase 2 - TLB Lookup
-- [ ] Phase 3 - TLB Fill
+- [x] Phase 3 - TLB Fill
 - [ ] Phase 4 - Repeated Accesses
 - [ ] Phase 5 - Replacement Policies
 - [ ] Phase 6 - Translation Statistics
@@ -104,3 +104,47 @@ A TLB stores cached translation results and can
 avoid a page walk when a translation is already
 present.
 
+## Phase 3 - TLB Fill
+
+Implemented miss handling and translation caching.
+
+Workflow:
+
+```text
+VPN
+ ↓
+TLB MISS
+ ↓
+Page Walk
+ ↓
+Frame
+ ↓
+Insert Into TLB
+```
+
+Example:
+
+```text
+VPN : 0x12345678
+
+Result : MISS
+
+Frame : 0x1678
+
+Inserted Into TLB
+```
+
+Subsequent access:
+
+```text
+VPN : 0x12345678
+
+Result : HIT
+
+Frame : 0x1678
+```
+
+Key Learning:
+
+TLBs avoid repeated page walks by caching
+translation results.

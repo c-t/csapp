@@ -124,3 +124,29 @@ Learning Objective
 
 Understand how processors determine whether a
 page walk is required.
+
+## Phase 3 - TLB Fill ✅
+
+Goal
+
+Handle TLB misses by performing translation and
+inserting the result into the TLB.
+
+Flow
+
+```text
+VPN
+ ↓
+MISS
+ ↓
+Page Walk
+ ↓
+Frame
+ ↓
+Insert Into TLB
+```
+
+Learning Objective
+
+Understand how processors populate the TLB
+after discovering a translation.

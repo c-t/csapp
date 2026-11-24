@@ -159,3 +159,61 @@ page walk becomes necessary.
 
 TLB lookups are the first stage of modern virtual
 memory translation.
+
+# Phase 3 - TLB Fill
+
+## Initial Lookup
+
+```text
+VPN : 0x12345678
+
+Result : MISS
+```
+
+---
+
+## Simulated Page Walk
+
+```text
+VPN   : 0x12345678
+
+Frame : 0x1678
+```
+
+---
+
+## Insert Into TLB
+
+```text
+VPN   : 0x12345678
+
+Frame : 0x1678
+```
+
+---
+
+## Second Lookup
+
+```text
+VPN : 0x12345678
+
+Result : HIT
+
+Frame : 0x1678
+```
+
+---
+
+## Findings
+
+A TLB miss triggers translation.
+
+The resulting frame is inserted into the TLB.
+
+Subsequent lookups avoid repeating the page
+walk.
+
+## Key Learning
+
+TLBs exploit translation reuse by caching
+successful page-walk results.
