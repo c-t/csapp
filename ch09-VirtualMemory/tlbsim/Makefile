@@ -16,7 +16,8 @@ SRC = \
 	src/fifo.c \
 	src/lru.c \
 	src/stats.c \
-	src/locality.c
+	src/locality.c \
+	src/summary.c
 
 TARGET = build/tlbsim
 

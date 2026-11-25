@@ -273,3 +273,37 @@ Learning Objective
 
 Demonstrate the relationship between locality
 and translation-cache effectiveness.
+
+## Final Architecture
+
+```text
+Virtual Address
+        ↓
+VPN
+        ↓
+TLB Lookup
+
+Hit?
+ ↓
+Frame
+
+Miss?
+ ↓
+Page Walk
+ ↓
+Frame
+ ↓
+Fill TLB
+```
+
+Additional Components
+
+```text
+FIFO Replacement
+
+LRU Replacement
+
+Statistics Engine
+
+Locality Experiments
+```

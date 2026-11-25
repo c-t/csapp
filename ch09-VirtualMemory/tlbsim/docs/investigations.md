@@ -542,3 +542,56 @@ reuse.
 
 Locality is one of the primary reasons TLBs are
 effective in real systems.
+
+# Final Findings
+
+## TLB Purpose
+
+Cache recent VPN-to-frame translations.
+
+## Cache Behavior
+
+```text
+Lookup
+Hit
+Miss
+Fill
+Evict
+```
+
+## Replacement Policies
+
+FIFO:
+
+```text
+Oldest Entry
+```
+
+LRU:
+
+```text
+Least Recently Used Entry
+```
+
+## Locality
+
+Sequential workloads:
+
+```text
+High Hit Rate
+```
+
+Random workloads:
+
+```text
+Low Hit Rate
+```
+
+## Conclusion
+
+TLB performance depends on:
+
+- Translation reuse
+- Replacement policy
+- Workload locality
+```

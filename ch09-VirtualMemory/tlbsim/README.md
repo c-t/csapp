@@ -54,7 +54,7 @@ Frame
   - [x] LRU
 - [x] Phase 6 - Translation Statistics
 - [x] Phase 7 - Locality Experiments
-- [ ] Phase 8 - TLBSim v1.0
+- [x] Phase 8 - TLBSim v1.0
 
 ## Phase 1 - TLB Entry Structures
 

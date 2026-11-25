@@ -41,6 +41,7 @@ int main(void)
 	
 	run_statistics_demo();	
 	run_locality_experiments();
+	print_tlbsim_summary();
 
     return 0;
 }

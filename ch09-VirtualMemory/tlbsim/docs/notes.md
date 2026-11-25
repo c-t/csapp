@@ -294,3 +294,47 @@ used again.
 
 Workloads with strong locality achieve higher
 TLB hit rates and require fewer page walks.
+
+# TLBSim v1.0 Key Insights
+
+## TLB
+
+```text
+VPN
+ ↓
+Frame
+```
+
+cache.
+
+## Hit
+
+```text
+No Page Walk
+```
+
+## Miss
+
+```text
+Page Walk Required
+```
+
+## FIFO
+
+```text
+Evict Oldest Entry
+```
+
+## LRU
+
+```text
+Evict Least Recently Used Entry
+```
+
+## Locality
+
+Recently used translations are likely to be used
+again.
+
+This is the primary reason TLBs are effective.
+```
