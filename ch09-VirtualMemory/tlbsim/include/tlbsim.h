@@ -4,6 +4,7 @@
 #include <stdint.h>
 
 #define TLB_ENTRIES 16
+#define SIM_TLB_SIZE 4
 
 typedef struct
 {
@@ -15,6 +16,7 @@ typedef struct
 typedef struct
 {
     tlb_entry_t entries[TLB_ENTRIES];
+	int next_victim;
 } tlb_t;
 
 void initialize_tlb(tlb_t *tlb);
@@ -26,5 +28,7 @@ uint64_t simulate_page_walk(uint64_t vpn);
 int insert_translation(tlb_t *tlb, uint64_t vpn, uint64_t frame);
 void print_fill_result(uint64_t vpn, uint64_t frame);
 void run_access_pattern(tlb_t *tlb);
+void fifo_insert(tlb_t *tlb, uint64_t vpn, uint64_t frame);
+void run_fifo_demo(tlb_t *tlb);
 
 #endif

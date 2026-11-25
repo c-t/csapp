@@ -31,5 +31,9 @@ int main(void)
 	print_tlb(&tlb);
 	run_access_pattern(&tlb);
 
+	tlb_t fifo_tlb;
+	initialize_tlb(&fifo_tlb);
+	run_fifo_demo(&fifo_tlb);
+
     return 0;
 }

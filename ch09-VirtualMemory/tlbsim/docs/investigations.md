@@ -273,3 +273,55 @@ TLBs exploit temporal locality.
 
 Recently used translations are likely to be
 used again and therefore benefit from caching.
+
+# Phase 5 - FIFO Replacement
+
+## FIFO Capacity
+
+```text
+4 Entries
+```
+
+## Insert Sequence
+
+```text
+A
+B
+C
+D
+E
+```
+
+## Eviction
+
+When E was inserted:
+
+```text
+VPN A
+```
+
+was removed.
+
+FIFO selected the oldest translation.
+
+## Final State
+
+```text
+E
+B
+C
+D
+```
+
+## Findings
+
+Cache replacement becomes necessary once the
+TLB reaches capacity.
+
+FIFO replacement does not consider usage
+frequency and removes entries solely based on
+insertion order.
+
+## Key Learning
+
+Finite caches require eviction policies.

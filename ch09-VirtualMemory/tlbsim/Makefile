@@ -12,7 +12,8 @@ CFLAGS = \
 SRC = \
 	src/tlbsim.c \
 	src/tlb.c \
-	src/access_pattern.c
+	src/access_pattern.c \
+	src/fifo.c
 
 TARGET = build/tlbsim
 

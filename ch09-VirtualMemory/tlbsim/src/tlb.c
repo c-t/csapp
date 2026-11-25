@@ -4,6 +4,7 @@
 
 void initialize_tlb(tlb_t *tlb)
 {
+	tlb->next_victim = 0;
     for (int i = 0; i < TLB_ENTRIES; i++)
     {
         tlb->entries[i].vpn = 0;
@@ -106,4 +107,23 @@ void print_fill_result(uint64_t vpn, uint64_t frame)
     printf("VPN   : 0x%lx\n", vpn);
     printf("Frame : 0x%lx\n", frame);
     printf("\nInserted Into TLB\n\n");
+}
+
+void fifo_insert(tlb_t *tlb, uint64_t vpn, uint64_t frame)
+{
+    int index = tlb->next_victim;
+
+    printf("Evicting Entry %d\n", index);
+	
+	if (tlb->entries[index].valid)
+    {
+        printf(" (VPN 0x%lx)", tlb->entries[index].vpn);
+    }
+
+    printf("\n");
+	
+    tlb->entries[index].vpn = vpn;
+    tlb->entries[index].frame = frame;
+    tlb->entries[index].valid = 1;
+    tlb->next_victim = (tlb->next_victim + 1) % SIM_TLB_SIZE;
 }

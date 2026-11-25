@@ -190,3 +190,30 @@ This principle is known as:
 ```text
 Temporal Locality
 ```
+
+## Phase 5 Insight
+
+Caching introduces a tradeoff.
+
+A cached translation improves performance.
+
+However:
+
+```text
+Cache Size
+```
+
+is limited.
+
+Once the cache becomes full:
+
+```text
+Eviction
+```
+
+must occur.
+
+FIFO removes the oldest translation first.
+
+Evicted translations may later cause new misses.
+

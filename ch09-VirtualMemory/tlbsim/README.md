@@ -49,11 +49,10 @@ Frame
 - [x] Phase 2 - TLB Lookup
 - [x] Phase 3 - TLB Fill
 - [x] Phase 4 - Repeated Accesses
-- [ ] Phase 5 - Replacement Policies
+- [x] Phase 5 - Replacement Policies
 - [ ] Phase 6 - Translation Statistics
 - [ ] Phase 7 - Locality Experiments
 - [ ] Phase 8 - TLBSim v1.0
-
 
 ## Phase 1 - TLB Entry Structures
 
@@ -206,3 +205,36 @@ Key Learning:
 Recently translated pages tend to be accessed
 again. The TLB exploits this temporal locality
 to reduce page walks.
+
+## Phase 5 - FIFO Replacement Policy
+
+Implemented a finite-capacity TLB using FIFO
+replacement.
+
+Example:
+
+```text
+Insert A
+Insert B
+Insert C
+Insert D
+Insert E
+```
+
+Result:
+
+```text
+Evict A
+Insert E
+```
+
+Final State:
+
+```text
+E B C D
+```
+
+Key Learning:
+
+Translation caches are limited in size and must
+evict older entries to make room for new ones.
