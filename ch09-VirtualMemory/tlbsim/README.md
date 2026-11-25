@@ -50,9 +50,7 @@ Frame
 - [x] Phase 3 - TLB Fill
 - [x] Phase 4 - Repeated Accesses
 - [x] Phase 5 - Replacement Policies
-  - [x] FIFO
-  - [x] LRU
-- [ ] Phase 6 - Translation Statistics
+- [x] Phase 6 - Translation Statistics
 - [ ] Phase 7 - Locality Experiments
 - [ ] Phase 8 - TLBSim v1.0
 
@@ -250,3 +248,24 @@ Key Learning:
 Different eviction strategies can significantly
 affect hit rate and overall cache performance.
 
+## Phase 6 - Translation Statistics
+
+Measured TLB effectiveness across a workload and
+compared replacement policies.
+
+FIFO:
+
+```text
+Hit Rate : 20%
+```
+
+LRU:
+
+```text
+Hit Rate : 40%
+```
+
+Key Learning:
+
+Replacement policy directly impacts cache
+effectiveness.

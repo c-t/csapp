@@ -38,6 +38,8 @@ int main(void)
 	tlb_t lru_tlb;
 	initialize_tlb(&lru_tlb);
 	run_lru_demo(&lru_tlb);
+	
+	run_statistics_demo();
 
     return 0;
 }

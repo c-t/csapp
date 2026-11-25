@@ -2,16 +2,19 @@
 
 #include "tlbsim.h"
 
-void fifo_insert(tlb_t *tlb, uint64_t vpn, uint64_t frame)
+void fifo_insert(tlb_t *tlb, uint64_t vpn, uint64_t frame, int verbose)
 {
     int index = tlb->next_victim;
 
-    printf("Evicting Entry %d\n", index);
+	if (verbose)
+	{
+		printf("Evicting Entry %d\n", index);
 	
-	if (tlb->entries[index].valid)
-    {
-        printf(" (VPN 0x%lx)", tlb->entries[index].vpn);
-    }
+		if (tlb->entries[index].valid)
+		{
+			printf(" (VPN 0x%lx)", tlb->entries[index].vpn);
+		}
+	}
 
     printf("\n");
 	
@@ -40,7 +43,7 @@ void run_fifo_demo(tlb_t *tlb)
     for (size_t i = 0; i < count; i++)
     {
         uint64_t frame = simulate_page_walk(vpns[i]);
-        fifo_insert(tlb, vpns[i], frame);
+        fifo_insert(tlb, vpns[i], frame, 1);
         printf("Inserted VPN 0x%lx -> Frame 0x%lx\n", vpns[i], frame);
     }
 

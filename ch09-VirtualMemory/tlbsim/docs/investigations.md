@@ -389,3 +389,55 @@ What goes?
 ```
 
 Replacement policy answers that question.
+
+# Phase 6 - Translation Statistics
+
+## Workload
+
+```text
+AAA
+BBB
+CCC
+DDD
+AAA
+BBB
+EEE
+AAA
+BBB
+FFF
+```
+
+## FIFO Results
+
+```text
+Accesses  : 10
+Hits      : 2
+Misses    : 8
+
+Hit Rate  : 20%
+```
+
+## LRU Results
+
+```text
+Accesses  : 10
+Hits      : 4
+Misses    : 6
+
+Hit Rate  : 40%
+```
+
+## Findings
+
+LRU achieved twice the hit rate of FIFO for the
+same workload.
+
+FIFO removed translations based solely on age.
+
+LRU retained recently reused translations.
+
+## Key Learning
+
+Replacement policy strongly influences cache
+performance even when cache capacity remains
+unchanged.

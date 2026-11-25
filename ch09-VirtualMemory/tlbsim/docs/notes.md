@@ -242,3 +242,24 @@ Evict C
 
 LRU attempts to keep the most valuable
 translations in the cache.
+
+## Phase 6 Insight
+
+Cache size alone does not determine performance.
+
+The replacement policy also matters.
+
+Observed:
+
+```text
+FIFO Hit Rate = 20%
+
+LRU Hit Rate  = 40%
+```
+
+LRU benefited from temporal locality and retained
+translations that were still being actively used.
+
+A smarter eviction policy can significantly
+improve cache effectiveness.
+

@@ -21,6 +21,17 @@ typedef struct
 	uint64_t access_counter;
 } tlb_t;
 
+typedef struct
+{
+    int accesses;
+    int hits;
+    int misses;
+    int fills;
+    int evictions;
+    double hit_rate;
+    double miss_rate;
+} tlb_stats_t;
+
 void initialize_tlb(tlb_t *tlb);
 void populate_tlb_entry(tlb_t *tlb, int index, uint64_t vpn, uint64_t frame);
 void print_tlb(const tlb_t *tlb);
@@ -30,9 +41,10 @@ uint64_t simulate_page_walk(uint64_t vpn);
 int insert_translation(tlb_t *tlb, uint64_t vpn, uint64_t frame);
 void print_fill_result(uint64_t vpn, uint64_t frame);
 void run_access_pattern(tlb_t *tlb);
-void fifo_insert(tlb_t *tlb, uint64_t vpn, uint64_t frame);
+void fifo_insert(tlb_t *tlb, uint64_t vpn, uint64_t frame, int verbose);
 void run_fifo_demo(tlb_t *tlb);
 void lru_insert(tlb_t *tlb, uint64_t vpn, uint64_t frame);
 void run_lru_demo(tlb_t *tlb);
+void run_statistics_demo(void);
 
 #endif
