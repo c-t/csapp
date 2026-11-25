@@ -25,5 +25,6 @@ void print_lookup_result(uint64_t vpn, int hit, uint64_t frame);
 uint64_t simulate_page_walk(uint64_t vpn);
 int insert_translation(tlb_t *tlb, uint64_t vpn, uint64_t frame);
 void print_fill_result(uint64_t vpn, uint64_t frame);
+void run_access_pattern(tlb_t *tlb);
 
 #endif

@@ -150,3 +150,46 @@ Learning Objective
 
 Understand how processors populate the TLB
 after discovering a translation.
+
+## Phase 4 - Repeated Accesses ✅
+
+Goal
+
+Demonstrate how cached translations reduce
+future page walks.
+
+Method
+
+Simulate repeated VPN references:
+
+```text
+A
+B
+A
+A
+B
+```
+
+Expected Behavior
+
+```text
+MISS
+MISS
+HIT
+HIT
+HIT
+```
+
+Measurements
+
+```text
+Hits
+Misses
+Hit Rate
+Miss Rate
+```
+
+Learning Objective
+
+Demonstrate temporal locality and the value of
+translation caching.

@@ -217,3 +217,59 @@ walk.
 
 TLBs exploit translation reuse by caching
 successful page-walk results.
+
+# Phase 4 - Repeated Accesses
+
+## Test Pattern
+
+```text
+VPN A
+VPN B
+VPN A
+VPN A
+VPN B
+```
+
+## Results
+
+```text
+0xaaa -> MISS -> Frame 0x1aaa
+
+0xbbb -> MISS -> Frame 0x1bbb
+
+0xaaa -> HIT  -> Frame 0x1aaa
+
+0xaaa -> HIT  -> Frame 0x1aaa
+
+0xbbb -> HIT  -> Frame 0x1bbb
+```
+
+## Statistics
+
+```text
+Total Accesses : 5
+
+Hits           : 3
+
+Misses         : 2
+
+Hit Rate       : 60.00%
+
+Miss Rate      : 40.00%
+```
+
+## Findings
+
+The first access to a VPN requires translation.
+
+Subsequent accesses reuse the cached TLB entry.
+
+Only two page walks were required for five
+virtual page references.
+
+## Key Learning
+
+TLBs exploit temporal locality.
+
+Recently used translations are likely to be
+used again and therefore benefit from caching.

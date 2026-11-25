@@ -29,6 +29,7 @@ int main(void)
 	hit = tlb_lookup(&tlb, miss_vpn, &frame);
 	print_lookup_result(miss_vpn, hit, frame);
 	print_tlb(&tlb);
+	run_access_pattern(&tlb);
 
     return 0;
 }

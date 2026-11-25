@@ -135,3 +135,58 @@ HIT
 
 A single page walk can eliminate many future
 translations for the same page.
+
+## Phase 4 Insight
+
+The effectiveness of a TLB depends on locality.
+
+Example:
+
+```text
+A
+B
+A
+A
+B
+```
+
+produces:
+
+```text
+MISS
+MISS
+HIT
+HIT
+HIT
+```
+
+Instead of:
+
+```text
+5 page walks
+```
+
+only:
+
+```text
+2 page walks
+```
+
+were required.
+
+Observed:
+
+```text
+Hit Rate  = 60%
+
+Miss Rate = 40%
+```
+
+The more frequently a translation is reused,
+the more valuable the TLB becomes.
+
+This principle is known as:
+
+```text
+Temporal Locality
+```

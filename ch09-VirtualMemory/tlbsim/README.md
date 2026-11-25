@@ -48,11 +48,12 @@ Frame
 - [x] Phase 1 - TLB Entry Structures
 - [x] Phase 2 - TLB Lookup
 - [x] Phase 3 - TLB Fill
-- [ ] Phase 4 - Repeated Accesses
+- [x] Phase 4 - Repeated Accesses
 - [ ] Phase 5 - Replacement Policies
 - [ ] Phase 6 - Translation Statistics
 - [ ] Phase 7 - Locality Experiments
 - [ ] Phase 8 - TLBSim v1.0
+
 
 ## Phase 1 - TLB Entry Structures
 
@@ -148,3 +149,60 @@ Key Learning:
 
 TLBs avoid repeated page walks by caching
 translation results.
+
+## Phase 4 - Repeated Accesses
+
+Demonstrates temporal locality through repeated
+VPN accesses.
+
+Access Pattern:
+
+```text
+A
+B
+A
+A
+B
+```
+
+Observed Result:
+
+```text
+MISS
+MISS
+HIT
+HIT
+HIT
+```
+
+Example Output:
+
+```text
+VPN        Result     Frame
+
+0xaaa      MISS       0x1aaa
+0xbbb      MISS       0x1bbb
+0xaaa      HIT        0x1aaa
+0xaaa      HIT        0x1aaa
+0xbbb      HIT        0x1bbb
+```
+
+Pattern Statistics:
+
+```text
+Total Accesses : 5
+
+Hits           : 3
+
+Misses         : 2
+
+Hit Rate       : 60.00%
+
+Miss Rate      : 40.00%
+```
+
+Key Learning:
+
+Recently translated pages tend to be accessed
+again. The TLB exploits this temporal locality
+to reduce page walks.
