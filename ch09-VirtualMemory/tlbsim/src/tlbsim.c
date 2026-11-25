@@ -35,5 +35,9 @@ int main(void)
 	initialize_tlb(&fifo_tlb);
 	run_fifo_demo(&fifo_tlb);
 
+	tlb_t lru_tlb;
+	initialize_tlb(&lru_tlb);
+	run_lru_demo(&lru_tlb);
+
     return 0;
 }

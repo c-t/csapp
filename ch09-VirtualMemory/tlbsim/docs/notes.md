@@ -193,27 +193,52 @@ Temporal Locality
 
 ## Phase 5 Insight
 
-Caching introduces a tradeoff.
+TLBs are finite.
 
-A cached translation improves performance.
-
-However:
-
-```text
-Cache Size
-```
-
-is limited.
-
-Once the cache becomes full:
+When capacity is exhausted:
 
 ```text
 Eviction
 ```
 
-must occur.
+becomes necessary.
 
-FIFO removes the oldest translation first.
+### FIFO
 
-Evicted translations may later cause new misses.
+```text
+Evict oldest translation.
+```
 
+Simple but may discard frequently used entries.
+
+### LRU
+
+```text
+Evict least recently used translation.
+```
+
+Preserves recently accessed entries and better
+aligns with temporal locality.
+
+### Example
+
+FIFO:
+
+```text
+A B C D
+Insert E
+Evict A
+```
+
+LRU:
+
+```text
+A B C D
+Access A
+Access B
+Insert E
+Evict C
+```
+
+LRU attempts to keep the most valuable
+translations in the cache.

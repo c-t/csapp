@@ -5,11 +5,13 @@
 void initialize_tlb(tlb_t *tlb)
 {
 	tlb->next_victim = 0;
+	tlb->access_counter = 0;
     for (int i = 0; i < TLB_ENTRIES; i++)
     {
         tlb->entries[i].vpn = 0;
         tlb->entries[i].frame = 0;
         tlb->entries[i].valid = 0;
+		tlb->entries[i].last_used = 0;
     }
 }
 
@@ -40,7 +42,7 @@ void print_tlb(const tlb_t *tlb)
     printf("\n");
 }
 
-int tlb_lookup(const tlb_t *tlb, uint64_t vpn, uint64_t *frame)
+int tlb_lookup(tlb_t *tlb, uint64_t vpn, uint64_t *frame)
 {
     for (int i = 0; i < TLB_ENTRIES; i++)
     {
@@ -52,6 +54,8 @@ int tlb_lookup(const tlb_t *tlb, uint64_t vpn, uint64_t *frame)
         if (tlb->entries[i].vpn == vpn)
         {
             *frame = tlb->entries[i].frame;
+			tlb->access_counter++;
+			tlb->entries[i].last_used = tlb->access_counter;
             return 1;
         }
     }
@@ -92,6 +96,8 @@ int insert_translation(tlb_t *tlb, uint64_t vpn, uint64_t frame)
             tlb->entries[i].vpn = vpn;
             tlb->entries[i].frame = frame;
             tlb->entries[i].valid = 1;
+			tlb->access_counter++;
+			tlb->entries[i].last_used = tlb->access_counter;
 
             return i;
         }
@@ -107,23 +113,4 @@ void print_fill_result(uint64_t vpn, uint64_t frame)
     printf("VPN   : 0x%lx\n", vpn);
     printf("Frame : 0x%lx\n", frame);
     printf("\nInserted Into TLB\n\n");
-}
-
-void fifo_insert(tlb_t *tlb, uint64_t vpn, uint64_t frame)
-{
-    int index = tlb->next_victim;
-
-    printf("Evicting Entry %d\n", index);
-	
-	if (tlb->entries[index].valid)
-    {
-        printf(" (VPN 0x%lx)", tlb->entries[index].vpn);
-    }
-
-    printf("\n");
-	
-    tlb->entries[index].vpn = vpn;
-    tlb->entries[index].frame = frame;
-    tlb->entries[index].valid = 1;
-    tlb->next_victim = (tlb->next_victim + 1) % SIM_TLB_SIZE;
 }

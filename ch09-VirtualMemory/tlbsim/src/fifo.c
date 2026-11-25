@@ -2,6 +2,25 @@
 
 #include "tlbsim.h"
 
+void fifo_insert(tlb_t *tlb, uint64_t vpn, uint64_t frame)
+{
+    int index = tlb->next_victim;
+
+    printf("Evicting Entry %d\n", index);
+	
+	if (tlb->entries[index].valid)
+    {
+        printf(" (VPN 0x%lx)", tlb->entries[index].vpn);
+    }
+
+    printf("\n");
+	
+    tlb->entries[index].vpn = vpn;
+    tlb->entries[index].frame = frame;
+    tlb->entries[index].valid = 1;
+    tlb->next_victim = (tlb->next_victim + 1) % SIM_TLB_SIZE;
+}
+
 void run_fifo_demo(tlb_t *tlb)
 {
     uint64_t vpns[] =

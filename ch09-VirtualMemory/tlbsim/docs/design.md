@@ -193,3 +193,47 @@ Learning Objective
 
 Demonstrate temporal locality and the value of
 translation caching.
+
+## Phase 5 - Replacement Policies ✅
+
+Goal
+
+Demonstrate how finite-capacity TLBs manage
+cached translations.
+
+### FIFO
+
+Victim Selection:
+
+```text
+Oldest Inserted Entry
+```
+
+### LRU
+
+Victim Selection:
+
+```text
+Least Recently Used Entry
+```
+
+Implementation
+
+Each TLB entry tracks:
+
+```text
+VPN
+Frame
+Valid Bit
+```
+
+LRU additionally tracks:
+
+```text
+Last Used Timestamp
+```
+
+Learning Objective
+
+Understand how cache replacement policies affect
+which translations remain available.

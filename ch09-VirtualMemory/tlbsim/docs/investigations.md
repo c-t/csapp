@@ -274,54 +274,118 @@ TLBs exploit temporal locality.
 Recently used translations are likely to be
 used again and therefore benefit from caching.
 
-# Phase 5 - FIFO Replacement
+# Phase 5 - Replacement Policies
 
-## FIFO Capacity
+## FIFO Experiment
+
+Capacity:
 
 ```text
 4 Entries
 ```
 
-## Insert Sequence
+Insert Sequence:
 
 ```text
-A
-B
-C
-D
-E
+AAA
+BBB
+CCC
+DDD
+EEE
 ```
 
-## Eviction
-
-When E was inserted:
+Result:
 
 ```text
-VPN A
+Evict AAA
 ```
 
-was removed.
-
-FIFO selected the oldest translation.
-
-## Final State
+Final State:
 
 ```text
-E
-B
-C
-D
+EEE
+BBB
+CCC
+DDD
 ```
+
+### Observation
+
+FIFO removes entries based solely on insertion
+order.
+
+Recent usage is ignored.
+
+---
+
+## LRU Experiment
+
+Insert:
+
+```text
+AAA
+BBB
+CCC
+DDD
+```
+
+Access:
+
+```text
+AAA
+AAA
+BBB
+```
+
+Insert:
+
+```text
+EEE
+```
+
+Result:
+
+```text
+Evict CCC
+```
+
+Final State:
+
+```text
+AAA
+BBB
+EEE
+DDD
+```
+
+### Observation
+
+LRU preserved recently used translations.
+
+The least recently used entry was selected as
+the victim.
+
+---
 
 ## Findings
 
-Cache replacement becomes necessary once the
-TLB reaches capacity.
+FIFO and LRU may produce different eviction
+decisions for the same workload.
 
-FIFO replacement does not consider usage
-frequency and removes entries solely based on
-insertion order.
+LRU generally retains translations that are
+actively reused.
+
+---
 
 ## Key Learning
 
-Finite caches require eviction policies.
+A cache is not merely a storage structure.
+
+A cache must also decide:
+
+```text
+What stays?
+What goes?
+```
+
+Replacement policy answers that question.

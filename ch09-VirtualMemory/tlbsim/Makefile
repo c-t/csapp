@@ -13,7 +13,8 @@ SRC = \
 	src/tlbsim.c \
 	src/tlb.c \
 	src/access_pattern.c \
-	src/fifo.c
+	src/fifo.c \
+	src/lru.c
 
 TARGET = build/tlbsim
 
