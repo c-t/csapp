@@ -46,5 +46,6 @@ void run_fifo_demo(tlb_t *tlb);
 void lru_insert(tlb_t *tlb, uint64_t vpn, uint64_t frame);
 void run_lru_demo(tlb_t *tlb);
 void run_statistics_demo(void);
+void run_locality_experiments(void);
 
 #endif

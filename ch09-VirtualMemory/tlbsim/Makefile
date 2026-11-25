@@ -15,7 +15,8 @@ SRC = \
 	src/access_pattern.c \
 	src/fifo.c \
 	src/lru.c \
-	src/stats.c
+	src/stats.c \
+	src/locality.c
 
 TARGET = build/tlbsim
 

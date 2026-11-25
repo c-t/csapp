@@ -50,8 +50,10 @@ Frame
 - [x] Phase 3 - TLB Fill
 - [x] Phase 4 - Repeated Accesses
 - [x] Phase 5 - Replacement Policies
+  - [x] FIFO
+  - [x] LRU
 - [x] Phase 6 - Translation Statistics
-- [ ] Phase 7 - Locality Experiments
+- [x] Phase 7 - Locality Experiments
 - [ ] Phase 8 - TLBSim v1.0
 
 ## Phase 1 - TLB Entry Structures
@@ -269,3 +271,66 @@ Key Learning:
 
 Replacement policy directly impacts cache
 effectiveness.
+
+## Phase 7 - Locality Experiments
+
+Measured the impact of workload locality on TLB
+performance.
+
+### Sequential Access Pattern
+
+```text
+AAA
+AAA
+AAA
+AAA
+AAA
+AAA
+AAA
+AAA
+```
+
+Results:
+
+```text
+Accesses : 8
+
+Hits     : 7
+
+Misses   : 1
+
+Hit Rate : 87.50%
+```
+
+### Random Access Pattern
+
+```text
+AAA
+BBB
+CCC
+DDD
+EEE
+FFF
+111
+222
+```
+
+Results:
+
+```text
+Accesses : 8
+
+Hits     : 0
+
+Misses   : 8
+
+Hit Rate : 0.00%
+```
+
+Key Learning:
+
+The effectiveness of a TLB depends heavily on
+access locality.
+
+Repeated accesses benefit from cached
+translations, while random accesses do not.

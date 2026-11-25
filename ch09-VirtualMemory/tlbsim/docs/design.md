@@ -237,3 +237,39 @@ Learning Objective
 
 Understand how cache replacement policies affect
 which translations remain available.
+
+## Phase 7 - Locality Experiments ✅
+
+Goal
+
+Evaluate how workload behavior affects TLB hit
+rates.
+
+Method
+
+Compare:
+
+```text
+Sequential Access
+```
+
+against:
+
+```text
+Random Access
+```
+
+Measurements
+
+```text
+Accesses
+Hits
+Misses
+Hit Rate
+Miss Rate
+```
+
+Learning Objective
+
+Demonstrate the relationship between locality
+and translation-cache effectiveness.

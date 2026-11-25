@@ -263,3 +263,34 @@ translations that were still being actively used.
 A smarter eviction policy can significantly
 improve cache effectiveness.
 
+## Phase 7 Insight
+
+TLB performance depends on workload behavior.
+
+Sequential Pattern:
+
+```text
+87.50% Hit Rate
+```
+
+Random Pattern:
+
+```text
+0.00% Hit Rate
+```
+
+The hardware remained unchanged.
+
+Only the access pattern changed.
+
+This demonstrates:
+
+```text
+Temporal Locality
+```
+
+Recently used translations are likely to be
+used again.
+
+Workloads with strong locality achieve higher
+TLB hit rates and require fewer page walks.

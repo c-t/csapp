@@ -441,3 +441,104 @@ LRU retained recently reused translations.
 Replacement policy strongly influences cache
 performance even when cache capacity remains
 unchanged.
+
+# Phase 7 - Locality Experiments
+
+## Sequential Workload
+
+Pattern
+
+```text
+AAA
+AAA
+AAA
+AAA
+AAA
+AAA
+AAA
+AAA
+```
+
+Results
+
+```text
+Accesses : 8
+
+Hits     : 7
+
+Misses   : 1
+
+Hit Rate : 87.50%
+
+Miss Rate: 12.50%
+```
+
+### Observation
+
+Only the first access required a page walk.
+
+All subsequent accesses reused the cached TLB
+entry.
+
+---
+
+## Random Workload
+
+Pattern
+
+```text
+AAA
+BBB
+CCC
+DDD
+EEE
+FFF
+111
+222
+```
+
+Results
+
+```text
+Accesses : 8
+
+Hits     : 0
+
+Misses   : 8
+
+Hit Rate : 0.00%
+
+Miss Rate: 100.00%
+```
+
+### Observation
+
+Each VPN was unique.
+
+No cached translation was reused.
+
+---
+
+## Comparison
+
+```text
+Sequential Hit Rate : 87.50%
+
+Random Hit Rate     : 0.00%
+```
+
+## Findings
+
+The same TLB produced dramatically different
+performance depending on the workload.
+
+Sequential workloads benefit from translation
+reuse.
+
+Random workloads provide little opportunity for
+reuse.
+
+## Key Learning
+
+Locality is one of the primary reasons TLBs are
+effective in real systems.

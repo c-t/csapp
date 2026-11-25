@@ -39,7 +39,8 @@ int main(void)
 	initialize_tlb(&lru_tlb);
 	run_lru_demo(&lru_tlb);
 	
-	run_statistics_demo();
+	run_statistics_demo();	
+	run_locality_experiments();
 
     return 0;
 }
