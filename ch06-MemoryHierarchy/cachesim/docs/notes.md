@@ -86,3 +86,50 @@ Set
  ↓
 Offset
 ```
+
+## Phase 1 Insight
+
+A cache does not search its entire contents.
+
+Instead:
+
+```text
+Address
+ ↓
+Set Index
+ ↓
+Select Set
+ ↓
+Tag Compare
+```
+
+Only the selected set must be examined.
+
+Example:
+
+```text
+Address : 0x12345678
+
+Tag     : 0x48d15
+
+Set     : 0x27
+
+Offset  : 0x8
+```
+
+Meaning:
+
+```text
+Search Set 39
+
+Look for Tag 0x48d15
+
+If found:
+    Cache HIT
+
+Otherwise:
+    Cache MISS
+```
+
+The offset specifies the byte inside the cache
+block.

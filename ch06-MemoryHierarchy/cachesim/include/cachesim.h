@@ -1,0 +1,29 @@
+#ifndef CACHESIM_H
+#define CACHESIM_H
+
+#include <stdint.h>
+
+#define ADDRESS_BITS 32
+
+#define CACHE_SIZE_BYTES 1024
+#define BLOCK_SIZE_BYTES 16
+
+#define CACHE_LINES (CACHE_SIZE_BYTES / BLOCK_SIZE_BYTES)
+
+#define OFFSET_BITS 4
+#define SET_BITS 6
+
+#define TAG_BITS (ADDRESS_BITS - OFFSET_BITS - SET_BITS)
+
+typedef struct
+{
+    uint32_t address;
+    uint32_t tag;
+    uint32_t set;
+    uint32_t offset;
+} cache_address_t;
+
+void decode_address(uint32_t address, cache_address_t *result);
+void print_address_info(const cache_address_t *address);
+
+#endif

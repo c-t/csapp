@@ -83,3 +83,45 @@ Tag
 Set Index
 Offset
 ```
+
+## Phase 1 - Address Decomposition ✅
+
+Goal
+
+Decompose a memory address into the fields used
+during cache lookup.
+
+Address Format
+
+```text
++----------------------+----------+--------+
+|         Tag          |   Set    | Offset |
++----------------------+----------+--------+
+
+        22               6          4
+```
+
+Field Purpose
+
+Tag:
+
+```text
+Identifies a memory block.
+```
+
+Set Index:
+
+```text
+Selects a cache set.
+```
+
+Block Offset:
+
+```text
+Selects a byte within a cache block.
+```
+
+Learning Objective
+
+Understand how memory addresses are interpreted
+by a cache before any lookup occurs.

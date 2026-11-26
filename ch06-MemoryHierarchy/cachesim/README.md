@@ -63,7 +63,7 @@ within a cache.
 ## Project Status
 
 - [x] Phase 0 - Cache Investigation
-- [ ] Phase 1 - Address Decomposition
+- [x] Phase 1 - Address Decomposition
 - [ ] Phase 2 - Cache Structures
 - [ ] Phase 3 - Cache Lookup
 - [ ] Phase 4 - Cache Fill
@@ -71,3 +71,46 @@ within a cache.
 - [ ] Phase 6 - Cache Statistics
 - [ ] Phase 7 - Locality Experiments
 - [ ] Phase 8 - CacheSim v1.0
+
+## Phase 1 - Address Decomposition
+
+Implemented cache address decomposition for a
+direct-mapped cache.
+
+Cache Configuration:
+
+```text
+Cache Size      : 1 KB
+Block Size      : 16 Bytes
+Cache Lines     : 64
+
+Address Width   : 32 Bits
+```
+
+Address Layout:
+
+```text
++----------------------+----------+--------+
+|         Tag          |   Set    | Offset |
++----------------------+----------+--------+
+
+        22               6          4
+```
+
+Example:
+
+```text
+Address : 0x12345678
+
+Tag     : 0x48d15
+
+Set     : 0x27
+
+Offset  : 0x8
+```
+
+Key Learning:
+
+Every cache lookup begins by extracting the
+tag, set index, and block offset from the
+memory address.
