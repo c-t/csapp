@@ -127,3 +127,32 @@ Key Learning:
 Every cache lookup begins by extracting the
 tag, set index, and block offset from the
 memory address.
+
+## Phase 2 - Cache Structures ✅
+
+Goal
+
+Model the physical organization of a cache.
+
+Structure
+
+```text
+Cache
+ └── Sets
+      └── Lines
+```
+
+Cache Line
+
+```c
+typedef struct
+{
+    uint32_t tag;
+    int valid;
+} cache_line_t;
+```
+
+Learning Objective
+
+Represent cache state in memory and prepare for
+cache lookup operations.

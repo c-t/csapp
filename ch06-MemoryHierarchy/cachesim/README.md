@@ -64,7 +64,7 @@ within a cache.
 
 - [x] Phase 0 - Cache Investigation
 - [x] Phase 1 - Address Decomposition
-- [ ] Phase 2 - Cache Structures
+- [x] Phase 2 - Cache Structures
 - [ ] Phase 3 - Cache Lookup
 - [ ] Phase 4 - Cache Fill
 - [ ] Phase 5 - Replacement Policies
@@ -114,3 +114,35 @@ Key Learning:
 Every cache lookup begins by extracting the
 tag, set index, and block offset from the
 memory address.
+
+## Phase 2 - Cache Structures
+
+Implemented the cache data model.
+
+Cache Organization:
+
+```text
+Cache
+ ├── Set 0
+ │    └── Line
+ ├── Set 1
+ │    └── Line
+ ...
+ └── Set 63
+      └── Line
+```
+
+Cache Line:
+
+```c
+typedef struct
+{
+    uint32_t tag;
+    int valid;
+} cache_line_t;
+```
+
+Key Learning:
+
+A cache lookup ultimately searches a cache line
+inside a selected cache set.

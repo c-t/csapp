@@ -11,7 +11,8 @@ CFLAGS = \
 
 SRC = \
 	src/cachesim.c \
-	src/address.c 
+	src/address.c \
+	src/cache.c
 
 TARGET = build/cachesim
 

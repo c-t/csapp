@@ -23,7 +23,25 @@ typedef struct
     uint32_t offset;
 } cache_address_t;
 
+typedef struct
+{
+    uint32_t tag;
+    int valid;
+} cache_line_t;
+
+typedef struct
+{
+    cache_line_t line;
+} cache_set_t;
+
+typedef struct
+{
+    cache_set_t sets[CACHE_LINES];
+} cache_t;
+
 void decode_address(uint32_t address, cache_address_t *result);
 void print_address_info(const cache_address_t *address);
+void initialize_cache(cache_t *cache);
+void print_cache(const cache_t *cache);
 
 #endif

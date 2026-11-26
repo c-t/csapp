@@ -125,3 +125,57 @@ Learning Objective
 
 Understand how memory addresses are interpreted
 by a cache before any lookup occurs.
+
+# Phase 2 - Cache Structures
+
+## Cache Configuration
+
+```text
+Cache Size  : 1024 Bytes
+
+Block Size  : 16 Bytes
+
+Cache Lines : 64
+```
+
+## Organization
+
+```text
+64 Sets
+
+1 Line Per Set
+
+Direct Mapped
+```
+
+## Initial State
+
+All cache lines are initialized as:
+
+```text
+Tag   = 0
+
+Valid = 0
+```
+
+Example:
+
+```text
+Set 39
+
+Tag   = 0
+
+Valid = no
+```
+
+## Findings
+
+Each set contains one cache line.
+
+The valid bit determines whether the cache line
+contains meaningful data.
+
+## Key Learning
+
+Cache structures provide the storage that will
+later support cache hits and misses.

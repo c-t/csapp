@@ -133,3 +133,42 @@ Otherwise:
 
 The offset specifies the byte inside the cache
 block.
+
+## Phase 2 Insight
+
+Address decomposition identifies:
+
+```text
+Tag
+Set
+Offset
+```
+
+Cache structures provide:
+
+```text
+Set
+ ↓
+Line
+```
+
+Example:
+
+```text
+Address
+ ↓
+Set 39
+ ↓
+cache->sets[39]
+```
+
+The selected line can then be examined during a
+cache lookup.
+
+At initialization:
+
+```text
+Valid = no
+```
+
+for every cache line.
