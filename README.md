@@ -1,45 +1,52 @@
 # CSAPP Learning Repository
 
-This repository is a hands-on learning workspace for Computer Systems: A Programmer's Perspective (CSAPP). It contains experiments, notes, small programs, and implementation-focused projects for understanding how software interacts with hardware, memory, and the operating system at a low level.
-
-## Focus areas
-
-- machine-level representation
-- assembly and compiler behavior
-- stack frames and calling conventions
-- memory layout and pointer arithmetic
-- recursion and function-call analysis
-- ELF and binary structure
-- debugging and runtime inspection
-- Linux system programming concepts
+This repository is a hands-on learning workspace for *Computer Systems: A Programmer's Perspective* (CSAPP). It contains implementation-focused tools, experiments, notes, and small programs that reveal how software interacts with hardware, memory, and the operating system at a low level.
 
 ## Featured projects
 
-- [ch03-MachineLevelRepresentation/stackviz](ch03-MachineLevelRepresentation/stackviz) — runtime stack inspection, frame analysis, recursion tracing, and source-location mapping
-- [ch03-MachineLevelRepresentation/callscope](ch03-MachineLevelRepresentation/callscope) — System V AMD64 ABI investigation, register mapping, pointer and struct passing, and stack argument analysis
-- [ch03-MachineLevelRepresentation/miniobjdump](ch03-MachineLevelRepresentation/miniobjdump) — ELF header and section parsing, symbol discovery, and simplified disassembly inspired by objdump
-- supporting notes and experiments under the chapter folders
+### Chapter 3: Machine-Level Representation
 
-## Why this repo exists
+- [StackViz](ch03-MachineLevelRepresentation/stackviz) — runtime stack and call-frame inspection, recursion tracing, source mapping, and variable lookup
+- [CallScope](ch03-MachineLevelRepresentation/callscope) — System V AMD64 ABI behavior, argument mapping, register use, and stack arguments
+- [MiniObjDump](ch03-MachineLevelRepresentation/miniobjdump) — ELF parsing, section and symbol inspection, and simplified disassembly
 
-The goal is to build intuition for how programs behave below the high-level source code layer: where locals are stored, how frames are laid out, how arguments move through registers and the stack, how ELF metadata is structured, and how runtime tools infer meaning from machine state.
+### Chapter 9: Virtual Memory
+
+- [AddrTx](ch09-VirtualMemory/addrtx) — virtual-address decomposition, page classification, page sizes, and process memory regions
+- [PTSim](ch09-VirtualMemory/ptsim) — 48-bit address indices and multi-level x86-64 page-table walks
+- [TLBSim](ch09-VirtualMemory/tlbsim) — TLB lookup, filling, FIFO/LRU replacement, locality, and hit/miss statistics
+
+## Learning areas
+
+- machine-level representation and assembly
+- compiler behavior and calling conventions
+- stack frames, pointers, structs, and variadic arguments
+- ELF and binary structure
+- runtime debugging and symbol resolution
+- virtual and physical address translation
+- multi-level page tables
+- TLB caching and replacement policies
+- memory layout and Linux process regions
+- low-level operating-system concepts
 
 ## Typical workflow
 
-Most exercises are built with:
+Debuggable C and C++ experiments are generally built with frame-pointer and debug information enabled:
 
 ```bash
-gcc -O0 -g -fno-omit-frame-pointer
+make
+make test
 ```
 
-This keeps the stack layout easy to inspect and correlates directly with the concepts discussed in CSAPP. ELF-based tools are also built and exercised against small sample binaries to validate the learning outcomes.
+Many tools support direct, instrumented sample programs so that stack layouts, register behavior, address translation, and cache effects can be observed without relying only on source-level abstractions.
+
+## Completed learning tracks
+
+- **Machine-level representation:** StackViz, CallScope, and MiniObjDump provide practical views of runtime frames, ABI conventions, ELF metadata, and machine instructions.
+- **Virtual memory:** AddrTx, PTSim, and TLBSim form a progression from virtual-address structure through page-table translation and TLB caching.
 
 ## Repository status
 
-This repository is primarily educational and incremental. It now includes three completed learning projects under the chapter 3 machine-level representation work:
+This repository is educational and incremental. The core Chapter 3 and Chapter 9 projects listed above are implemented as small, testable programs with dedicated documentation, build targets, samples, and tests.
 
-- StackViz for runtime stack analysis
-- CallScope for ABI and calling-convention investigation
-- MiniObjDump for ELF structural exploration and disassembly basics
-
-The emphasis remains on small, testable programs that make low-level software behavior understandable.
+The emphasis remains on making low-level software behavior understandable through working code, observed output, and repeatable experiments.
