@@ -179,3 +179,141 @@ contains meaningful data.
 
 Cache structures provide the storage that will
 later support cache hits and misses.
+
+# Phase 3 - Cache Lookup
+
+## Cache Hit Requirements
+
+```text
+Valid Bit = yes
+
+Stored Tag = Requested Tag
+```
+
+### Lookup Algorithm
+
+```text
+Address
+ ↓
+Extract Set
+ ↓
+Select Cache Line
+ ↓
+Compare Tag
+```
+
+### Result
+
+```text
+CACHE HIT
+```
+
+or
+
+```text
+CACHE MISS
+```
+
+---
+
+# Phase 4 - Cache Fill
+
+## Initial Cache State
+
+```text
+Set 39
+
+Tag   = 0
+
+Valid = no
+```
+
+---
+
+## First Lookup
+
+Address:
+
+```text
+0x12345678
+```
+
+Result:
+
+```text
+CACHE MISS
+```
+
+Reason:
+
+```text
+Valid Bit = no
+```
+
+---
+
+## Cache Fill
+
+Inserted:
+
+```text
+Set 39
+
+Tag = 0x48d15
+```
+
+Updated State:
+
+```text
+Set 39
+
+Tag   = 0x48d15
+
+Valid = yes
+```
+
+---
+
+## Second Lookup
+
+Address:
+
+```text
+0x12345678
+```
+
+Result:
+
+```text
+CACHE HIT
+```
+
+Reason:
+
+```text
+Stored Tag = Requested Tag
+
+Valid Bit  = yes
+```
+
+---
+
+## Findings
+
+A cache miss becomes a cache hit after the
+requested block is inserted.
+
+Caches exploit reuse by storing recently
+accessed memory blocks.
+
+## Key Learning
+
+```text
+MISS
+ ↓
+Fill
+ ↓
+HIT
+```
+
+is the fundamental cache lifecycle.

@@ -43,5 +43,9 @@ void decode_address(uint32_t address, cache_address_t *result);
 void print_address_info(const cache_address_t *address);
 void initialize_cache(cache_t *cache);
 void print_cache(const cache_t *cache);
-
+int cache_lookup(const cache_t *cache, const cache_address_t *address);
+void populate_cache_line(cache_t *cache, uint32_t set, uint32_t tag);
+void print_lookup_result(const cache_address_t *address, int hit);
+void cache_fill(cache_t *cache, const cache_address_t *address);
+void print_fill_result(const cache_address_t *address);
 #endif

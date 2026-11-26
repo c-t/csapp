@@ -172,3 +172,68 @@ Valid = no
 ```
 
 for every cache line.
+
+## Phase 3 Insight
+
+Cache lookup consists of:
+
+```text
+Select Set
+ ↓
+Compare Tags
+```
+
+Hit Condition:
+
+```text
+Valid = yes
+
+Stored Tag = Requested Tag
+```
+
+Miss Condition:
+
+```text
+Valid = no
+
+or
+
+Tag Mismatch
+```
+
+---
+
+## Phase 4 Insight
+
+Caches learn from misses.
+
+Example:
+
+```text
+Lookup
+ ↓
+MISS
+ ↓
+Fill Cache
+ ↓
+Lookup
+ ↓
+HIT
+```
+
+Before Fill:
+
+```text
+Valid = no
+```
+
+After Fill:
+
+```text
+Valid = yes
+```
+
+The cache now contains a reusable copy of the
+requested memory block.
+
+Future accesses avoid expensive memory fetches.

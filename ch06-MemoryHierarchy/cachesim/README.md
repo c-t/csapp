@@ -65,8 +65,8 @@ within a cache.
 - [x] Phase 0 - Cache Investigation
 - [x] Phase 1 - Address Decomposition
 - [x] Phase 2 - Cache Structures
-- [ ] Phase 3 - Cache Lookup
-- [ ] Phase 4 - Cache Fill
+- [x] Phase 3 - Cache Lookup
+- [x] Phase 4 - Cache Fill
 - [ ] Phase 5 - Replacement Policies
 - [ ] Phase 6 - Cache Statistics
 - [ ] Phase 7 - Locality Experiments
@@ -146,3 +146,92 @@ Key Learning:
 
 A cache lookup ultimately searches a cache line
 inside a selected cache set.
+
+## Phase 3 - Cache Lookup
+
+Implemented cache lookup for a direct-mapped cache.
+
+Lookup Process:
+
+```text
+Address
+ ↓
+Tag + Set
+ ↓
+Select Cache Line
+ ↓
+Compare Tag
+```
+
+Result:
+
+```text
+CACHE HIT
+```
+
+or
+
+```text
+CACHE MISS
+```
+
+A cache hit requires:
+
+```text
+Valid Bit = yes
+
+Stored Tag = Requested Tag
+```
+
+---
+
+## Phase 4 - Cache Fill
+
+Implemented cache miss handling and cache fill.
+
+Workflow:
+
+```text
+Address
+ ↓
+Lookup
+ ↓
+CACHE MISS
+ ↓
+Cache Fill
+ ↓
+Future CACHE HIT
+```
+
+Example:
+
+```text
+CACHE MISS
+
+Set : 39
+
+Tag : 0x48d15
+```
+
+After filling:
+
+```text
+CACHE HIT
+```
+
+Updated Cache State:
+
+```text
+Set 39
+
+Tag   = 0x48d15
+
+Valid = yes
+```
+
+Key Learning:
+
+Caches learn from misses.
+
+Once a block is inserted into the cache,
+subsequent accesses become cache hits.

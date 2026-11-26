@@ -156,3 +156,73 @@ Learning Objective
 
 Represent cache state in memory and prepare for
 cache lookup operations.
+
+## Phase 3 - Cache Lookup ✅
+
+Goal
+
+Determine whether a memory block already exists
+in the cache.
+
+Lookup Flow
+
+```text
+Address
+ ↓
+Set Lookup
+ ↓
+Tag Compare
+```
+
+Result
+
+```text
+CACHE HIT
+```
+
+or
+
+```text
+CACHE MISS
+```
+
+---
+
+## Phase 4 - Cache Fill ✅
+
+Goal
+
+Handle cache misses by inserting blocks into the
+cache.
+
+Flow
+
+```text
+Address
+ ↓
+Lookup
+
+MISS
+ ↓
+Memory Fetch
+ ↓
+Cache Fill
+ ↓
+Future HIT
+```
+
+Implementation
+
+A cache fill updates:
+
+```text
+Tag
+Valid Bit
+```
+
+for the selected cache line.
+
+Learning Objective
+
+Understand how caches populate entries after a
+miss.
