@@ -6,6 +6,7 @@ CFLAGS=-Wall \
 	-Iinclude
 
 SRC=src/parser.c \
+	src/locality.c \
     src/visualization.c \
     src/memviz.c
 

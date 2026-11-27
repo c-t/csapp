@@ -90,3 +90,20 @@ Output:
 
 - Address listing
 - Total access count
+
+### Phase 2 - Address Analysis
+
+Input:
+
+Memory Address
+
+Output:
+
+- Page Number
+- Page Offset
+- Cache Line Number
+- Cache Line Offset
+
+Purpose:
+
+Transform raw addresses into memory-system metadata that can be used for locality analysis and visualization.

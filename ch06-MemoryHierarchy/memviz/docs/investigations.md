@@ -179,3 +179,28 @@ Future phases will derive:
 - Locality metrics
 
 from these raw addresses.
+
+## Phase 2 Findings
+
+Address analysis reveals hidden structure within a memory trace.
+
+Multiple addresses may belong to:
+
+- The same cache line
+- The same page
+
+These relationships are important because they directly influence cache and TLB behavior.
+
+Example:
+
+0x1000
+0x1004
+0x1008
+0x100c
+
+All belong to:
+
+Page 1
+Cache Line 64
+
+This demonstrates spatial locality.

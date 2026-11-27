@@ -66,3 +66,26 @@ Index    Address
 ...
 
 Total Accesses : 8
+
+### Phase 2 Completed
+
+Implemented:
+
+- Address analysis module
+- Page-number extraction
+- Page-offset extraction
+- Cache-line computation
+- Cache-line offset computation
+
+Example:
+
+Address            Page   Line
+--------------------------------
+0x1000             1      64
+0x1004             1      64
+0x1008             1      64
+
+Observation:
+
+Several accesses share the same cache line and page,
+illustrating spatial locality.

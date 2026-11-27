@@ -36,7 +36,7 @@ and helps connect low-level memory accesses to observed performance.
 
 - [x] Phase 0 - Investigation
 - [x] Phase 1 - Trace Parser
-- [ ] Phase 2 - Address Analysis
+- [x] Phase 2 - Address Analysis
 - [ ] Phase 3 - Histograms
 - [ ] Phase 4 - Spatial Locality
 - [ ] Phase 5 - Temporal Locality
@@ -54,3 +54,13 @@ and helps connect low-level memory accesses to observed performance.
 - Display loaded trace contents
 - Report total memory accesses
 
+### Phase 2
+
+MemViz now derives:
+
+- Page Number
+- Page Offset
+- Cache Line Number
+- Cache Line Offset
+
+for every memory access.

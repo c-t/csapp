@@ -18,6 +18,7 @@ int main(int argc, char *argv[])
     }
 
     print_trace(&trace);
+	print_analysis(&trace);
 
-   return 0;
+	return 0;
 }
