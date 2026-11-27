@@ -67,7 +67,7 @@ within a cache.
 - [x] Phase 2 - Cache Structures
 - [x] Phase 3 - Cache Lookup
 - [x] Phase 4 - Cache Fill
-- [ ] Phase 5 - Replacement Policies
+- [x] Phase 5 - Replacement Policies
 - [ ] Phase 6 - Cache Statistics
 - [ ] Phase 7 - Locality Experiments
 - [ ] Phase 8 - CacheSim v1.0
@@ -235,3 +235,165 @@ Caches learn from misses.
 
 Once a block is inserted into the cache,
 subsequent accesses become cache hits.
+
+---
+
+## Phase 5 - Replacement Policies
+
+Implemented cache replacement for a 16-set,
+4-way set-associative cache.
+
+The address layout is now:
+
+```text
++----------------------+----------+--------+
+|         Tag          |   Set    | Offset |
++----------------------+----------+--------+
+
+         24                4          4
+```
+
+Replacement Policies:
+
+- **FIFO (First-In, First-Out)** tracks a victim
+  way separately for each set and evicts the oldest
+  inserted block.
+- **LRU (Least Recently Used)** tracks a per-line
+  access timestamp and evicts the least recently
+  used block. Cache hits refresh the line age.
+
+Run the demonstrations:
+
+```bash
+make
+./build/cachesim fifo
+./build/cachesim lru
+make test
+```
+
+Key Learning:
+
+Replacement behavior matters when a set is full.
+FIFO depends on insertion order, while LRU preserves
+recently used blocks and is affected by hits as well
+as fills.
+
+## Testing Replacement Policies
+
+Build and execute the replacement unit test with:
+
+```bash
+make test
+```
+
+The target builds `build/test_replacement` from
+`tests/test_replacement.c` and supporting cache sources,
+then runs the test binary. It can also be run directly:
+
+```bash
+./build/test_replacement
+```
+
+The test verifies FIFO fill and victim behavior and
+LRU hit-age refresh plus eviction behavior using
+assertions. It is successful when the process exits
+normally without an assertion failure. Messages such as
+`FIFO Fill`, `LRU Fill`, and `LRU Evict` are informational
+output from the functions under test.
+
+Run policy demonstrations separately:
+
+```bash
+./build/cachesim fifo
+./build/cachesim lru
+```
+
+---
+
+## Phase 6 - Cache Statistics
+
+Implemented cache statistics collection.
+
+Statistics:
+
+- **Hit Rate**
+
+  Percentage of memory accesses that result in a cache hit.
+
+- **Miss Rate**
+
+  Percentage of memory accesses that result in a cache miss.
+
+- **Eviction Count**
+
+  Number of times a cache block is evicted.
+
+Key Learning:
+
+Cache statistics provide insight into cache
+performance and efficiency.
+
+---
+
+## Phase 7 - Locality Experiments
+
+Conducted experiments to observe temporal and
+spatial locality.
+
+Experiments:
+
+- **Temporal Locality**
+
+  Accessing the same memory location multiple
+  times.
+
+- **Spatial Locality**
+
+  Accessing memory locations close to each other.
+
+Key Learning:
+
+Locality principles explain why caches are
+effective in reducing memory-access latency.
+
+---
+
+## Phase 8 - CacheSim v1.0
+
+Released CacheSim version 1.0.
+
+Features:
+
+- Configurable cache size, block size, and
+  associativity.
+
+- Multiple cache replacement policies.
+
+- Cache statistics collection and reporting.
+
+- Memory access patterns for testing.
+
+Future Work:
+
+- Advanced cache features (e.g., prefetching,
+  write policies).
+
+- Performance optimizations.
+
+- User interface improvements.
+
+---
+
+## Acknowledgments
+
+Inspired by the cache simulation project in
+CS:APP.
+
+Special thanks to the authors and contributors
+of CS:APP for the valuable educational resource.
+
+---
+
+## License
+
+CacheSim is licensed under the MIT License.

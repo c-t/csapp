@@ -110,9 +110,9 @@ Example:
 ```text
 Address : 0x12345678
 
-Tag     : 0x48d15
+Tag     : 0x12345
 
-Set     : 0x27
+Set     : 0x7
 
 Offset  : 0x8
 ```
@@ -120,11 +120,11 @@ Offset  : 0x8
 Meaning:
 
 ```text
-Search Set 39
+Search Set 7
 
-Look for Tag 0x48d15
+Look through Ways 0 through 3
 
-If found:
+If any line has a matching tag:
     Cache HIT
 
 Otherwise:
@@ -157,13 +157,13 @@ Example:
 ```text
 Address
  ↓
-Set 39
+Set 7
  ↓
-cache->sets[39]
+cache->sets[7].lines[0..3]
 ```
 
-The selected line can then be examined during a
-cache lookup.
+Each line in the selected set can then be examined
+during a cache lookup.
 
 At initialization:
 
@@ -237,3 +237,94 @@ The cache now contains a reusable copy of the
 requested memory block.
 
 Future accesses avoid expensive memory fetches.
+
+---
+
+## Phase 5 Insight
+
+CacheSim now uses 16 sets with 4 ways per set:
+
+```text
+Cache Size  : 1024 Bytes
+Block Size  : 16 Bytes
+Cache Lines : 64
+Cache Sets  : 16
+Ways/Set    : 4
+```
+
+A lookup searches every valid line in the
+selected set:
+
+```text
+Select Set
+   ↓
+Search Four Ways
+   ↓
+Tag Match?
+
+Yes → Cache HIT
+No  → Cache MISS
+```
+
+### FIFO
+
+FIFO evicts the first block inserted into a set.
+It maintains one victim index per set:
+
+```text
+Way 0 → Way 1 → Way 2 → Way 3 → Way 0
+```
+
+FIFO fill order does not change when a line is
+accessed through a cache hit.
+
+### LRU
+
+LRU evicts the line with the smallest access
+timestamp:
+
+```text
+Lowest Age → Least Recently Used → Evict
+```
+
+A cache hit refreshes the matching line's timestamp,
+so frequently reused blocks are more likely to remain
+resident.
+
+Example:
+
+```text
+Fill A in Way 0
+Fill B in Way 1
+Fill C in Way 2
+Hit  A
+Fill D in Way 3
+Fill E
+
+LRU evicts B because A is now more recent
+FIFO may instead evict A according to insertion age
+```
+
+## Testing
+
+Run the unit test:
+
+```bash
+make test
+```
+
+This builds and executes `build/test_replacement`.
+The test uses assertions to verify FIFO fill and victim
+behavior and LRU hit refresh plus eviction behavior.
+A clean exit indicates success.
+
+Run the interactive policy demonstrations with:
+
+```bash
+./build/cachesim fifo
+./build/cachesim lru
+```
+
+Messages emitted during the unit test are informational
+fill and eviction output; assertions determine pass or
+failure.
