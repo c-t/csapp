@@ -8,8 +8,26 @@ int main(int argc, char *argv[])
 {
     if (argc != 2)
     {
-        printf("Usage: %s <hex-address>|fifo|lru|temporal|spatial|locality\n", argv[0]);
+        print_help(argv[0]);
         return 1;
+    }
+
+    if (strcmp(argv[1], "help") == 0)
+    {
+        print_help(argv[0]);
+        return 0;
+    }
+
+    if (strcmp(argv[1], "version") == 0)
+    {
+        print_version();
+        return 0;
+    }
+
+    if (strcmp(argv[1], "all") == 0)
+    {
+        run_all_demos();
+        return 0;
     }
 
     if (strcmp(argv[1], "fifo") == 0)

@@ -66,10 +66,14 @@ test: $(TEST_TARGET) $(STATISTICS_TEST_TARGET) $(LOCALITY_TEST_TARGET)
 	./$(STATISTICS_TEST_TARGET)
 	./$(LOCALITY_TEST_TARGET)
 
+release: all test
+	@./build/cachesim version
+	@./build/cachesim help
+
 clean:
 	rm -rf build
 
 run: $(TARGET)
 	./$(TARGET)
 
-.PHONY: all clean run test
+.PHONY: all clean run test release

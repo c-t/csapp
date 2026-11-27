@@ -483,3 +483,29 @@ make test
 ./build/cachesim spatial
 ./build/cachesim locality
 ```
+
+# Phase 8 - CacheSim v1.0 ✅
+
+CacheSim v1.0 is the integrated release of the Chapter 6
+learning project. It includes:
+
+- Address decomposition and lookup
+- 16-set, 4-way cache storage
+- FIFO and LRU replacement
+- Hit, miss, and eviction statistics
+- Temporal and spatial locality workloads
+- Help and version commands
+- Integrated demo and release modes
+
+Release workflow:
+
+```bash
+make release
+./build/cachesim help
+./build/cachesim version
+./build/cachesim all
+```
+
+`make release` verifies the complete implementation by
+building the executable and every test binary, then running
+all tests and displaying release information.

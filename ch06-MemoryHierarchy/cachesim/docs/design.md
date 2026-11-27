@@ -83,7 +83,7 @@ Phase 6 - Cache Statistics ✅
 
 Phase 7 - Locality Experiments ✅
 
-Phase 8 - CacheSim v1.0
+Phase 8 - CacheSim v1.0 ✅
 
 ## Phase 1 - Address Decomposition
 
@@ -356,3 +356,21 @@ make test
 ./build/cachesim spatial
 ./build/cachesim locality
 ```
+
+## Phase 8 - CacheSim v1.0 ✅
+
+CacheSim v1.0 combines address translation, replacement,
+statistics, locality experiments, CLI help/version output,
+and an integrated release target.
+
+Release commands:
+
+```bash
+make release
+./build/cachesim help
+./build/cachesim version
+./build/cachesim all
+```
+
+The release target builds the executable and all test
+binaries, runs the tests, and prints version/help output.

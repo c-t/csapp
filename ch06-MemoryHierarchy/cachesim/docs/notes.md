@@ -373,3 +373,31 @@ Run:
 ./build/cachesim locality
 make test
 ```
+
+## Phase 8 Insight
+
+CacheSim v1.0 integrates every completed learning area:
+
+```text
+Address Decomposition
+  ↓
+Cache Lookup
+  ↓
+FIFO or LRU Replacement
+  ↓
+Cache Statistics
+  ↓
+Locality Experiments
+```
+
+Release commands:
+
+```bash
+make release
+./build/cachesim help
+./build/cachesim version
+./build/cachesim all
+```
+
+The fixed v1.0 configuration is 1 KB, 16-byte blocks,
+16 sets, and 4 ways per set.

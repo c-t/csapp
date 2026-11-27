@@ -3,6 +3,8 @@
 
 #include <stdint.h>
 
+#define CACHESIM_VERSION "1.0"
+
 #define ADDRESS_BITS 32
 
 #define CACHE_SIZE_BYTES 1024
@@ -73,5 +75,8 @@ void run_lru_demo(void);
 void run_temporal_locality_demo(void);
 void run_spatial_locality_demo(void);
 void run_locality_demo(void);
+void print_help(const char *program_name);
+void print_version(void);
+void run_all_demos(void);
 
 #endif

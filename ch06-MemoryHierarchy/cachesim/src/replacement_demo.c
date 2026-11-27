@@ -130,3 +130,32 @@ void run_locality_demo(void)
     run_temporal_locality_demo();
     run_spatial_locality_demo();
 }
+
+void print_help(const char *program_name)
+{
+    printf("CacheSim v%s\n", CACHESIM_VERSION);
+    printf("Usage: %s <address>|fifo|lru|temporal|spatial|locality|all|help|version\n", program_name);
+    printf("\nModes:\n");
+    printf("  <hex-address>  Decompose and lookup one address\n");
+    printf("  fifo           Run the FIFO replacement demo\n");
+    printf("  lru            Run the LRU replacement demo\n");
+    printf("  temporal       Run the temporal locality demo\n");
+    printf("  spatial        Run the spatial locality demo\n");
+    printf("  locality       Run both locality demos\n");
+    printf("  all            Run the FIFO, LRU, and locality demos\n");
+    printf("  help           Print this usage message\n");
+    printf("  version        Print the CacheSim version\n");
+}
+
+void print_version(void)
+{
+    printf("CacheSim v%s\n", CACHESIM_VERSION);
+}
+
+void run_all_demos(void)
+{
+    run_fifo_demo();
+    run_lru_demo();
+    run_temporal_locality_demo();
+    run_spatial_locality_demo();
+}

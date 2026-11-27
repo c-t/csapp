@@ -70,12 +70,12 @@ within a cache.
 - [x] Phase 5 - Replacement Policies
 - [x] Phase 6 - Cache Statistics
 - [x] Phase 7 - Locality Experiments
-- [ ] Phase 8 - CacheSim v1.0
+- [x] Phase 8 - CacheSim v1.0
 
 ## Phase 1 - Address Decomposition
 
 Implemented cache address decomposition for a
-direct-mapped cache.
+16-set, 4-way set-associative cache.
 
 Cache Configuration:
 
@@ -83,7 +83,8 @@ Cache Configuration:
 Cache Size      : 1 KB
 Block Size      : 16 Bytes
 Cache Lines     : 64
-
+Cache Sets      : 16
+Ways Per Set    : 4
 Address Width   : 32 Bits
 ```
 
@@ -94,7 +95,7 @@ Address Layout:
 |         Tag          |   Set    | Offset |
 +----------------------+----------+--------+
 
-        22               6          4
+        24               4          4
 ```
 
 Example:
@@ -102,10 +103,8 @@ Example:
 ```text
 Address : 0x12345678
 
-Tag     : 0x48d15
-
-Set     : 0x27
-
+Tag     : 0x12345
+Set     : 0x7
 Offset  : 0x8
 ```
 
@@ -117,19 +116,20 @@ memory address.
 
 ## Phase 2 - Cache Structures
 
-Implemented the cache data model.
+Implemented the 16-set, 4-way cache data model.
 
 Cache Organization:
 
 ```text
 Cache
  ├── Set 0
- │    └── Line
- ├── Set 1
- │    └── Line
+ │    ├── Way 0
+ │    ├── Way 1
+ │    ├── Way 2
+ │    └── Way 3
  ...
- └── Set 63
-      └── Line
+ └── Set 15
+      └── Four Ways
 ```
 
 Cache Line:
@@ -138,18 +138,18 @@ Cache Line:
 typedef struct
 {
     uint32_t tag;
+    uint64_t age;
     int valid;
 } cache_line_t;
 ```
 
 Key Learning:
 
-A cache lookup ultimately searches a cache line
-inside a selected cache set.
+A lookup searches every valid line in the selected set.
 
 ## Phase 3 - Cache Lookup
 
-Implemented cache lookup for a direct-mapped cache.
+Implemented cache lookup for the 4-way set-associative cache.
 
 Lookup Process:
 
@@ -158,9 +158,9 @@ Address
  ↓
 Tag + Set
  ↓
-Select Cache Line
+Select Set
  ↓
-Compare Tag
+Compare Tags Across Four Ways
 ```
 
 Result:
@@ -208,9 +208,9 @@ Example:
 ```text
 CACHE MISS
 
-Set : 39
-
-Tag : 0x48d15
+Set : 7
+Way : 0
+Tag : 0x12345
 ```
 
 After filling:
@@ -222,10 +222,10 @@ CACHE HIT
 Updated Cache State:
 
 ```text
-Set 39
+Set 7
+Way 0
 
-Tag   = 0x48d15
-
+Tag   = 0x12345
 Valid = yes
 ```
 
@@ -423,38 +423,34 @@ addresses map to the same cache block.
 
 Released CacheSim version 1.0.
 
+The release implements a fixed 1 KB, 16-byte-block,
+16-set, 4-way set-associative cache.
+
 Features:
 
-- Configurable cache size, block size, and
-  associativity.
+- Address decomposition into tag, set, and offset
+- 32-bit cache lookup with valid/tag comparison
+- FIFO and LRU replacement policies
+- Hit, miss, eviction, hit-rate, and miss-rate reporting
+- Temporal and spatial locality experiment workloads
+- Address, replacement, locality, help, version, and all-demo modes
+- Unit tests for replacement, statistics, and locality behavior
 
-- Multiple cache replacement policies.
+Run:
 
-- Cache statistics collection and reporting.
+```bash
+./build/cachesim help
+./build/cachesim version
+./build/cachesim all
+make release
+```
 
-- Memory access patterns for testing.
+`make release` builds CacheSim, runs every test binary,
+and prints the version and help text.
 
 Future Work:
 
-- Advanced cache features (e.g., prefetching,
-  write policies).
-
-- Performance optimizations.
-
-- User interface improvements.
-
----
-
-## Acknowledgments
-
-Inspired by the cache simulation project in
-CS:APP.
-
-Special thanks to the authors and contributors
-of CS:APP for the valuable educational resource.
-
----
-
-## License
-
-CacheSim is licensed under the MIT License.
+- Configurable cache size, block size, and associativity
+- Additional replacement policies
+- Prefetching and write policies
+- Memory traces and broader access-pattern experiments
