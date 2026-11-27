@@ -33,3 +33,36 @@ previous simulators.
 - CacheSim integration
 - TLBSim integration
 - Graphical heat maps
+
+## Development Progress
+
+### Phase 0 Completed
+
+- Project investigation completed
+- Architecture defined
+- Roadmap established
+- Sample trace created
+
+### Phase 1 Completed
+
+Implemented:
+
+- Trace entry structure
+- Trace container
+- File parser
+- Address loader
+- Trace visualization
+- Access counter
+
+Example Output:
+
+Memory Trace
+====================================
+
+Index    Address
+------------------------------------
+0        0x0000000000001000
+1        0x0000000000001004
+...
+
+Total Accesses : 8

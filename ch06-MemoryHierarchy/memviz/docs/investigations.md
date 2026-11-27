@@ -158,3 +158,24 @@ Many performance tools provide:
 
 MemViz will implement simplified versions suitable for learning.
 
+## Phase 1 Findings
+
+A memory trace is simply an ordered sequence of memory accesses.
+
+Example:
+
+0x1000
+0x1004
+0x1008
+0x2000
+
+The parser serves as the foundation for all future analyses.
+
+Future phases will derive:
+
+- Page numbers
+- Cache-line numbers
+- Access frequencies
+- Locality metrics
+
+from these raw addresses.

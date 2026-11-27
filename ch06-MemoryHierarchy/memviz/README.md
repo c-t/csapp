@@ -35,7 +35,7 @@ and helps connect low-level memory accesses to observed performance.
 ## Project Phases
 
 - [x] Phase 0 - Investigation
-- [ ] Phase 1 - Trace Parser
+- [x] Phase 1 - Trace Parser
 - [ ] Phase 2 - Address Analysis
 - [ ] Phase 3 - Histograms
 - [ ] Phase 4 - Spatial Locality
@@ -43,3 +43,14 @@ and helps connect low-level memory accesses to observed performance.
 - [ ] Phase 6 - Heat Maps
 - [ ] Phase 7 - Pattern Classification
 - [ ] Phase 8 - MemViz v1.0
+
+## Current Features
+
+### Phase 1
+
+- Load memory traces from file
+- Parse hexadecimal addresses
+- Store trace entries
+- Display loaded trace contents
+- Report total memory accesses
+

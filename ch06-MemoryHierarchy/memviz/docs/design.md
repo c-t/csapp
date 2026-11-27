@@ -42,16 +42,12 @@ Trace File
 Parser
     |
     v
-Address Analyzer
+Trace Storage
     |
-    +----> Page Statistics
-    |
-    +----> Cache Line Statistics
-    |
-    +----> Locality Analysis
-    |
-    v
-Visualization Engine
+    +--> Address Analysis
+    +--> Page Statistics
+    +--> Locality Analysis
+    +--> Visualization Engine
 
 ---
 
@@ -73,4 +69,24 @@ Phase 7 Pattern Classification
 
 Phase 8 MemViz v1.0
 	
-	
+## Implemented Features
+
+### Phase 1 - Trace Parser
+
+Input:
+
+0x1000
+0x1004
+0x1008
+
+Processing:
+
+- Open trace file
+- Parse hexadecimal addresses
+- Store trace entries internally
+- Count accesses
+
+Output:
+
+- Address listing
+- Total access count
