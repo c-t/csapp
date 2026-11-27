@@ -31,9 +31,17 @@ STATISTICS_TEST_SRC = \
 	src/fifo.c \
 	src/lru.c
 
+LOCALITY_TEST_SRC = \
+	tests/test_locality.c \
+	src/address.c \
+	src/cache.c \
+	src/fifo.c \
+	src/lru.c
+
 TARGET = build/cachesim
 TEST_TARGET = build/test_replacement
 STATISTICS_TEST_TARGET = build/test_statistics
+LOCALITY_TEST_TARGET = build/test_locality
 
 all: $(TARGET)
 
@@ -49,9 +57,14 @@ $(STATISTICS_TEST_TARGET): $(STATISTICS_TEST_SRC)
 	@mkdir -p build
 	$(CC) $(CFLAGS) $(STATISTICS_TEST_SRC) -o $(STATISTICS_TEST_TARGET)
 
-test: $(TEST_TARGET) $(STATISTICS_TEST_TARGET)
+$(LOCALITY_TEST_TARGET): $(LOCALITY_TEST_SRC)
+	@mkdir -p build
+	$(CC) $(CFLAGS) $(LOCALITY_TEST_SRC) -o $(LOCALITY_TEST_TARGET)
+
+test: $(TEST_TARGET) $(STATISTICS_TEST_TARGET) $(LOCALITY_TEST_TARGET)
 	./$(TEST_TARGET)
 	./$(STATISTICS_TEST_TARGET)
+	./$(LOCALITY_TEST_TARGET)
 
 clean:
 	rm -rf build

@@ -81,7 +81,7 @@ Phase 5 - Replacement Policies ✅
 
 Phase 6 - Cache Statistics ✅
 
-Phase 7 - Locality Experiments
+Phase 7 - Locality Experiments ✅
 
 Phase 8 - CacheSim v1.0
 
@@ -320,4 +320,39 @@ Run:
 make test
 ./build/cachesim fifo
 ./build/cachesim lru
+```
+
+## Phase 7 - Locality Experiments ✅
+
+Goal
+
+Observe how temporal and spatial locality affect cache
+hit and miss rates.
+
+Temporal Workload
+
+```text
+A B A A B A
+```
+
+This repeats two recently used blocks and exercises
+LRU reuse.
+
+Spatial Workload
+
+```text
+0x00  0x04  0x08  0x0c  0x10
+```
+
+Nearby offsets within the first cache block become
+hits after the block is fetched. The next block causes
+a miss.
+
+Run:
+
+```bash
+make test
+./build/cachesim temporal
+./build/cachesim spatial
+./build/cachesim locality
 ```

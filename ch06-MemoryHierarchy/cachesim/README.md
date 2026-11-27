@@ -69,7 +69,7 @@ within a cache.
 - [x] Phase 4 - Cache Fill
 - [x] Phase 5 - Replacement Policies
 - [x] Phase 6 - Cache Statistics
-- [ ] Phase 7 - Locality Experiments
+- [x] Phase 7 - Locality Experiments
 - [ ] Phase 8 - CacheSim v1.0
 
 ## Phase 1 - Address Decomposition
@@ -361,24 +361,61 @@ while eviction counts reveal when sets become full.
 
 ## Phase 7 - Locality Experiments
 
-Conducted experiments to observe temporal and
-spatial locality.
+Implemented temporal and spatial locality workloads
+using LRU replacement.
 
-Experiments:
+### Temporal Locality
 
-- **Temporal Locality**
+Repeatedly accesses `0x00000000` and `0x00000100`:
 
-  Accessing the same memory location multiple
-  times.
+```text
+Total Accesses : 6
+Hits           : 4
+Misses         : 2
+Hit Rate       : 66.67%
+Miss Rate      : 33.33%
+```
 
-- **Spatial Locality**
+This demonstrates reuse of recently accessed blocks.
 
-  Accessing memory locations close to each other.
+### Spatial Locality
+
+Accesses nearby byte addresses inside and across cache
+blocks:
+
+```text
+0x00000000
+0x00000004
+0x00000008
+0x0000000c
+0x00000010
+```
+
+The first four offsets reuse the block starting at
+`0x00000000`, while `0x00000010` starts the next block:
+
+```text
+Total Accesses : 5
+Hits           : 3
+Misses         : 2
+Hit Rate       : 60.00%
+Miss Rate      : 40.00%
+```
+
+Run:
+
+```bash
+./build/cachesim temporal
+./build/cachesim spatial
+./build/cachesim locality
+make test
+```
 
 Key Learning:
 
-Locality principles explain why caches are
-effective in reducing memory-access latency.
+Temporal locality improves reuse of individual blocks,
+while spatial locality improves reuse when nearby
+addresses map to the same cache block.
 
 ---
 

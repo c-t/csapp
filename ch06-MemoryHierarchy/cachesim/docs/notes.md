@@ -344,26 +344,32 @@ fill then evicts the least-recently-used line.
 
 ---
 
-## Testing
+## Phase 7 Insight
 
-Run the unit test:
+Temporal locality measures reuse of the same blocks:
+
+```text
+A B A A B A
+```
+
+Repeated access produces a 66.67% hit rate in the
+implemented workload.
+
+Spatial locality measures reuse of nearby addresses:
+
+```text
+0x00 → 0x04 → 0x08 → 0x0c → 0x10
+```
+
+The 0x04, 0x08, and 0x0c offsets are hits within the
+block first fetched at 0x00. The 0x10 address starts
+a different block and produces a miss.
+
+Run:
 
 ```bash
+./build/cachesim temporal
+./build/cachesim spatial
+./build/cachesim locality
 make test
 ```
-
-This builds and executes `build/test_replacement`.
-The test uses assertions to verify FIFO fill and victim
-behavior and LRU hit refresh plus eviction behavior.
-A clean exit indicates success.
-
-Run the interactive policy demonstrations with:
-
-```bash
-./build/cachesim fifo
-./build/cachesim lru
-```
-
-Messages emitted during the unit test are informational
-fill and eviction output; assertions determine pass or
-failure.

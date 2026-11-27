@@ -8,7 +8,7 @@ int main(int argc, char *argv[])
 {
     if (argc != 2)
     {
-        printf("Usage: %s <hex-address>|fifo|lru\n", argv[0]);
+        printf("Usage: %s <hex-address>|fifo|lru|temporal|spatial|locality\n", argv[0]);
         return 1;
     }
 
@@ -21,6 +21,24 @@ int main(int argc, char *argv[])
     if (strcmp(argv[1], "lru") == 0)
     {
         run_lru_demo();
+        return 0;
+    }
+
+    if (strcmp(argv[1], "temporal") == 0)
+    {
+        run_temporal_locality_demo();
+        return 0;
+    }
+
+    if (strcmp(argv[1], "spatial") == 0)
+    {
+        run_spatial_locality_demo();
+        return 0;
+    }
+
+    if (strcmp(argv[1], "locality") == 0)
+    {
+        run_locality_demo();
         return 0;
     }
 

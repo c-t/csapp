@@ -424,3 +424,62 @@ make test
 ./build/cachesim fifo
 ./build/cachesim lru
 ```
+
+# Phase 7 - Locality Experiments ✅
+
+## Temporal Locality
+
+Access pattern:
+
+```text
+A B A A B A
+```
+
+Observed result:
+
+```text
+Total Accesses : 6
+Hits           : 4
+Misses         : 2
+Evictions      : 0
+Hit Rate       : 66.67%
+Miss Rate      : 33.33%
+```
+
+Repeated access to the same blocks produces cache hits
+after the initial fills.
+
+## Spatial Locality
+
+Access pattern:
+
+```text
+0x00000000
+0x00000004
+0x00000008
+0x0000000c
+0x00000010
+```
+
+Observed result:
+
+```text
+Total Accesses : 5
+Hits           : 3
+Misses         : 2
+Evictions      : 0
+Hit Rate       : 60.00%
+Miss Rate      : 40.00%
+```
+
+Offsets inside the first 16-byte block reuse its cache
+entry. The `0x10` address belongs to the next block.
+
+Run:
+
+```bash
+make test
+./build/cachesim temporal
+./build/cachesim spatial
+./build/cachesim locality
+```

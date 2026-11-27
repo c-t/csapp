@@ -70,5 +70,8 @@ void record_eviction(cache_t *cache);
 void print_statistics(const cache_t *cache);
 void run_fifo_demo(void);
 void run_lru_demo(void);
+void run_temporal_locality_demo(void);
+void run_spatial_locality_demo(void);
+void run_locality_demo(void);
 
 #endif
