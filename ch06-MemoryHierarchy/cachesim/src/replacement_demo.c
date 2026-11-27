@@ -31,7 +31,7 @@ void run_fifo_demo(void)
         }
     }
 
-    printf("\n");
+    print_statistics(&cache);
 }
 
 void run_lru_demo(void)
@@ -64,5 +64,5 @@ void run_lru_demo(void)
         }
     }
 
-    printf("\n");
+    print_statistics(&cache);
 }

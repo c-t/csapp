@@ -33,6 +33,7 @@ void lru_fill(cache_t *cache, const cache_address_t *address)
     }
 
     printf("  LRU Evict: Set %u Way %d Tag 0x%x\n", address->set, victim, set->lines[victim].tag);
+    record_eviction(cache);
     cache->timestamp++;
     set->lines[victim].tag = address->tag;
     set->lines[victim].valid = 1;

@@ -68,7 +68,7 @@ within a cache.
 - [x] Phase 3 - Cache Lookup
 - [x] Phase 4 - Cache Fill
 - [x] Phase 5 - Replacement Policies
-- [ ] Phase 6 - Cache Statistics
+- [x] Phase 6 - Cache Statistics
 - [ ] Phase 7 - Locality Experiments
 - [ ] Phase 8 - CacheSim v1.0
 
@@ -312,26 +312,50 @@ Run policy demonstrations separately:
 
 ## Phase 6 - Cache Statistics
 
-Implemented cache statistics collection.
+Implemented cache statistics collection for lookup
+accesses and replacement events.
 
 Statistics:
 
-- **Hit Rate**
+- **Total Accesses** — number of cache lookups
+- **Hits** — lookups that find a matching valid tag
+- **Misses** — lookups that do not find a matching block
+- **Evictions** — full-set fills that replace a valid line
+- **Hit Rate** — `hits / accesses * 100`
+- **Miss Rate** — `misses / accesses * 100`
 
-  Percentage of memory accesses that result in a cache hit.
+Run a policy demo to print statistics:
 
-- **Miss Rate**
+```bash
+./build/cachesim fifo
+./build/cachesim lru
+```
 
-  Percentage of memory accesses that result in a cache miss.
+Example output:
 
-- **Eviction Count**
+```text
+Cache Statistics
+====================================
 
-  Number of times a cache block is evicted.
+Total Accesses : 6
+Hits           : 1
+Misses         : 5
+Evictions      : 1
+Hit Rate       : 16.67%
+Miss Rate      : 83.33%
+```
+
+The statistics tests also run with:
+
+```bash
+make test
+```
 
 Key Learning:
 
-Cache statistics provide insight into cache
-performance and efficiency.
+Cache statistics quantify reuse and replacement behavior.
+Hit and miss rates summarize the effect of access patterns,
+while eviction counts reveal when sets become full.
 
 ---
 

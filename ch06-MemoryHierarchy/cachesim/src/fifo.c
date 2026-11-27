@@ -22,7 +22,7 @@ void fifo_fill(cache_t *cache, const cache_address_t *address)
     int victim = (int)cache->fifo_victim[address->set];
     printf("  FIFO Evict: Set %u Way %d Tag 0x%x\n",
            address->set, victim, set->lines[victim].tag);
-
+    record_eviction(cache);
     set->lines[victim].tag = address->tag;
     set->lines[victim].valid = 1;
     cache->timestamp++;

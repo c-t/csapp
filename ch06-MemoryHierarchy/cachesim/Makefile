@@ -24,8 +24,16 @@ TEST_SRC = \
 	src/fifo.c \
 	src/lru.c
 
+STATISTICS_TEST_SRC = \
+	tests/test_statistics.c \
+	src/address.c \
+	src/cache.c \
+	src/fifo.c \
+	src/lru.c
+
 TARGET = build/cachesim
 TEST_TARGET = build/test_replacement
+STATISTICS_TEST_TARGET = build/test_statistics
 
 all: $(TARGET)
 
@@ -37,8 +45,13 @@ $(TEST_TARGET): $(TEST_SRC)
 	@mkdir -p build
 	$(CC) $(CFLAGS) $(TEST_SRC) -o $(TEST_TARGET)
 
-test: $(TEST_TARGET)
+$(STATISTICS_TEST_TARGET): $(STATISTICS_TEST_SRC)
+	@mkdir -p build
+	$(CC) $(CFLAGS) $(STATISTICS_TEST_SRC) -o $(STATISTICS_TEST_TARGET)
+
+test: $(TEST_TARGET) $(STATISTICS_TEST_TARGET)
 	./$(TEST_TARGET)
+	./$(STATISTICS_TEST_TARGET)
 
 clean:
 	rm -rf build

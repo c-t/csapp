@@ -39,9 +39,18 @@ typedef struct
 
 typedef struct
 {
+    uint64_t accesses;
+    uint64_t hits;
+    uint64_t misses;
+    uint64_t evictions;
+} cache_statistics_t;
+
+typedef struct
+{
     cache_set_t sets[CACHE_SETS];
     uint32_t fifo_victim[CACHE_SETS];
     uint64_t timestamp;
+    cache_statistics_t statistics;
 } cache_t;
 
 void decode_address(uint32_t address, cache_address_t *result);
@@ -55,6 +64,10 @@ void cache_fill(cache_t *cache, const cache_address_t *address);
 void print_fill_result(const cache_address_t *address);
 void fifo_fill(cache_t *cache, const cache_address_t *address);
 void lru_fill(cache_t *cache, const cache_address_t *address);
+void reset_statistics(cache_t *cache);
+void record_cache_lookup(cache_t *cache, int hit);
+void record_eviction(cache_t *cache);
+void print_statistics(const cache_t *cache);
 void run_fifo_demo(void);
 void run_lru_demo(void);
 

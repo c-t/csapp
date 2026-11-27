@@ -79,7 +79,7 @@ Phase 4 - Cache Fill
 
 Phase 5 - Replacement Policies ✅
 
-Phase 6 - Cache Statistics
+Phase 6 - Cache Statistics ✅
 
 Phase 7 - Locality Experiments
 
@@ -281,3 +281,43 @@ Learning Objective
 Compare replacement strategies and observe how
 future hit and miss behavior depends on which block
 is retained.
+
+## Phase 6 - Cache Statistics ✅
+
+Goal
+
+Measure and report cache performance metrics.
+
+The cache tracks:
+
+```text
+Accesses
+Hits
+Misses
+Evictions
+Hit Rate
+Miss Rate
+```
+
+Each lookup increments accesses and either hits or
+misses. Each FIFO/LRU replacement of a valid line
+increments evictions.
+
+Calculated metrics:
+
+```text
+Hit Rate  = Hits / Accesses * 100
+Miss Rate = Misses / Accesses * 100
+```
+
+Policy demonstrations call `print_statistics()` after
+processing their access patterns. The statistics test
+asserts access, hit, miss, and eviction totals.
+
+Run:
+
+```bash
+make test
+./build/cachesim fifo
+./build/cachesim lru
+```

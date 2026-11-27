@@ -374,3 +374,53 @@ Learning Objective
 
 Observe how cache hits and insertion order determine
 which block remains resident in a full set.
+
+# Phase 6 - Cache Statistics ✅
+
+Each cache lookup updates:
+
+```text
+Accesses
+  ↓
+HIT or MISS
+  ↓
+Hits or Misses
+```
+
+Each full-set replacement updates:
+
+```text
+Eviction
+  ↓
+Eviction Count
+```
+
+Observed FIFO example:
+
+```text
+Total Accesses : 5
+Hits           : 0
+Misses         : 5
+Evictions      : 1
+Hit Rate       : 0.00%
+Miss Rate      : 100.00%
+```
+
+Observed LRU example:
+
+```text
+Total Accesses : 6
+Hits           : 1
+Misses         : 5
+Evictions      : 1
+Hit Rate       : 16.67%
+Miss Rate      : 83.33%
+```
+
+Run:
+
+```bash
+make test
+./build/cachesim fifo
+./build/cachesim lru
+```

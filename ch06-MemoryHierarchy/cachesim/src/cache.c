@@ -15,6 +15,55 @@ void initialize_cache(cache_t *cache)
         }
     }
     cache->timestamp = 0;
+    reset_statistics(cache);
+}
+
+void reset_statistics(cache_t *cache)
+{
+    cache->statistics.accesses = 0;
+    cache->statistics.hits = 0;
+    cache->statistics.misses = 0;
+    cache->statistics.evictions = 0;
+}
+
+void record_cache_lookup(cache_t *cache, int hit)
+{
+    cache->statistics.accesses++;
+    if (hit)
+    {
+        cache->statistics.hits++;
+    }
+    else
+    {
+        cache->statistics.misses++;
+    }
+}
+
+void record_eviction(cache_t *cache)
+{
+    cache->statistics.evictions++;
+}
+
+void print_statistics(const cache_t *cache)
+{
+    double hit_rate = cache->statistics.accesses == 0
+                          ? 0.0
+                          : 100.0 * (double)cache->statistics.hits /
+                                (double)cache->statistics.accesses;
+    double miss_rate = cache->statistics.accesses == 0
+                           ? 0.0
+                           : 100.0 * (double)cache->statistics.misses /
+                                 (double)cache->statistics.accesses;
+
+    printf("\nCache Statistics\n");
+    printf("====================================\n\n");
+    printf("Total Accesses : %llu\n", (unsigned long long)cache->statistics.accesses);
+    printf("Hits           : %llu\n", (unsigned long long)cache->statistics.hits);
+    printf("Misses         : %llu\n", (unsigned long long)cache->statistics.misses);
+    printf("Evictions      : %llu\n", (unsigned long long)cache->statistics.evictions);
+    printf("Hit Rate       : %.2f%%\n", hit_rate);
+    printf("Miss Rate      : %.2f%%\n", miss_rate);
+    printf("\n");
 }
 
 void print_cache(const cache_t *cache)
@@ -51,6 +100,7 @@ void populate_cache_line(cache_t *cache, uint32_t set, uint32_t tag)
     }
 
     uint32_t victim = cache->fifo_victim[set];
+    record_eviction(cache);
     cache_set->lines[victim].tag = tag;
     cache_set->lines[victim].valid = 1;
     cache->fifo_victim[set] = (victim + 1) % CACHE_WAYS;
@@ -66,9 +116,11 @@ int cache_lookup(cache_t *cache, const cache_address_t *address)
         {
             cache->timestamp++;
             line->age = cache->timestamp;
+            record_cache_lookup(cache, 1);
             return 1;
         }
     }
+    record_cache_lookup(cache, 0);
     return 0;
 }
 
@@ -109,6 +161,7 @@ void cache_fill(cache_t *cache, const cache_address_t *address)
         }
     }
 
+    record_eviction(cache);
     cache->timestamp++;
     set->lines[victim].tag = address->tag;
     set->lines[victim].age = cache->timestamp;

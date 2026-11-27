@@ -305,6 +305,45 @@ LRU evicts B because A is now more recent
 FIFO may instead evict A according to insertion age
 ```
 
+## Phase 6 Insight
+
+Cache statistics separate lookup outcomes from
+replacement events:
+
+```text
+Lookup
+  ↓
+Hit or Miss
+
+Full Set
+  ↓
+Eviction
+```
+
+Metrics:
+
+```text
+Hit Rate  = Hits / Total Accesses * 100
+Miss Rate = Misses / Total Accesses * 100
+```
+
+Example LRU result:
+
+```text
+Total Accesses : 6
+Hits           : 1
+Misses         : 5
+Evictions      : 1
+Hit Rate       : 16.67%
+Miss Rate      : 83.33%
+```
+
+The hit refreshes a line, making that block more
+recent in the LRU timestamps. The miss after set
+fill then evicts the least-recently-used line.
+
+---
+
 ## Testing
 
 Run the unit test:
