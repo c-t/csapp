@@ -32,12 +32,10 @@ and helps connect low-level memory accesses to observed performance.
 - Heat maps
 - Pattern classification
 
-## Project Phases
-
 - [x] Phase 0 - Investigation
 - [x] Phase 1 - Trace Parser
 - [x] Phase 2 - Address Analysis
-- [ ] Phase 3 - Histograms
+- [x] Phase 3 - Histograms
 - [ ] Phase 4 - Spatial Locality
 - [ ] Phase 5 - Temporal Locality
 - [ ] Phase 6 - Heat Maps
@@ -64,3 +62,11 @@ MemViz now derives:
 - Cache Line Offset
 
 for every memory access.
+
+### Phase 3
+
+Implemented:
+
+- Page access histograms
+- Cache-line access histograms
+- Hot-region identification

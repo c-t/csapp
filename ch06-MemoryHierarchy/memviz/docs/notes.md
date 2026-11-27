@@ -89,3 +89,26 @@ Observation:
 
 Several accesses share the same cache line and page,
 illustrating spatial locality.
+
+### Phase 3 Completed
+
+Implemented:
+
+- Histogram data structures
+- Page-frequency analysis
+- Cache-line-frequency analysis
+- Histogram visualization
+
+Results:
+
+Page 1 -> 6 accesses
+Page 2 -> 2 accesses
+
+Line 64 -> 6 accesses
+Line 128 -> 2 accesses
+
+Observation:
+
+The majority of accesses are concentrated
+within a single page and cache line,
+suggesting strong spatial locality.

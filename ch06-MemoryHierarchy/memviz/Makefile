@@ -8,7 +8,8 @@ CFLAGS=-Wall \
 SRC=src/parser.c \
 	src/locality.c \
     src/visualization.c \
-    src/memviz.c
+    src/memviz.c \
+	src/heatmap.c
 
 OBJ=$(SRC:.c=.o)
 

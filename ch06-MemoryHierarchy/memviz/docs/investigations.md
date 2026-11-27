@@ -204,3 +204,18 @@ Page 1
 Cache Line 64
 
 This demonstrates spatial locality.
+
+## Phase 3 Findings
+
+Frequency histograms reveal memory hotspots.
+
+Example:
+
+Page 1 -> 6 accesses
+Page 2 -> 2 accesses
+
+Line 64 -> 6 accesses
+Line 128 -> 2 accesses
+
+Hotspots indicate regions that may benefit from
+cache residency and exhibit locality.

@@ -20,5 +20,12 @@ int main(int argc, char *argv[])
     print_trace(&trace);
 	print_analysis(&trace);
 
+	histogram_t page_histogram;
+	histogram_t cacheline_histogram;
+	build_page_histogram(&trace, &page_histogram);
+	build_cacheline_histogram(&trace, &cacheline_histogram);
+	print_page_histogram(&page_histogram);
+	print_cacheline_histogram(&cacheline_histogram);
+
 	return 0;
 }

@@ -42,12 +42,11 @@ Trace File
 Parser
     |
     v
-Trace Storage
+Address Analyzer
     |
-    +--> Address Analysis
-    +--> Page Statistics
-    +--> Locality Analysis
-    +--> Visualization Engine
+    +--> Page Histogram
+    |
+    +--> Cache-Line Histogram
 
 ---
 
@@ -107,3 +106,18 @@ Output:
 Purpose:
 
 Transform raw addresses into memory-system metadata that can be used for locality analysis and visualization.
+
+### Phase 3 - Histograms
+
+Input:
+
+Address Analysis Data
+
+Output:
+
+- Page Frequency Histogram
+- Cache-Line Frequency Histogram
+
+Purpose:
+
+Identify heavily accessed memory regions and prepare for locality analysis.
