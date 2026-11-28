@@ -37,7 +37,7 @@ and helps connect low-level memory accesses to observed performance.
 - [x] Phase 2 - Address Analysis
 - [x] Phase 3 - Histograms
 - [x] Phase 4 - Spatial Locality
-- [ ] Phase 5 - Temporal Locality
+- [x] Phase 5 - Temporal Locality
 - [ ] Phase 6 - Heat Maps
 - [ ] Phase 7 - Pattern Classification
 - [ ] Phase 8 - MemViz v1.0
@@ -78,3 +78,12 @@ Implemented:
 - Cache-line transition analysis
 - Spatial locality scoring
 - Locality classification
+
+### Phase 5
+
+Implemented:
+
+- Address reuse detection
+- Reuse distance analysis
+- Temporal locality scoring
+- Temporal locality classification

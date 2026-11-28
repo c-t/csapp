@@ -145,3 +145,26 @@ Classifications:
 Strong     >= 80%
 Moderate   >= 50%
 Poor       < 50%
+
+### Phase 5 - Temporal Locality
+
+Input:
+
+Address sequence
+
+Processing:
+
+Track repeated accesses to previously
+observed addresses.
+
+Metrics:
+
+- Unique accesses
+- Reused accesses
+- Average reuse distance
+- Temporal locality score
+
+Output:
+
+Temporal locality percentage and
+classification.

@@ -31,5 +31,9 @@ int main(int argc, char *argv[])
 	analyze_spatial_locality(&trace, &locality);
 	print_spatial_locality(&locality);
 
+	temporal_locality_t temporal;
+	analyze_temporal_locality(&trace, &temporal);
+	print_temporal_locality(&temporal);
+
 	return 0;
 }

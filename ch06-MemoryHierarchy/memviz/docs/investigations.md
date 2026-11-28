@@ -244,3 +244,31 @@ Observed Result:
 Spatial Locality = 71.43%
 
 Classification = Moderate
+
+## Phase 5 Findings
+
+Temporal locality measures whether
+memory locations are reused over time.
+
+Example:
+
+A
+B
+C
+A
+
+The second access to A exhibits temporal
+locality.
+
+Good temporal locality improves cache
+effectiveness because data remains useful
+after it is loaded.
+
+Observed Results:
+
+Unique Accesses : 6
+Reused Accesses : 2
+
+Temporal Locality : 25%
+
+Classification : Moderate

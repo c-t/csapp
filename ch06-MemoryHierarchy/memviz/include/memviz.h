@@ -47,6 +47,15 @@ typedef struct
     double score;
 } spatial_locality_t;
 
+typedef struct
+{
+    uint64_t reused_accesses;
+    uint64_t unique_accesses;
+    uint64_t total_reuse_distance;
+    double score;
+    double average_reuse_distance;
+} temporal_locality_t;
+
 int load_trace(const char *filename, trace_t *trace);
 void print_trace(const trace_t *trace);
 void analyze_address(uint64_t address, address_info_t *info);
@@ -57,5 +66,7 @@ void print_page_histogram(const histogram_t *histogram);
 void print_cacheline_histogram(const histogram_t *histogram);
 void analyze_spatial_locality( const trace_t *trace, spatial_locality_t *result);
 void print_spatial_locality(const spatial_locality_t *result);
-
+void analyze_temporal_locality(const trace_t *trace, temporal_locality_t *result);
+void print_temporal_locality(const temporal_locality_t *result);
+	
 #endif

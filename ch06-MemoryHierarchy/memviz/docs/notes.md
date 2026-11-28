@@ -135,3 +135,29 @@ Observation:
 
 Most accesses occur within a small number of
 cache lines, indicating good spatial locality.
+
+### Phase 5 Completed
+
+Implemented:
+
+- Reuse detection
+- Reuse distance calculation
+- Temporal locality scoring
+- Temporal locality classification
+
+Results:
+
+Unique Accesses         : 6
+Reused Accesses         : 2
+
+Average Reuse Distance  : 6
+
+Temporal Locality       : 25%
+
+Classification          : Moderate
+
+Observation:
+
+The trace contains repeated accesses to
+0x1000 and 0x1004, demonstrating temporal
+locality and memory reuse.

@@ -57,3 +57,65 @@ void print_spatial_locality(const spatial_locality_t *result)
     }
     printf("\n");
 }
+
+void analyze_temporal_locality(const trace_t *trace, temporal_locality_t *result)
+{
+    result->reused_accesses = 0;
+    result->unique_accesses = 0;
+    result->total_reuse_distance = 0;
+    result->average_reuse_distance = 0.0;
+    result->score = 0.0;
+
+    for (int i = 0; i < trace->count; i++)
+    {
+        int found = 0;
+        for (int j = i - 1; j >= 0; j--)
+        {
+            if (trace->entries[i].address == trace->entries[j].address)
+            {
+                result->reused_accesses++;
+                result->total_reuse_distance += (i - j);
+                found = 1;
+                break;
+            }
+        }
+        if (!found)
+        {
+            result->unique_accesses++;
+        }
+    }
+
+    if (result->reused_accesses > 0)
+    {
+        result->average_reuse_distance = (double) result->total_reuse_distance / result->reused_accesses;
+    }
+
+    result->score = (100.0 * result->reused_accesses) / trace->count;
+}
+
+void print_temporal_locality(
+    const temporal_locality_t *result)
+{
+    printf("\nTemporal Locality Analysis\n");
+    printf("====================================\n\n");
+    printf("Unique Accesses         : %llu\n", (unsigned long long) result->unique_accesses);
+    printf("Reused Accesses         : %llu\n", (unsigned long long) result->reused_accesses);
+    printf("Average Reuse Distance  : %.2f\n", result->average_reuse_distance);
+    printf("Temporal Locality       : %.2f%%\n", result->score);
+    printf("\nClassification          : ");
+
+    if (result->score >= 50.0)
+    {
+        printf("Strong\n");
+    }
+    else if (result->score >= 20.0)
+    {
+        printf("Moderate\n");
+    }
+    else
+    {
+        printf("Poor\n");
+    }
+
+    printf("\n");
+}
