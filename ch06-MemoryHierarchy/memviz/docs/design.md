@@ -264,3 +264,16 @@ Characteristics:
 
 - Weak locality
 - Poor cache behavior
+
+## Testing Architecture
+
+MemViz testing follows a CacheSim-style assert-based structure:
+
+- Test sources are stored in `tests/`
+- Test executables are created under `build/`
+- `make test` compiles and runs every test executable
+- `make release` builds the application and runs the complete test suite
+- `-Wall`, `-Wextra`, and `-Werror` enforce warning-free implementation code
+
+Testing currently covers parser behavior, address decomposition, histograms,
+spatial and temporal locality, and access-pattern classification.

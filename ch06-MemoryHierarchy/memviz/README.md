@@ -104,3 +104,41 @@ Implemented:
 - Strided pattern detection
 - Looping pattern detection
 - Random access detection
+
+## Testing
+
+Run all assert-based unit tests:
+
+```sh
+make test
+```
+
+Build the application and run the test suite:
+
+```sh
+make release
+```
+
+The tests cover:
+
+- Trace loading and address decomposition
+- Page and cache-line histograms
+- Spatial and temporal locality
+- Sequential, strided, looping, and random patterns
+
+## Testing Support
+
+Phase 7 functionality now has automated test coverage modeled after the CacheSim project:
+
+- Three assert-based test executables
+- `make test` for a test-only workflow
+- `make release` for a clean application build followed by tests
+- Strict warning and error checking with `-Werror`
+
+## Phase 8 Prerequisites
+
+Before MemViz v1.0 release, ensure completion of:
+
+- All planned features
+- Comprehensive testing
+- Documentation updates

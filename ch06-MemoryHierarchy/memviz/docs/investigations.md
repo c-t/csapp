@@ -318,3 +318,22 @@ Reason:
 Addresses 0x1000 and 0x1004 reappear later in the trace.
 
 This indicates memory reuse and a looping access pattern.
+
+## Testing Support Findings
+
+MemViz now uses assert-based test executables similar to CacheSim.
+
+The test suite verifies:
+
+- Trace loading and address decomposition
+- Page and cache-line histogram construction
+- Spatial and temporal locality calculations
+- Sequential, strided, looping, and random classification
+
+The Makefile provides:
+
+- `make test` for compiling and running tests
+- `make release` for a clean application build followed by tests
+
+Strict compiler warnings are treated as errors, ensuring test and implementation
+code remains warning-free.
