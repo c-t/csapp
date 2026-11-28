@@ -68,5 +68,7 @@ void analyze_spatial_locality( const trace_t *trace, spatial_locality_t *result)
 void print_spatial_locality(const spatial_locality_t *result);
 void analyze_temporal_locality(const trace_t *trace, temporal_locality_t *result);
 void print_temporal_locality(const temporal_locality_t *result);
+void print_page_heatmap(const histogram_t *histogram);
+void print_cacheline_heatmap(const histogram_t *histogram);
 	
 #endif

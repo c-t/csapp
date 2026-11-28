@@ -69,3 +69,41 @@ void print_cacheline_histogram( const histogram_t *histogram)
 
     printf("\n");
 }
+
+static void print_bar(uint64_t count)
+{
+    for (uint64_t i = 0; i < count; i++)
+    {
+        printf("*");
+    }
+}
+
+void print_page_heatmap(const histogram_t *histogram)
+{
+    printf("\nPage Heat Map\n");
+    printf("====================================\n\n");
+
+    for (int i = 0; i < histogram->count; i++)
+    {
+        printf("Page %-6llu ", (unsigned long long) histogram->entries[i].key);
+        print_bar(histogram->entries[i].count);
+        printf(" (%llu)\n", (unsigned long long) histogram->entries[i].count);
+    }
+
+    printf("\n");
+}
+
+void print_cacheline_heatmap(const histogram_t *histogram)
+{
+    printf("\nCache Line Heat Map\n");
+    printf("====================================\n\n");
+
+    for (int i = 0; i < histogram->count; i++)
+    {
+        printf("Line %-6llu ", (unsigned long long) histogram->entries[i].key);
+        print_bar(histogram->entries[i].count);
+        printf(" (%llu)\n", (unsigned long long) histogram->entries[i].count);
+    }
+
+    printf("\n");
+}

@@ -272,3 +272,20 @@ Reused Accesses : 2
 Temporal Locality : 25%
 
 Classification : Moderate
+
+## Phase 6 Findings
+
+Heat maps provide a visual representation of memory activity.
+
+Advantages:
+
+- Quickly identify hot regions
+- Easier to interpret than raw counts
+- Useful for spotting memory hotspots
+
+Example:
+
+Page 1      ****** (6)
+Page 2      **     (2)
+
+The longer bar immediately identifies the hottest page.

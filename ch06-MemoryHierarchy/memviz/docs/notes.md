@@ -161,3 +161,27 @@ Observation:
 The trace contains repeated accesses to
 0x1000 and 0x1004, demonstrating temporal
 locality and memory reuse.
+
+### Phase 6 Completed
+
+Implemented:
+
+- Page heat map visualization
+- Cache-line heat map visualization
+
+Results:
+
+Page Heat Map
+
+Page 1      ****** (6)
+Page 2      **     (2)
+
+Cache Line Heat Map
+
+Line 64     ****** (6)
+Line 128    **     (2)
+
+Observation:
+
+A small number of pages and cache lines dominate the trace.
+This confirms the hotspot behavior previously seen in histogram analysis.

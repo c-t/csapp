@@ -38,7 +38,7 @@ and helps connect low-level memory accesses to observed performance.
 - [x] Phase 3 - Histograms
 - [x] Phase 4 - Spatial Locality
 - [x] Phase 5 - Temporal Locality
-- [ ] Phase 6 - Heat Maps
+- [x] Phase 6 - Heat Maps
 - [ ] Phase 7 - Pattern Classification
 - [ ] Phase 8 - MemViz v1.0
 
@@ -87,3 +87,11 @@ Implemented:
 - Reuse distance analysis
 - Temporal locality scoring
 - Temporal locality classification
+
+### Phase 6
+
+Implemented:
+
+- Page heat maps
+- Cache-line heat maps
+- Hot-region visualization

@@ -168,3 +168,26 @@ Output:
 
 Temporal locality percentage and
 classification.
+
+### Phase 6 - Heat Maps
+
+Input:
+
+Histogram data generated in Phase 3.
+
+Processing:
+
+Convert access frequencies into visual bars.
+
+Output:
+
+- Page heat map
+- Cache-line heat map
+
+Example:
+
+Page 1      ****** (6)
+Page 2      **     (2)
+
+Line 64     ****** (6)
+Line 128    **     (2)
