@@ -71,6 +71,15 @@ typedef struct
     int64_t stride;
 } pattern_analysis_t;
 
+typedef struct
+{
+    uint64_t total_accesses;
+    uint64_t hottest_page;
+    uint64_t hottest_page_accesses;
+    uint64_t hottest_cacheline;
+    uint64_t hottest_cacheline_accesses;
+} summary_t;
+
 int load_trace(const char *filename, trace_t *trace);
 void print_trace(const trace_t *trace);
 void analyze_address(uint64_t address, address_info_t *info);
@@ -87,5 +96,7 @@ void print_page_heatmap(const histogram_t *histogram);
 void print_cacheline_heatmap(const histogram_t *histogram);
 void analyze_pattern(const trace_t *trace, pattern_analysis_t *result);
 void print_pattern_analysis(const pattern_analysis_t *result);
+void build_summary(const trace_t *trace, const histogram_t *page_histogram, const histogram_t *cacheline_histogram, summary_t *summary);
+void print_summary(const summary_t *summary, const spatial_locality_t *spatial, const temporal_locality_t *temporal, const pattern_analysis_t *pattern);
 	
 #endif

@@ -40,7 +40,7 @@ and helps connect low-level memory accesses to observed performance.
 - [x] Phase 5 - Temporal Locality
 - [x] Phase 6 - Heat Maps
 - [x] Phase 7 - Pattern Classification
-- [ ] Phase 8 - MemViz v1.0
+- [x] Phase 8 - MemViz v1.0
 
 ## Current Features
 
@@ -135,10 +135,27 @@ Phase 7 functionality now has automated test coverage modeled after the CacheSim
 - `make release` for a clean application build followed by tests
 - Strict warning and error checking with `-Werror`
 
-## Phase 8 Prerequisites
+## Phase 8 - MemViz v1.0
 
-Before MemViz v1.0 release, ensure completion of:
+Phase 8 completes MemViz with a final trace summary containing:
 
-- All planned features
-- Comprehensive testing
-- Documentation updates
+- Total memory accesses
+- Hottest page and access count
+- Hottest cache line and access count
+- Spatial locality score
+- Temporal locality score
+- Access-pattern classification
+- Overall cache-friendliness assessment
+
+The release also includes assert-based testing, strict warning checks, and
+`make test` / `make release` workflows.
+
+## Final Summary and Overall Assessment
+
+MemViz v1.0 is now complete. The following milestones were achieved:
+
+- Successful implementation of all planned features
+- Extensive testing with assert-based unit tests
+- Documentation updates and README completion
+
+MemViz is now ready for use as a memory analysis and visualization tool.

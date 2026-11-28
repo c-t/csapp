@@ -40,6 +40,10 @@ int main(int argc, char *argv[])
 	pattern_analysis_t pattern;
 	analyze_pattern(&trace, &pattern);
 	print_pattern_analysis(&pattern);
+	
+	summary_t summary;
+	build_summary(&trace, &page_histogram, &cacheline_histogram, &summary);
+	print_summary(&summary, &locality, &temporal, &pattern);
 
 	return 0;
 }

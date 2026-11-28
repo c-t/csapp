@@ -53,6 +53,8 @@ Address Analysis
     +--> Temporal Locality
     |
     +--> Pattern Classification
+    |
+    +--> Final Summary
 
 ---
 
@@ -277,3 +279,18 @@ MemViz testing follows a CacheSim-style assert-based structure:
 
 Testing currently covers parser behavior, address decomposition, histograms,
 spatial and temporal locality, and access-pattern classification.
+
+### Phase 8 - Final Summary
+
+MemViz v1.0 combines results from the trace parser, histograms, locality
+calculations, and pattern classifier.
+
+The summary includes:
+
+- Total access count
+- Hottest page
+- Hottest cache line
+- Spatial locality score
+- Temporal locality score
+- Access pattern
+- Cache-friendly or cache-unfriendly assessment

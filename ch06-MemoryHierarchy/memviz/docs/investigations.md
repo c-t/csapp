@@ -337,3 +337,22 @@ The Makefile provides:
 
 Strict compiler warnings are treated as errors, ensuring test and implementation
 code remains warning-free.
+
+## Phase 8 Findings
+
+MemViz v1.0 consolidates all analysis stages into one final memory-trace summary.
+
+The summary reports:
+
+- Total accesses
+- Hottest page and access count
+- Hottest cache line and access count
+- Spatial locality percentage
+- Temporal locality percentage
+- Classified access pattern
+- Overall cache-friendly or cache-unfriendly assessment
+
+The overall assessment combines strong spatial locality with meaningful temporal
+reuse. A trace is currently considered cache-friendly when spatial locality is at
+least 70% and temporal locality is at least 20%; otherwise, it is classified as
+cache-unfriendly.
