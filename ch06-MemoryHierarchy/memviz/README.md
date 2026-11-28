@@ -36,7 +36,7 @@ and helps connect low-level memory accesses to observed performance.
 - [x] Phase 1 - Trace Parser
 - [x] Phase 2 - Address Analysis
 - [x] Phase 3 - Histograms
-- [ ] Phase 4 - Spatial Locality
+- [x] Phase 4 - Spatial Locality
 - [ ] Phase 5 - Temporal Locality
 - [ ] Phase 6 - Heat Maps
 - [ ] Phase 7 - Pattern Classification
@@ -70,3 +70,11 @@ Implemented:
 - Page access histograms
 - Cache-line access histograms
 - Hot-region identification
+
+### Phase 4
+
+Implemented:
+
+- Cache-line transition analysis
+- Spatial locality scoring
+- Locality classification

@@ -112,3 +112,26 @@ Observation:
 The majority of accesses are concentrated
 within a single page and cache line,
 suggesting strong spatial locality.
+
+### Phase 4 Completed
+
+Implemented:
+
+- Spatial locality analysis
+- Cache-line transition tracking
+- Locality scoring
+- Locality classification
+
+Sample Results:
+
+Total Transitions     : 7
+Same-Line Transitions : 5
+
+Spatial Locality      : 71.43%
+
+Classification        : Moderate
+
+Observation:
+
+Most accesses occur within a small number of
+cache lines, indicating good spatial locality.

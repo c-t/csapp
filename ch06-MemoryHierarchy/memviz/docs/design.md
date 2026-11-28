@@ -44,9 +44,9 @@ Parser
     v
 Address Analyzer
     |
-    +--> Page Histogram
+    +--> Histograms
     |
-    +--> Cache-Line Histogram
+    +--> Spatial Locality
 
 ---
 
@@ -121,3 +121,27 @@ Output:
 Purpose:
 
 Identify heavily accessed memory regions and prepare for locality analysis.
+
+### Phase 4 - Spatial Locality
+
+Input:
+
+Cache-line sequence
+
+Processing:
+
+Compare consecutive accesses and determine
+whether they reside in the same cache line.
+
+Output:
+
+- Same-line transition count
+- Total transition count
+- Spatial locality percentage
+- Locality classification
+
+Classifications:
+
+Strong     >= 80%
+Moderate   >= 50%
+Poor       < 50%

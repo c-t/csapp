@@ -27,5 +27,9 @@ int main(int argc, char *argv[])
 	print_page_histogram(&page_histogram);
 	print_cacheline_histogram(&cacheline_histogram);
 
+	spatial_locality_t locality;
+	analyze_spatial_locality(&trace, &locality);
+	print_spatial_locality(&locality);
+
 	return 0;
 }

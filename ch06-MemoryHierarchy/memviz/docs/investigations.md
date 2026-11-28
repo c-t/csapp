@@ -219,3 +219,28 @@ Line 128 -> 2 accesses
 
 Hotspots indicate regions that may benefit from
 cache residency and exhibit locality.
+
+## Phase 4 Findings
+
+Spatial locality measures how frequently nearby
+memory locations are accessed together.
+
+Strong spatial locality improves cache efficiency
+because a single cache-line fetch can satisfy
+multiple accesses.
+
+Example Trace:
+
+0x1000
+0x1004
+0x1008
+0x100c
+
+All belong to the same cache line and therefore
+demonstrate strong spatial locality.
+
+Observed Result:
+
+Spatial Locality = 71.43%
+
+Classification = Moderate
