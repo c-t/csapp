@@ -289,3 +289,32 @@ Page 1      ****** (6)
 Page 2      **     (2)
 
 The longer bar immediately identifies the hottest page.
+
+## Phase 7 Findings
+
+Memory access patterns significantly affect system performance.
+
+Sequential patterns typically provide:
+
+- High cache utilization
+- Strong spatial locality
+
+Looping patterns provide:
+
+- Strong temporal locality
+- Good cache reuse
+
+Random patterns generally provide:
+
+- Poor locality
+- Increased cache misses
+
+Sample Trace Result
+
+Pattern: Looping
+
+Reason:
+
+Addresses 0x1000 and 0x1004 reappear later in the trace.
+
+This indicates memory reuse and a looping access pattern.

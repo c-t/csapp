@@ -39,7 +39,7 @@ and helps connect low-level memory accesses to observed performance.
 - [x] Phase 4 - Spatial Locality
 - [x] Phase 5 - Temporal Locality
 - [x] Phase 6 - Heat Maps
-- [ ] Phase 7 - Pattern Classification
+- [x] Phase 7 - Pattern Classification
 - [ ] Phase 8 - MemViz v1.0
 
 ## Current Features
@@ -95,3 +95,12 @@ Implemented:
 - Page heat maps
 - Cache-line heat maps
 - Hot-region visualization
+
+### Phase 7
+
+Implemented:
+
+- Sequential pattern detection
+- Strided pattern detection
+- Looping pattern detection
+- Random access detection

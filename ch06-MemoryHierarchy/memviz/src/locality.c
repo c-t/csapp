@@ -119,3 +119,86 @@ void print_temporal_locality(
 
     printf("\n");
 }
+
+void analyze_pattern(const trace_t *trace, pattern_analysis_t *result)
+{
+    result->type = PATTERN_UNKNOWN;
+    result->stride = 0;
+
+    if (trace->count < 2)
+    {
+        return;
+    }
+
+    /* Check for looping pattern */
+    for (int i = 1; i < trace->count; i++)
+    {
+        for (int j = 0; j < i; j++)
+        {
+            if (trace->entries[i].address == trace->entries[j].address)
+            {
+                result->type = PATTERN_LOOPING;
+                return;
+            }
+        }
+    }
+
+    int64_t stride = (int64_t)trace->entries[1].address - (int64_t)trace->entries[0].address;
+
+    int same_stride = 1;
+
+    for (int i = 2; i < trace->count; i++)
+    {
+        int64_t current_stride = (int64_t)trace->entries[i].address - (int64_t)trace->entries[i - 1].address;
+        if (current_stride != stride)
+        {
+            same_stride = 0;
+            break;
+        }
+    }
+
+    if (same_stride)
+    {
+        result->stride = stride;
+        if (stride == 4 ||stride == 8 || stride == 16 || stride == 32 || stride == 64)
+        {
+            result->type = PATTERN_SEQUENTIAL;
+        }
+        else
+        {
+            result->type = PATTERN_STRIDED;
+        }
+        return;
+    }
+
+    result->type = PATTERN_RANDOM;
+}
+
+void print_pattern_analysis(const pattern_analysis_t *result)
+{
+    printf("\nPattern Classification\n");
+    printf("====================================\n\n");
+    printf("Pattern : ");
+
+    switch (result->type)
+    {
+        case PATTERN_SEQUENTIAL:
+            printf("Sequential\n");
+            break;
+        case PATTERN_STRIDED:
+            printf("Strided\n");
+            printf("Stride  : %lld\n", (long long)result->stride);
+            break;
+        case PATTERN_LOOPING:
+            printf("Looping\n");
+            break;
+        case PATTERN_RANDOM:
+            printf("Random\n");
+            break;
+        default:
+            printf("Unknown\n");
+            break;
+    }
+
+    printf("\n");
+}

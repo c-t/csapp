@@ -56,6 +56,21 @@ typedef struct
     double average_reuse_distance;
 } temporal_locality_t;
 
+typedef enum
+{
+    PATTERN_UNKNOWN,
+    PATTERN_SEQUENTIAL,
+    PATTERN_STRIDED,
+    PATTERN_LOOPING,
+    PATTERN_RANDOM
+} pattern_type_t;
+
+typedef struct
+{
+    pattern_type_t type;
+    int64_t stride;
+} pattern_analysis_t;
+
 int load_trace(const char *filename, trace_t *trace);
 void print_trace(const trace_t *trace);
 void analyze_address(uint64_t address, address_info_t *info);
@@ -70,5 +85,7 @@ void analyze_temporal_locality(const trace_t *trace, temporal_locality_t *result
 void print_temporal_locality(const temporal_locality_t *result);
 void print_page_heatmap(const histogram_t *histogram);
 void print_cacheline_heatmap(const histogram_t *histogram);
+void analyze_pattern(const trace_t *trace, pattern_analysis_t *result);
+void print_pattern_analysis(const pattern_analysis_t *result);
 	
 #endif

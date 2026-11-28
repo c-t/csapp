@@ -42,11 +42,17 @@ Trace File
 Parser
     |
     v
-Address Analyzer
+Address Analysis
     |
     +--> Histograms
     |
+    +--> Heat Maps
+    |
     +--> Spatial Locality
+    |
+    +--> Temporal Locality
+    |
+    +--> Pattern Classification
 
 ---
 
@@ -191,3 +197,70 @@ Page 2      **     (2)
 
 Line 64     ****** (6)
 Line 128    **     (2)
+
+## Phase 7 - Pattern Classification
+
+Objective
+
+Identify common memory-access patterns automatically.
+
+Supported Patterns
+
+### Sequential
+
+Example:
+
+0x1000
+0x1004
+0x1008
+0x100C
+
+Characteristics:
+
+- Constant small stride
+- Strong spatial locality
+- Cache friendly
+
+### Strided
+
+Example:
+
+0x1000
+0x1100
+0x1200
+0x1300
+
+Characteristics:
+
+- Constant stride
+- Moderate spatial locality
+
+### Looping
+
+Example:
+
+A
+B
+C
+A
+B
+C
+
+Characteristics:
+
+- Repeated address reuse
+- Strong temporal locality
+
+### Random
+
+Example:
+
+0x1000
+0x9000
+0x2300
+0x50000
+
+Characteristics:
+
+- Weak locality
+- Poor cache behavior

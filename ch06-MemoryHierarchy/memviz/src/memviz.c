@@ -36,6 +36,10 @@ int main(int argc, char *argv[])
 	temporal_locality_t temporal;
 	analyze_temporal_locality(&trace, &temporal);
 	print_temporal_locality(&temporal);
+	
+	pattern_analysis_t pattern;
+	analyze_pattern(&trace, &pattern);
+	print_pattern_analysis(&pattern);
 
 	return 0;
 }
